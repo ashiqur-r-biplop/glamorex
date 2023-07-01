@@ -73,9 +73,3 @@ const TopRatedProductsSection = () => {
 };
 
 export default TopRatedProductsSection;
-
-{
-  /* <div className="w-full  h-[200px] relative">
-  <Image src={thumbnail} fill={true} alt="blog image" />
-</div>; */
-}
