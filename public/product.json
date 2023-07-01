@@ -1,0 +1,35 @@
+[
+    {
+        "name": "",
+        "image": "",
+        "description": "",
+        "product_id": "",
+        "seller_name": "",
+        "seller_email": "",
+        "rating": 0,
+        "previous_price": null,
+        "price": 120,
+        "quantity": 20,
+        "overall_sell": 10, 
+        "publish_date": "",
+        "category": "",
+        "label": "regular"        
+    },
+    {
+        "name": "",
+        "image": "",
+        "description": "",
+        "product_id": "",
+        "seller_name": "",
+        "seller_email": "",
+        "rating": 0,
+        "previous_price": null,
+        "price": 120,
+        "quantity": 20,
+        "overall_sell": 10, 
+        "publish_date": "",
+        "category": "",
+        "label": "regular"        
+    }
+    
+]
