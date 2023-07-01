@@ -1,26 +1,20 @@
+import Image from "next/image";
 import offerBanner from "../../../../../public/offerBanner/offerbanner.png";
 import { inter } from "../../layout";
 
 const OfferBannerSection = () => {
   return (
     <div className="relative w-full">
-      <div
-        className="py-10"
-        style={{
-          backgroundImage: `url(${offerBanner})`,
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundColor: "#3935c9",
-        }}
-      >
-        <div className="container mx-auto flex justify-between items-center w-full ">
-          <div className="w-1/2 h-full space-y-5">
+      <div className="relative md:h-[500px] h-[500px] bg-[#3935c9]">
+        <Image src={offerBanner} alt="offer banner" fill={true}></Image>
+      </div>
+      <div className="absolute top-0 md:left-1/2 md:transform md:-translate-x-[50%] container mx-auto md:flex justify-center items-center w-full">
+        <div className="md:flex justify-between items-center">
+          <div className="md:w-1/2 md:h-[500px] h-[350px]  space-y-5 flex flex-col justify-center items-start">
             <p
-              className={`uppercase ${inter.className}`}
+              className={`uppercase ${inter.className} md:text-4xl text-2xl`}
               style={{
                 fontWeight: 500,
-                fontSize: "42px",
                 color: "white",
               }}
             >
@@ -31,7 +25,7 @@ const OfferBannerSection = () => {
                 fontWeight: "800",
                 color: "#ffc300",
               }}
-              className={`text-8xl uppercase ${inter.className}`}
+              className={`lg:text-8xl md:text-5xl text-4xl uppercase ${inter.className}`}
             >
               <span>Discount Our Product</span>
             </div>
@@ -47,10 +41,12 @@ const OfferBannerSection = () => {
                 color: "white",
               }}
             >
-              <span className="absolute top-10 text-4xl right-0 w-full text-[#ffc300]">
+              <span className="absolute lg:top-10 -top-2 lg:text-4xl md:2xl right-0 w-full text-[#ffc300]">
                 save up to
               </span>
-              <span className="text-[250px] w-full">70%</span>
+              <span className="lg:text-[250px] md:text-[120px] text-[80px] w-full">
+                70%
+              </span>
             </div>
           </div>
         </div>
