@@ -4,6 +4,7 @@ const HeroSection = () => {
     return (
         <div>
             HeroSecion
+            
         </div>
     );
 };
