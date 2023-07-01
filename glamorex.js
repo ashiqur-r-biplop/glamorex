@@ -1,2 +1,0 @@
-// Glamorex
-// create development branch
