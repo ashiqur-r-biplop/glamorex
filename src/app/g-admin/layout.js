@@ -1,10 +1,8 @@
-import React from 'react';
-
-const AdminLayout = () => {
+const AdminLayout = ({children}) => {
     return (
-        <div>
-            
-        </div>
+        <main>
+            {children}
+        </main>
     );
 };
 
