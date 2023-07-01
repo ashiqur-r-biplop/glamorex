@@ -8,7 +8,7 @@ const NavLink = ({ href, children }) => {
     const isActive = pathname === href || href.startsWith(pathname + '/');
 
     return (
-        <Link href={href} className={`${isActive && 'border-b border-orange-500'} px-3 py-2 text-slate-200`}>{children}</Link>
+        <Link href={href} className={`${isActive && 'border-b border-orange-500'} px-3 py-2 text-slate-200 font-bold`}>{children}</Link>
     );
 };
 
