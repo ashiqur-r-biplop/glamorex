@@ -3,7 +3,7 @@
 const RecentProductsSection = () => {
     return (
         <div>
-            
+            RecentProductsSection
         </div>
     );
 };

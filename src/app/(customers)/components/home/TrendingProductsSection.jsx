@@ -3,7 +3,7 @@
 const TrendingProductsSection = () => {
     return (
         <div>
-            
+            TrendingProductsSection
         </div>
     );
 };

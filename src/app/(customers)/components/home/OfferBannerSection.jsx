@@ -3,7 +3,7 @@
 const OfferBannerSection = () => {
     return (
         <div>
-            
+            OfferBannerSection
         </div>
     );
 };

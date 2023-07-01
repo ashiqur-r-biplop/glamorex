@@ -6,7 +6,7 @@ import TopRatedProductsSection from './components/home/TopRatedProductsSection';
 import RecentProductsSection from './components/home/RecentProductsSection';
 import OfferBannerSection from './components/home/OfferBannerSection';
 import TrustedSection from './components/home/TrustedSection';
-import TestimonialSectio from './components/home/TestimonialSectio';
+import TestimonialSectio from './components/home/TestimonialSection';
 import NewsLatterSection from './components/home/NewsLatterSection';
 
 const HomePage = () => {

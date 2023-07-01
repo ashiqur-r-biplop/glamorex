@@ -3,7 +3,7 @@
 const TopRatedProductsSection = () => {
     return (
         <div>
-            
+            TopRatedProductsSection
         </div>
     );
 };
