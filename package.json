@@ -25,17 +25,26 @@
     "eslint-config-next": "13.4.7",
     "framer-motion": "^10.12.18",
     "keen-slider": "^6.8.5",
+<<<<<<< HEAD
+    "lottie-react": "^2.4.0",
+=======
     "moment": "^2.29.4",
+>>>>>>> c935162584a8c0bcd8677ff503cacbc74b1eab68
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-awesome-reveal": "^4.2.5",
     "react-dom": "18.2.0",
 <<<<<<< HEAD
+    "react-hook-form": "^7.45.1",
+    "react-icons": "^4.10.1",
+=======
+<<<<<<< HEAD
     "react-fast-marquee": "^1.6.0",
 =======
     "react-icons": "^4.10.1",
 >>>>>>> a1fe5f54a91808182534de62577e41bcf6013eb7
+>>>>>>> c935162584a8c0bcd8677ff503cacbc74b1eab68
     "react-redux": "^8.1.1",
     "tailwindcss": "3.3.2"
   }
