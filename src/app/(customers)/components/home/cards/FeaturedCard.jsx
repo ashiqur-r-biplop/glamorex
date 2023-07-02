@@ -11,7 +11,7 @@ const featuredCard = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col rounded-md max-w-xs h-full">
+    <div className="flex flex-col rounded-md md:max-w-xs w-full h-full">
       <div className="w-full bg-gray-100 p-5">
         <Image
           className="mx-auto rounded-md"
