@@ -8,6 +8,7 @@ import OfferBannerSection from './components/home/OfferBannerSection';
 import TrustedSection from './components/home/TrustedSection';
 import TestimonialSectio from './components/home/TestimonialSection';
 import NewsLatterSection from './components/home/NewsLatterSection';
+import '@smastrom/react-rating/style.css';
 
 const HomePage = () => {
     return (
