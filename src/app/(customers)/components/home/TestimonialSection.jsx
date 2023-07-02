@@ -81,11 +81,11 @@ const TestimonialSection = () => {
       </div>
 
       <div className="mt-56">
-        <Link href={"/reviews"}>
+        {/* <Link href={"/reviews"}> */}
           <button className="flex mx-auto bg-[#c6c5c9] px-5 rounded-2xl font-bold py-1">
             See All
           </button>
-        </Link>
+        {/* </Link> */}
       </div>
     </section>
   );

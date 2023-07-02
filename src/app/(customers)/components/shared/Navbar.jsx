@@ -12,14 +12,14 @@ function Nav() {
     const menu = <>
         <NavLink href={'/'}>Home</NavLink>
         <NavLink href={'/about'}>About</NavLink>
-        <NavLink href={'/blogs'}>Blogs</NavLink>
+        <NavLink href={'/blog'}>Blogs</NavLink>
         <NavLink href={'/contact'}>Contact</NavLink>
         <NavLink href={'/signin'}>Signin</NavLink>
     </>
 
     return (
-        <nav className="bg-gray-800 sticky left-0 top-0">
-            <div className="max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
+        <nav className="bg-gray-800 sticky left-0 top-0 z-50">
+            <div className="container mx-auto px-1 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
 
                     {/* logo */}

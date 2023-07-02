@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
 /* h1, h2, h3, h4, h5, h6 {
     font-family: ;
 } */
@@ -41,9 +40,3 @@
 .my-btn-one-outline{
         @apply px-5 py-2.5 rounded text-white font-bold bg-transparent border border-green-500 hover:bg-green-500 hover:text-white transition duration-500;
 }
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> development
->>>>>>> c935162584a8c0bcd8677ff503cacbc74b1eab68
