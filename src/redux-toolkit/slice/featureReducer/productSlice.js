@@ -1,4 +1,4 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { createSlice } from "@reduxjs/toolkit";
 
 const productSlice = createSlice({
     name: 'featureProducts',
@@ -6,4 +6,4 @@ const productSlice = createSlice({
 
 })
 
-export default productSlice
+export default productSlice.reducer
