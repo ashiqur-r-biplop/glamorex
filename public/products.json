@@ -87,7 +87,11 @@
   {
     "name": "Floral Print Dress",
     "image": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+<<<<<<< HEAD
+    "description": "Trendy sunglasses to protect your eyes with style.",
+=======
     "description": "An elegant evening gown for special occasions.",
+>>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
     "product_id": "1001",
     "seller_name": "Fashion Boutique",
     "seller_email": "info@fashionboutique.com",
@@ -121,7 +125,11 @@
   {
     "name": "Striped Shirt",
     "image": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+<<<<<<< HEAD
+    "description": "A classic striped t-shirt for a casual look.",
+=======
     "description": "Stylish jeans with intricate embroidery for a unique look.",
+>>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
     "product_id": "1003",
     "seller_name": "Fashion Emporium",
     "seller_email": "sales@fashionemporium.com",

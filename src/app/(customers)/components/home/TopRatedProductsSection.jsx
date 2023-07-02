@@ -1,5 +1,15 @@
 "use client";
 
+<<<<<<< HEAD
+import { useEffect, useState } from "react";
+import FeaturedCard from "./cards/FeaturedCard";
+
+const TopRatedProductsSection = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("/products.json")
+=======
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
@@ -10,10 +20,20 @@ const TopRatedProductsSection = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch("products.json")
+>>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
 
+<<<<<<< HEAD
+  return (
+    <div className="max-w-screen-2xl mx-auto sm:px-6 md:px-8 px-4 my-10">
+      <h2 className="font-bold text-3xl mb-8">Top Rated Products</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {products.slice(0, 8).map((product) => (
+          <FeaturedCard key={product.name} product={product} />
+        ))}
+=======
   console.log(products);
 
   return (
@@ -67,6 +87,7 @@ const TopRatedProductsSection = () => {
             </div>
           );
         })}
+>>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
       </div>
     </div>
   );
