@@ -1,0 +1,32 @@
+/* body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+.card_style_review .wrapper {
+  display: flex;
+  justify-content: center;
+}
+.card_style_review .scene {
+  width: 260px;
+  height: 200px;
+  perspective: 1000px;
+  position: relative;
+}
+.card_style_review .scene .carousel.keen-slider {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: visible;
+  transform: translateZ(-288px);
+  transform-style: preserve-3d;
+}
+.card_style_review .carousel__cell {
+  position: absolute;
+  width: 240px;
+  left: 10px;
+  height: 200px;
+  border: 0px solid rgba(0, 0, 0, 0);
+}

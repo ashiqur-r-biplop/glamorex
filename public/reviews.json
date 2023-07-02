@@ -1,0 +1,56 @@
+[
+  {
+    "image": "https://images.mubicdn.net/images/cast_member/51889/cache-5946-1478101707/image-w856.jpg?size=800x",
+    "name": "John Doe",
+    "review": "I absolutely love Glamorex! The products are top-notch and the customer service is exceptional. Highly recommended!",
+    "rating": 5
+  },
+  {
+    "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "name": "Jane Smith",
+    "review": "Glamorex exceeded my expectations. The quality of their products is outstanding, and their shipping is fast. Will definitely buy from them again!",
+    "rating": 4.5
+  },
+  {
+    "image": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
+    "name": "Alex Johnson",
+    "review": "I had a great experience with Glamorex. Their website is user-friendly, and their products are worth every penny. Highly recommend their skincare line!",
+    "rating": 4
+  },
+  {
+    "image": "https://static.vecteezy.com/system/resources/thumbnails/007/209/020/small/close-up-shot-of-happy-dark-skinned-afro-american-woman-laughs-positively-being-in-good-mood-dressed-in-black-casual-clothes-isolated-on-grey-background-human-emotions-and-feeligs-concept-photo.jpg",
+    "name": "Emily Wilson",
+    "review": "Glamorex has the trendiest fashion items. I'm always getting compliments when I wear their clothing. Love it!",
+    "rating": 4.5
+  },
+  {
+    "image": "https://media.them.us/photos/623372cbd84ee4e9c2538e19/4:3/w_628,h_471,c_limit/human-resources-goodman.jpg",
+    "name": "Michael Thompson",
+    "review": "I recently purchased a handbag from Glamorex, and I'm extremely satisfied with the quality. It looks even better in person!",
+    "rating": 5
+  },
+  {
+    "image": "https://img.freepik.com/free-photo/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university_273609-1270.jpg",
+    "name": "Sophia Lee",
+    "review": "I've been a loyal customer of Glamorex for years. Their products are consistently excellent, and their customer service is top-notch!",
+    "rating": 5
+  },
+  {
+    "image": "https://media.istockphoto.com/id/995562350/photo/teenage-girl-smiling-at-camera.jpg?s=612x612&w=0&k=20&c=jdk9SRurluap3bRDuVUG2iheBhyGl_KW8t38AzR57e4=",
+    "name": "Daniel Garcia",
+    "review": "Glamorex offers a wide range of options for all budgets. I always find something stylish and affordable on their website.",
+    "rating": 4
+  },
+  {
+    "image": "https://st4.depositphotos.com/13768208/40924/i/450/depositphotos_409241302-stock-photo-positive-girl-with-hairbun-looking.jpg",
+    "name": "Olivia Anderson",
+    "review": "I recently bought a dress from Glamorex, and I received so many compliments at the party. Their designs are unique and elegant.",
+    "rating": 4.5
+  },
+  {
+    "image": "https://st4.depositphotos.com/5989284/20550/i/600/depositphotos_205506006-stock-photo-portrait-smiling-handsome-male-worker.jpg",
+    "name": "Liam Wilson",
+    "review": "Glamorex's shipping is incredibly fast. I received my order within two days, and the packaging was excellent.",
+    "rating": 5
+  }
+]
