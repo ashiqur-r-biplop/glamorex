@@ -1,11 +1,11 @@
 'use client'
 import React, { useState } from 'react';
-import bgImg from '../../../../public/assets/img/signinBg.jpg'
+import bgImg from '/public/assets/img/signinBg.jpg'
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa6';
 import Link from 'next/link';
-import signinLottie from '../../../../public/assets/lottieAnimation/signin-lottie.json'
-// import { Lottie } from 'lottie-react';
+import signinLottie from '/public/assets/lottieAnimation/signin-lottie.json'
+import Lottie from "lottie-react";
 
 
 const SignInPage = () => {
@@ -83,7 +83,7 @@ const SignInPage = () => {
 
                 </div>
 
-                {/* <Lottie animationData={signinLottie} loop={true} className='h-full w-full' /> */}
+                <Lottie animationData={signinLottie} loop={true}  className='h-full w-full' />
             </div>
         </div>
     );

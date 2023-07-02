@@ -2,6 +2,9 @@
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import NavLink from "../HelpingCompo/NavLink";
+import logo from '../../../../../public/assets/img/logo.png'
+import Image from "next/image";
+import Link from "next/link";
 
 function Nav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +12,7 @@ function Nav() {
     const menu = <>
         <NavLink href={'/'}>Home</NavLink>
         <NavLink href={'/about'}>About</NavLink>
+        <NavLink href={'/blogs'}>Blogs</NavLink>
         <NavLink href={'/contact'}>Contact</NavLink>
         <NavLink href={'/signin'}>Signin</NavLink>
     </>
@@ -20,11 +24,14 @@ function Nav() {
 
                     {/* logo */}
                     <div className="flex-shrink-0">
-                        <img
-                            className="h-8 w-8"
-                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                            alt="Workflow"
-                        />
+                        <Link href={'/'}>
+                            <Image
+                                height={45}
+                                width={45}
+                                src={logo}
+                                alt="glamorex"
+                            />
+                        </Link>
                     </div>
 
                     <div className="flex items-center">

@@ -1,12 +1,12 @@
 'use client'
 import React, { useState } from 'react';
-import bgImg from '../../../../public/assets/img/signinBg.jpg'
+import bgImg from '/public/assets/img/signinBg.jpg'
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import Link from 'next/link';
 import signupLottie from'../../../../public/assets/lottieAnimation/signup-lottie.json'
 import successRegistrationLottie from'../../../../public/assets/lottieAnimation/successfully-registration-lottie.json'
-import { Lottie } from 'lottie-react';
+import Lottie from "lottie-react";
 
 const SignUpPage = () => {
 
@@ -96,7 +96,7 @@ const SignUpPage = () => {
 
                 </form>
 
-                {/* <Lottie animationData={success ? successRegistrationLottie : signupLottie} loop={true} className='h-full w-full' /> */}
+                <Lottie animationData={success ? successRegistrationLottie : signupLottie} loop={true} className='h-full w-full' />
             </div>
         </div>
     );
