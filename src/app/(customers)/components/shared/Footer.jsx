@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
-    <div className="bg-black text-white py-40">
+    <div className="bg-black text-white py-40 px-3">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="space-y-5">
-            <h1 className="text-3xl">Glamorex</h1>
+            <h1 className="text-3xl"> Glamorex</h1>
             <div className="space-y-2">
               <p className="w-4/5">
                 We are a young company always looking for new and creative ideas

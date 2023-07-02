@@ -63,7 +63,7 @@ const TestimonialSection = () => {
   }
 
   return (
-    <section className="card_style_review">
+    <section className="card_style_review container px-3 overflow-x-hidden">
       <div className="wrapper my-48 ">
         <div className="scene">
           <div className="carousel keen-slider " ref={sliderRef}>
