@@ -86,8 +86,8 @@
   },
   {
     "name": "Floral Print Dress",
-    "image": "dress1.jpg",
-    "description": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+    "image": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+    "description": "An elegant evening gown for special occasions.",
     "product_id": "1001",
     "seller_name": "Fashion Boutique",
     "seller_email": "info@fashionboutique.com",
@@ -103,8 +103,8 @@
   },
   {
     "name": "Leather Jacket",
-    "image": "jacket1.jpg",
-    "description": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+    "image": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+    "description": "Stylish jeans with intricate embroidery for a unique look.",
     "product_id": "1002",
     "seller_name": "Style Central",
     "seller_email": "contact@stylecentral.com",
@@ -120,8 +120,8 @@
   },
   {
     "name": "Striped Shirt",
-    "image": "shirt1.jpg",
-    "description": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+    "image": "https://m.media-amazon.com/images/I/81Vit2erqgL._AC_UX466_.jpg",
+    "description": "Stylish jeans with intricate embroidery for a unique look.",
     "product_id": "1003",
     "seller_name": "Fashion Emporium",
     "seller_email": "sales@fashionemporium.com",
