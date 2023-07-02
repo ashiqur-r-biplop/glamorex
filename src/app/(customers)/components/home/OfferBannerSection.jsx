@@ -35,7 +35,7 @@ const OfferBannerSection = () => {
           </div>
           <div className="h-full">
             <div
-              class={`text-center  ${inter.className} uppercase relative`}
+              className={`text-center  ${inter.className} uppercase relative`}
               style={{
                 fontWeight: "bold",
                 color: "white",
