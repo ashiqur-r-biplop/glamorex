@@ -1,11 +1,9 @@
-
-
 const AccountPage = () => {
-    return (
-        <div>
-            AccountPage
-        </div>
-    );
+  return (
+    <div>
+      <h2> AccountPage Aothy mahamud Moon</h2>
+    </div>
+  );
 };
 
 export default AccountPage;
