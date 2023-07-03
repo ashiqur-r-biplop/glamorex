@@ -1,11 +1,11 @@
 
 
-const TrendingProductsSection = () => {
+const TopRatedProducts = () => {
     return (
         <div>
-            TrendingProductsSection
+            Top rated Products
         </div>
     );
 };
 
-export default TrendingProductsSection;
+export default TopRatedProducts;
