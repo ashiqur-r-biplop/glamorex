@@ -7,7 +7,7 @@
         "blog_details": "In this blog post, we will explore the hottest fashion trends for the summer season. From vibrant colors to lightweight fabrics, get ready to update your wardrobe with the latest styles.",
         "views": 550,
         "publish_date": "Sat Jul 01 2023 21:04:21 GMT+0600",
-        "labels": "fashion, summer trends, wardrobe update",
+        "labels": ["fashion", "summer trends"],
         "tags": ["summer", "fashion", "trends"]
       },
       {
@@ -18,7 +18,7 @@
         "blog_details": "As the leaves start to change color, it's time to update your accessories collection. From cozy scarves to stylish hats, we've compiled a list of the must-have accessories for the upcoming fall season.",
         "views": 720,
         "publish_date": "Sun Jul 02 2023 10:15:47 GMT+0600",
-        "labels": "fashion, accessories, fall season",
+        "labels": ["fashion", "accessories"],
         "tags": ["fall", "accessories", "style"]
       },
       {
@@ -29,7 +29,7 @@
         "blog_details": "Attending a formal event can be daunting, especially when it comes to choosing the right outfit. In this blog post, we will guide you through the essential tips and tricks to ensure you look elegant and stylish for any formal occasion.",
         "views": 920,
         "publish_date": "Mon Jul 03 2023 15:30:12 GMT+0600",
-        "labels": "fashion, formal wear, style tips",
+        "labels": ["fashion", "formal wear"],
         "tags": ["formal", "style", "dress up"]
       },
       {
@@ -40,7 +40,7 @@
         "blog_details": "Winter fashion is all about staying cozy without compromising on style. In this blog post, we will teach you the art of layering, from choosing the right fabrics to creating stylish combinations. Say goodbye to bulky winter outfits and hello to chic layered looks.",
         "views": 690,
         "publish_date": "Tue Jul 04 2023 09:55:56 GMT+0600",
-        "labels": "fashion, winter, layering",
+        "labels": ["fashion", "winter"],
         "tags": ["winter", "layering", "style"]
       }
 ]
