@@ -8,7 +8,7 @@ const OfferBannerSection = () => {
       <div className="relative md:h-[500px] h-[500px] bg-[#3935c9]">
         <Image src={offerBanner} alt="offer banner" fill={true}></Image>
       </div>
-      <div className="absolute top-0 md:left-1/2 md:transform md:-translate-x-[50%] container mx-auto md:flex justify-center items-center w-full">
+      <div className="absolute px-3 top-0 md:left-1/2 md:transform md:-translate-x-[50%] container mx-auto md:flex justify-center items-center w-full">
         <div className="md:flex justify-between items-center">
           <div className="md:w-1/2 md:h-[500px] h-[350px]  space-y-5 flex flex-col justify-center items-start">
             <p

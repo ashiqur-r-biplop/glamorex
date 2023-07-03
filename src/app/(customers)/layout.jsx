@@ -17,19 +17,18 @@ export const inter = Inter({
 });
 
 export const metadata = {
-  title: 'Glamorex',
-  
-}
+  title: "Glamorex",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={nunito.className}>
-          <ReduxProvider>
-            <Navbar/>
-              {children}
-            <Footer/>
-          </ReduxProvider>
+        <ReduxProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );
