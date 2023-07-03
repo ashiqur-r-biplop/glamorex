@@ -3,7 +3,7 @@
 const CartPage = () => {
     return (
         <div>
-            Cart Page
+            Cart page will be developed by Dev Jesan.
         </div>
     );
 };
