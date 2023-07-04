@@ -1,11 +1,11 @@
 import React from 'react';
 
-const SellerHome = () => {
+const card = () => {
     return (
         <div>
-            SellerHome
+            
         </div>
     );
 };
 
-export default SellerHome;
+export default card;
