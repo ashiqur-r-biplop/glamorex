@@ -6,24 +6,36 @@ import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa6';
 import Link from 'next/link';
 import signinLottie from '/public/assets/lottieAnimation/signin-lottie.json'
 import Lottie from "lottie-react";
+import useAxiosSecure from '@/hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 
 const SignInPage = () => {
     const [isShowPass, setIsShowPass] = useState(false)
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
+    const {axiosSecure} = useAxiosSecure()
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm()
     const handleSigninFunc = form => {
         setError('')
         const { email, password } = form
 
-        // password regexp
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-        if (!passwordRegex.test(password)) {
-            setError("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")
-            return
-        }
+      
+        const user =  {email, password } 
+        axiosSecure.post("/login", user)
+        .then(res => {
+            if(res.data) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
+        .catch(error => console.log(error))
 
     }
 
