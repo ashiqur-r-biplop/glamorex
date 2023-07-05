@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { FaDollarSign } from 'react-icons/fa';
+import { FaDollarSign, FaDotCircle, FaSearch } from 'react-icons/fa';
 import { FaArrowDown, FaArrowUp, FaPeopleArrows, FaPeopleGroup, FaProductHunt, FaWallet } from 'react-icons/fa6';
 
 import {
@@ -14,6 +14,7 @@ import {
     Tooltip,
     Legend,
     ResponsiveContainer,
+    PieChart, Pie, Sector, Cell
 } from 'recharts';
 
 
@@ -61,7 +62,8 @@ const SDhomepage = () => {
     ];
 
 
-    const data = [
+    // right chart data
+    const chartData = [
         {
             name: 'Page A',
             uv: 590,
@@ -100,12 +102,84 @@ const SDhomepage = () => {
         },
     ];
 
+    // left pie chart data
+    const data = [
+        { name: 'Group A', value: 400 },
+        { name: 'Group B', value: 300 },
+        { name: 'Group C', value: 300 },
+        { name: 'Group D', value: 200 },
+    ];
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+    const RADIAN = Math.PI / 180;
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
+
+    // for invoices
+    const invoices = [
+        {
+            invoiceNo: 'INV001',
+            id: 1,
+            customerName: 'John Doe',
+            itemsName: ['Item A', 'Item B', 'Item C'],
+            orderDate: '2023-07-01',
+            status: 'Paid',
+            price: 100.0
+        },
+        {
+            invoiceNo: 'INV002',
+            id: 2,
+            customerName: 'Jane Smith',
+            itemsName: ['Item D', 'Item E'],
+            orderDate: '2023-07-02',
+            status: 'Pending',
+            price: 75.5
+        },
+        {
+            invoiceNo: 'INV003',
+            id: 3,
+            customerName: 'Mike Johnson',
+            itemsName: ['Item F'],
+            orderDate: '2023-07-03',
+            status: 'Paid',
+            price: 50.0
+        },
+        {
+            invoiceNo: 'INV004',
+            id: 4,
+            customerName: 'Sarah Williams',
+            itemsName: ['Item G', 'Item H'],
+            orderDate: '2023-07-04',
+            status: 'Pending',
+            price: 120.75
+        },
+        {
+            invoiceNo: 'INV005',
+            id: 5,
+            customerName: 'David Brown',
+            itemsName: ['Item I', 'Item J', 'Item K'],
+            orderDate: '2023-07-05',
+            status: 'Paid',
+            price: 90.5
+        }
+    ];
+
+
+
     return (
         <div className='p-8 bg-slate-100 h-full'>
 
             {/* stats */}
-            <div className='grid grid-cols-4 gap-5'>
-
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5'>
 
                 {
                     sellerStats.map((statsData, ind) => {
@@ -125,24 +199,42 @@ const SDhomepage = () => {
                     })
                 }
 
-
             </div>
 
 
-            <div className='grid grid-cols-12'>
+            {/* chart */}
+            <div className='grid grid-cols-12 gap-6'>
 
-                <div className='col-span-5'>
-                    
+                {/* Pie chart needle */}
+                <div className='my-16 col-span-12 lg:col-span-5 h-[500px] bg-slate-50 shadow rounded'>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <PieChart width={400} height={400}>
+                            <Pie
+                                data={data}
+                                cx="50%"
+                                cy="50%"
+                                labelLine={false}
+                                label={renderCustomizedLabel}
+                                outerRadius={80}
+                                fill="#8884d8"
+                                dataKey="value"
+                            >
+                                {data.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                            </Pie>
+                        </PieChart>
+                    </ResponsiveContainer>
                 </div>
 
 
                 {/* Seller analytics chart */}
-                <div className='my-16 h-[500px] col-span-7'>
+                <div className='my-16 h-[500px] col-span-12 lg:col-span-7 bg-slate-50 shadow rounded'>
                     <ResponsiveContainer width="100%" height="100%">
                         <ComposedChart
                             width={500}
                             height={400}
-                            data={data}
+                            data={chartData}
                             margin={{
                                 top: 20,
                                 right: 20,
@@ -159,6 +251,51 @@ const SDhomepage = () => {
                             <Line type="monotone" dataKey="uv" stroke="#ff7300" />
                         </ComposedChart>
                     </ResponsiveContainer>
+                </div>
+
+            </div>
+
+            {/* invoices */}
+            <div className='my-8 bg-slate-50 shadow rounded p-5'>
+                <div className='flex gap-3 justify-between items-center mb-3'>
+                    <h2 className='my-subtitle text-slate-600'>Recent invoices</h2>
+                    <div className='relative'><input placeholder='Filter...' type='text' className='my-inp !pl-8 !text-slate-50' /> <span className='absolute top-1/2 -translate-y-1/2 left-2 text-slate-50'><FaSearch></FaSearch></span> </div>
+                </div>
+
+                {/* Table */}
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Id</th>
+                                <th>Customer Name</th>
+                                <th>Items Name</th>
+                                <th>Order date</th>
+                                <th>Status</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                invoices.map((invoice, ind) => {
+                                    const {invoiceNo, id, customerName, itemsName, orderDate, status, price} = invoice || {}
+                                    const itemsNameColor = ['#FF0000', '#990099', '#003366' ]
+                                    return <tr key={ind}>
+                                        <th>{id}</th>
+                                        <td>{invoiceNo}</td>
+                                        <td>{customerName}</td>
+                                        <td>{itemsName.map((item, ind)=> <span key={ind} className='mx-2'  style={{ color: itemsNameColor[ind] }}>{item}</span>)}</td>
+                                        <td>{orderDate}</td>
+                                        <td>{status}</td>
+                                        <td>{price}</td>
+                                    </tr>
+                                })
+                            }
+                        </tbody>
+                    </table>
                 </div>
 
             </div>

@@ -37,5 +37,8 @@
         "recharts": "^2.7.2",
         "sweetalert2": "^11.7.12",
         "tailwindcss": "3.3.2"
+    },
+    "devDependencies": {
+        "daisyui": "^3.1.9"
     }
 }
