@@ -7,9 +7,11 @@ import Link from 'next/link';
 import signupLottie from'../../../../public/assets/lottieAnimation/signup-lottie.json'
 import successRegistrationLottie from'../../../../public/assets/lottieAnimation/successfully-registration-lottie.json'
 import Lottie from "lottie-react";
+import useAxiosSecure from '@/hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const SignUpPage = () => {
-
+    const {axiosSecure} = useAxiosSecure()
     const [isShowPass, setIsShowPass] = useState(false)
     const [isConfirmShowPass, setIsConfirmShowPass] = useState(false)
     const [success, setSuccess] = useState('')
@@ -17,7 +19,7 @@ const SignUpPage = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const handleSignupFunc = form => {
-        const { name, photo, email, password, confirmPassword, terms } = form
+        const { name, photo_url, email, password, confirmPassword, terms } = form
 
         if (!terms) {
             setError('*Please check terms and condition!')
@@ -35,6 +37,21 @@ const SignUpPage = () => {
             return
         }
 
+        const user =  {name, photo_url, email, password } 
+        axiosSecure.post("/register", user)
+        .then(res => {
+            if(res.data) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    showConfirmButton: false,
+                    timer: 1000
+                  })
+            }
+        })
+        .catch(error => console.log(error))
+
     };
 
     return (
@@ -50,7 +67,7 @@ const SignUpPage = () => {
 
                     <div>
                         <label htmlFor="photo" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">photo URL</label>
-                        <input type='url' className='my-inp' id='photo' {...register("photo", { required: true })} placeholder='Your photo URL here' />
+                        <input type='url' className='my-inp' id='photo' {...register("photo_url", { required: true })} placeholder='Your photo URL here' />
                         {errors.photo && <p className='text-red-500'>This field is required</p>}
                     </div>
 
