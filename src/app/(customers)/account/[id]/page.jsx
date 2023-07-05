@@ -70,6 +70,7 @@ const ProfileEdit = () => {
                 className="border p-2 rounded-sm w-full"
               />
             </div>
+            {/* TODO: upload image here  */}
             <div className=" space-y-1">
               <label>
                 <span className="font-semibold text-lg">Photo URL</span>
