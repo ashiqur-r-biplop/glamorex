@@ -46,7 +46,7 @@ const SignUpPage = () => {
                     icon: 'success',
                     title: 'Registration Successful',
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 1500
                   })
             }
         })
