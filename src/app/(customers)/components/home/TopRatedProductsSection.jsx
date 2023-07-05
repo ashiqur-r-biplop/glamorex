@@ -14,8 +14,6 @@ const TopRatedProductsSection = () => {
       .then((data) => setProducts(data));
   }, []);
 
-  // console.log(products);
-
   return (
     <div className="container mx-auto px-5 pt-[100px]">
       <div className="section-title mb-8">
