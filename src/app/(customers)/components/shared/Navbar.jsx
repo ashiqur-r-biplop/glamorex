@@ -13,6 +13,7 @@ function Nav() {
         <NavLink href={'/'}>Home</NavLink>
         <NavLink href={'/about'}>About</NavLink>
         <NavLink href={'/blog'}>Blogs</NavLink>
+        <NavLink href={'/blog'}>Shop</NavLink>
         <NavLink href={'/contact'}>Contact</NavLink>
         <NavLink href={'/signin'}>Signin</NavLink>
     </>
