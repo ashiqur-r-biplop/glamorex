@@ -1,25 +1,49 @@
 Arguments: 
+<<<<<<< HEAD
+  C:\Program Files\nodejs\node.exe C:\Users\USER\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
+
+PATH: 
+  C:\Users\USER\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\USER\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\dotnet;C:\Users\USER\AppData\Local\Microsoft\WindowsApps;C:\Users\USER\AppData\Roaming\npm;C:\Users\USER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+=======
   C:\Program Files\nodejs\node.exe C:\Users\Armaan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
 
 PATH: 
   C:\Users\Armaan\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Armaan\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Users\Armaan\AppData\Local\Microsoft\WindowsApps;C:\Users\Armaan\AppData\Local\GitHubDesktop\bin;C:\Users\Armaan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Armaan\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
 
 Yarn version: 
   1.22.19
 
 Node version: 
+<<<<<<< HEAD
+  18.15.0
+=======
   20.3.0
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
 
 Platform: 
   win32 x64
 
 Trace: 
+<<<<<<< HEAD
+<<<<<<< HEAD
+  SyntaxError: C:\Users\USER\Desktop\Glamorex\glamorex\package.json: Unexpected token < in JSON at position 2
+=======
+  SyntaxError: E:\Glamorex\glamorex\package.json: Unexpected token < in JSON at position 2
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+      at JSON.parse (<anonymous>)
+      at C:\Users\USER\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\USER\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\USER\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+=======
   SyntaxError: D:\Code Commandos\glamorex\package.json: Expected property name or '}' in JSON at position 2
       at JSON.parse (<anonymous>)
       at C:\Users\Armaan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
       at Generator.next (<anonymous>)
       at step (C:\Users\Armaan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
       at C:\Users\Armaan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
 
 npm manifest: 
   {
@@ -34,8 +58,15 @@ npm manifest:
       "lint": "next lint"
     },
     "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+      "@emotion/react": "^11.11.1",
+=======
+=======
       "@fontsource/inter": "^5.0.3",
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
       "@headlessui/react": "^1.7.15",
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
       "@reduxjs/toolkit": "^1.9.5",
       "@smastrom/react-rating": "^1.3.1",
       "@stripe/react-stripe-js": "^2.1.1",
@@ -46,7 +77,14 @@ npm manifest:
       "eslint-config-next": "13.4.7",
       "framer-motion": "^10.12.18",
       "keen-slider": "^6.8.5",
+<<<<<<< HEAD
+<<<<<<< HEAD
+      "lottie-react": "^2.4.0",
+=======
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
       "moment": "^2.29.4",
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
       "next": "13.4.7",
       "postcss": "8.4.24",
       "react": "18.2.0",
@@ -93,7 +131,15 @@ npm manifest:
           "react-redux": "^8.1.1",
           "tailwindcss": "3.3.2"
       }
+<<<<<<< HEAD
+<<<<<<< HEAD
+  >>>>>>> development
+=======
+  >>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
   >>>>>>> 238ef84d390eb179d6978b2a5845372533577df2
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
   }
 
 yarn manifest: 
@@ -352,7 +398,19 @@ Lockfile:
   
   "@jridgewell/sourcemap-codec@^1.4.10":
     version "1.4.15"
+<<<<<<< HEAD
+<<<<<<< HEAD
     resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
+=======
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz"
+  =======
+    resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
+  >>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
+    resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
     integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
   
   "@jridgewell/trace-mapping@^0.3.9":
@@ -1581,7 +1639,13 @@ Lockfile:
   
   glob@7.1.6:
     version "7.1.6"
+<<<<<<< HEAD
+<<<<<<< HEAD
     resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
+=======
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/glob/-/glob-7.1.6.tgz"
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
     integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
     dependencies:
       fs.realpath "^1.0.0"
@@ -1591,14 +1655,66 @@ Lockfile:
       once "^1.3.0"
       path-is-absolute "^1.0.0"
   
+<<<<<<< HEAD
   glob@7.1.7:
+=======
+  glob@7.1.7, glob@^7.1.3:
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
     version "7.1.7"
     resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
     integrity sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==
+<<<<<<< HEAD
+=======
+  =======
+    resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
+    integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
+  >>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
+    resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
+    integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
     dependencies:
       fs.realpath "^1.0.0"
       inflight "^1.0.4"
       inherits "2"
+      minimatch "^3.0.4"
+      once "^1.3.0"
+      path-is-absolute "^1.0.0"
+  
+<<<<<<< HEAD
+  glob@^7.1.3:
+    version "7.2.3"
+    resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
+    integrity sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
+=======
+  glob@7.1.7:
+    version "7.1.7"
+    resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
+    integrity sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+    dependencies:
+      fs.realpath "^1.0.0"
+      inflight "^1.0.4"
+      inherits "2"
+<<<<<<< HEAD
+      minimatch "^3.1.1"
+      once "^1.3.0"
+      path-is-absolute "^1.0.0"
+  
+  globals@^13.19.0:
+    version "13.20.0"
+    resolved "https://registry.yarnpkg.com/globals/-/globals-13.20.0.tgz#ea276a1e508ffd4f1612888f9d1bad1e2717bf82"
+    integrity sha512-Qg5QtVkCy/kv3FUSlu4ukeZDVf9ee0iXLAUYX13gbR17bnejFTzr4iS9bY7kwCf1NztRNm1t91fjOiyx4CSwPQ==
+    dependencies:
+      type-fest "^0.20.2"
+  
+  globalthis@^1.0.3:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/globalthis/-/globalthis-1.0.3.tgz#5852882a52b80dc301b0660273e1ed082f0b6ccf"
+    integrity sha512-sFdI5LyBiNTHjRd7cGPWapiHWMOXKyuBNX/cWJ3NfzrZQVa8GI/8cofCl74AOVqq9W5kNmguTIzJ/1s2gyI9wA==
+    dependencies:
+=======
       minimatch "^3.0.4"
       once "^1.3.0"
       path-is-absolute "^1.0.0"
@@ -1627,6 +1743,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/globalthis/-/globalthis-1.0.3.tgz"
     integrity sha512-sFdI5LyBiNTHjRd7cGPWapiHWMOXKyuBNX/cWJ3NfzrZQVa8GI/8cofCl74AOVqq9W5kNmguTIzJ/1s2gyI9wA==
     dependencies:
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
       define-properties "^1.1.3"
   
   globby@^11.1.0:
@@ -2126,12 +2243,28 @@ Lockfile:
     resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz"
     integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
   
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  <<<<<<< HEAD
+  ms@2.1.2, ms@^2.1.1:
+  =======
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
   moment@^2.29.4:
     version "2.29.4"
     resolved "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
     integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
   
   ms@2.1.2:
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  >>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
     version "2.1.2"
     resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
     integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
@@ -2457,7 +2590,19 @@ Lockfile:
   
   postcss@8.4.24, postcss@^8.4.23:
     version "8.4.24"
+<<<<<<< HEAD
+<<<<<<< HEAD
     resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.24.tgz#f714dba9b2284be3cc07dbd2fc57ee4dc972d2df"
+=======
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.24.tgz"
+  =======
+    resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.24.tgz#f714dba9b2284be3cc07dbd2fc57ee4dc972d2df"
+  >>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
+    resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.24.tgz#f714dba9b2284be3cc07dbd2fc57ee4dc972d2df"
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
     integrity sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==
     dependencies:
       nanoid "^3.3.6"
@@ -2493,6 +2638,14 @@ Lockfile:
     resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
     integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
   
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  <<<<<<< HEAD
+  =======
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
   react-awesome-reveal@^4.2.5:
     version "4.2.5"
     resolved "https://registry.npmjs.org/react-awesome-reveal/-/react-awesome-reveal-4.2.5.tgz"
@@ -2501,6 +2654,13 @@ Lockfile:
       react-intersection-observer "^9.4.3"
       react-is "^18.2.0"
   
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  >>>>>>> 5bc94419394ac00efd32a7443d888f9729a755c8
+>>>>>>> 250cc930c495349f7450144b65543ba746956af8
+=======
+>>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
   react-dom@18.2.0:
     version "18.2.0"
     resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
