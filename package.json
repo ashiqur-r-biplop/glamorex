@@ -18,6 +18,7 @@
         "@stripe/stripe-js": "^1.54.1",
         "autoprefixer": "10.4.14",
         "axios": "^1.4.0",
+        "daisyui": "^3.1.9",
         "eslint": "8.44.0",
         "eslint-config-next": "13.4.7",
         "framer-motion": "^10.12.18",
@@ -37,8 +38,5 @@
         "recharts": "^2.7.2",
         "sweetalert2": "^11.7.12",
         "tailwindcss": "3.3.2"
-    },
-    "devDependencies": {
-        "daisyui": "^3.1.9"
     }
 }
