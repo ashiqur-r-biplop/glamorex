@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { FaDollarSign, FaDotCircle, FaSearch } from 'react-icons/fa';
+import { FaDollarSign,  FaSearch } from 'react-icons/fa';
 import { FaArrowDown, FaArrowUp, FaPeopleArrows, FaPeopleGroup, FaProductHunt, FaWallet } from 'react-icons/fa6';
 
 import {
@@ -176,7 +176,7 @@ const SDhomepage = () => {
 
 
     return (
-        <div className='p-8 bg-slate-100 h-full'>
+        <div className='p-8 bg-slate-200 h-full'>
 
             {/* stats */}
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5'>
@@ -259,7 +259,7 @@ const SDhomepage = () => {
             <div className='my-8 bg-slate-50 shadow rounded p-5'>
                 <div className='flex gap-3 justify-between items-center mb-3'>
                     <h2 className='my-subtitle text-slate-600'>Recent invoices</h2>
-                    <div className='relative'><input placeholder='Filter...' type='text' className='my-inp !pl-8 !text-slate-50' /> <span className='absolute top-1/2 -translate-y-1/2 left-2 text-slate-50'><FaSearch></FaSearch></span> </div>
+                    <div className='relative'><input placeholder='Filter...' type='text' className='my-inp !bg-[#081229] !pl-8 !text-slate-50' /> <span className='absolute top-1/2 -translate-y-1/2 left-2 text-slate-50'><FaSearch></FaSearch></span> </div>
                 </div>
 
                 {/* Table */}
@@ -290,7 +290,7 @@ const SDhomepage = () => {
                                         <td>{itemsName.map((item, ind)=> <span key={ind} className='mx-2'  style={{ color: itemsNameColor[ind] }}>{item}</span>)}</td>
                                         <td>{orderDate}</td>
                                         <td>{status}</td>
-                                        <td>{price}</td>
+                                        <td>${price}</td>
                                     </tr>
                                 })
                             }
