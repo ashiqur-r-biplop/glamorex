@@ -3,7 +3,6 @@ import { inter } from "@/app/layout";
 import ShopHeader from "../../../../public/assets/lottieAnimation/shop-lotti.json";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
-import ShopCard from "../components/shop/card";
 import TopCard from "../components/shop/TopCard";
 import DropDownMenu from "../components/shop/DropDownMenu";
 const ShopPage = () => {
