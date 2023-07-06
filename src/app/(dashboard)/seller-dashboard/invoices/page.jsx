@@ -1,10 +1,9 @@
 import React from 'react';
+import Invoices from '../components/Invoices/Invoices';
 
 const InvoicesPage = () => {
     return (
-        <div>
-            This page for InvoicesPage
-        </div>
+        <Invoices></Invoices>
     );
 };
 
