@@ -4,31 +4,28 @@ import ShopHeader from "../../../../public/assets/lottieAnimation/shop-lotti.jso
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
 import TopCard from "../components/shop/TopCard";
-import DropDownMenu from "../components/shop/DropDownMenu";
+import ShopSideBar from "../components/shop/ShopSidebar";
 const ShopPage = () => {
-  const [products, setProducts] = useState([]);
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [control, setControl] = useState(true);
+  console.log(control);
+  const layout = JSON.parse(localStorage.getItem("layout")) || "grid";
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data);
         setTopSale(data);
         setLoading(false);
       });
-  }, []);
-  console.log(products);
-  console.log(TopSale);
+  }, [control]);
   if (loading) {
     return <>Loading....</>;
   }
   return (
-    <>
-      {" "}
+    <div className="">
       <div className="bg-slate-300">
-        <div className="flex flex-col-reverse md:flex-row py-5 justify-center md:justify-evenly items-center">
+        <div className="container mx-auto flex flex-col-reverse md:flex-row py-5 justify-center md:justify-between items-center">
           <div className="text-center space-y-1 md:space-y-3  py-10 md:py-0 ">
             <h2 className={`uppercase  md:text-5xl text-2xl`}>
               The Biggest
@@ -73,16 +70,30 @@ const ShopPage = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto">
+      <div className="container mx-auto px-3 grid grid-cols-1 md:grid-cols-12 gap-10">
         {/* TODO */}
-        <DropDownMenu></DropDownMenu>
-        <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {TopSale.map((product, i) => (
-            <TopCard key={i + 1} product={product}></TopCard>
-          ))}
+        <div className="md:col-span-3 relative">
+          <ShopSideBar setControl={setControl} control={control}></ShopSideBar>
+        </div>
+        <div className="md:col-span-9">
+          <div
+            className={`grid gap-5 ${
+              layout === "grid"
+                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                : "grid-cols-1"
+            }`}
+          >
+            {TopSale.map((product) => (
+              <TopCard
+                key={product?.product_id}
+                product={product}
+                layout={layout}
+              ></TopCard>
+            ))}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

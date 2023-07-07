@@ -5,23 +5,23 @@ import React from "react";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import { BsCartPlus } from "react-icons/bs";
 
-const TopCard = ({ product }) => {
+const TopCard = ({ product , layout }) => {
   const myStyles = {
     itemShapes: ThinStar,
     activeFillColor: "#09AC00",
     inactiveFillColor: "#BCEDC5",
   };
   return (
-    <div className="border-2 p-5 border-gray-100 transition duration-200 cursor-pointer rounded-2xl relative">
-      <figure className="w-[90%] mx-auto h-[250px] relative">
-        <Image src={product.image} fill={true} alt={product?.name} />
+    <div className={`border-2 border-gray-100 transition duration-200 cursor-pointer rounded-2xl relative ${layout === "grid" ? "" : "md:w-1/3 w-full mx-auto"}`}>
+      <figure className="w-[90%] mx-auto h-[250px] relative ">
+        <Image src={product.image} fill={true} className="p-5" alt={product?.name} />
       </figure>
       {product?.discount !== null && (
         <p className="bg-green-500 absolute -top-2 right-0 transform -translate-y-[100%]  inline-block rounded-2xl text-white font-semibold ml-4 mt-8 px-4">
           - {product?.discount}%
         </p>
       )}
-      <div className="absolute inline-block top-0 transform translate-x-[20%] translate-y-[10%]  text-center">
+      <div className="absolute inline-block top-0 transform w-full h-full md:translate-y-[10%] lg:translate-x-[0%] lg:translate-y-[0%]  text-center">
         <div className="p-5 space-y-2 font-semibold">
           <h2 className="text-xl font-medium">{product?.name}</h2>
           <div className="flex justify-center items-center gap-2">
@@ -76,7 +76,7 @@ const TopCard = ({ product }) => {
             </button>
           </div>
         </div>
-        <div className="bg-green-400 rounded-2xl bg-opacity-75 opacity-0 hover:opacity-30 text-green-400 font-medium p-2 flex justify-center items-center absolute inset-0 transition duration-500 ease-in-out"></div>
+        <div className="bg-green-400 rounded-2xl bg-opacity-75 opacity-0 hover:opacity-30 text-green-400 font-medium h-full flex justify-center items-center absolute inset-0 transition duration-500 ease-in-out"></div>
       </div>
     </div>
   );

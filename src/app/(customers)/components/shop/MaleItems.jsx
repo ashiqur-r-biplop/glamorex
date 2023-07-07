@@ -7,7 +7,7 @@ const MaleItems = () => {
   return (
     <form
       onChange={handleRadioButton}
-      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 space-y-1 mt-2"
+      className="grid grid-cols-2 md:grid-cols-1 space-y-1 mt-2"
     >
       <div>
         <input
@@ -117,7 +117,7 @@ const MaleItems = () => {
           name="FeMaleItem"
           value="Bath_and_body_products"
         />
-        <label htmlFor="Bath_and_body_products">Bath_and_body_products</label>
+        <label htmlFor="Bath_and_body_products">Bath and body products</label>
       </div>
       <div>
         <input
