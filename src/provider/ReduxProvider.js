@@ -1,12 +1,12 @@
 'use client'
-import useSetToken from "@/hooks/useSetToken";
+
+import useAuth from "@/hooks/useAuth";
 import store from "@/redux-toolkit/store";
-import { useEffect } from "react";
 import { Provider } from "react-redux";
 
 
 const ReduxProvider = ({children}) => {
-    useSetToken()
+    useAuth()
     return (
         <Provider store={store}>{children}</Provider>
     )
