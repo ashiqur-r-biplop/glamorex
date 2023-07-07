@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import bgImg from '/public/assets/img/signinBg.jpg'
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa6';
@@ -8,9 +8,16 @@ import signinLottie from '/public/assets/lottieAnimation/signin-lottie.json'
 import Lottie from "lottie-react";
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAuth from '@/hooks/useAuth';
+
 
 
 const SignInPage = () => {
+    const {user} = useAuth()      
+    if(user) {
+        return window.location.href = "/"
+     }
+
     const [isShowPass, setIsShowPass] = useState(false)
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
@@ -26,13 +33,21 @@ const SignInPage = () => {
         axiosSecure.post("/login", user)
         .then(res => {
             if(res.data) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Login Successful',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
+
+                if(res.data.token) {
+                    localStorage.setItem("access-token", res.data.token)
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Login Successful',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+                else {
+                    localStorage.removeItem("access-token")
+                }    
+           
             }
         })
         .catch(error => console.log(error))
