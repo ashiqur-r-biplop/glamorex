@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import CartRow from "../components/cart/CartRow";
 import { FaArrowRight } from "react-icons/fa6";
+import Link from "next/link";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -48,11 +49,13 @@ const CartPage = () => {
           <span className="font-bold">$1200</span>
         </div>
         <div className="flex justify-end pt-4">
-          <button className="my-btn-one">
-            <p className="flex items-center gap-3">
-              <span>Proceed to Checkout</span> <FaArrowRight />
-            </p>
-          </button>
+          <Link href={"/checkout"}>
+            <button className="my-btn-one">
+              <p className="flex items-center gap-3">
+                <span>Proceed to Checkout</span> <FaArrowRight />
+              </p>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
