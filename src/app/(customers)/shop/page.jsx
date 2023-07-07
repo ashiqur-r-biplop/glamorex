@@ -1,5 +1,5 @@
 "use client";
-import { inter } from "@/app/layout";
+
 import ShopHeader from "../../../../public/assets/lottieAnimation/shop-lotti.json";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
@@ -30,11 +30,11 @@ const ShopPage = () => {
       <div className="bg-slate-300">
         <div className="flex flex-col-reverse md:flex-row py-5 justify-center md:justify-evenly items-center">
           <div className="text-center space-y-1 md:space-y-3  py-10 md:py-0 ">
-            <h2 className={`uppercase ${inter.className} md:text-5xl text-2xl`}>
+            <h2 className={`uppercase  md:text-5xl text-2xl`}>
               The Biggest
             </h2>
             <h1
-              className={`uppercase ${inter.className} md:text-7xl font-bold text-4xl`}
+              className={`uppercase  md:text-7xl font-bold text-4xl`}
             >
               Sale
             </h1>

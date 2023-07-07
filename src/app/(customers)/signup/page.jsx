@@ -9,8 +9,13 @@ import successRegistrationLottie from'../../../../public/assets/lottieAnimation/
 import Lottie from "lottie-react";
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAuth from '@/hooks/useAuth';
 
 const SignUpPage = () => {
+    const {user} = useAuth()      
+    if(user) {
+        return window.location.href = "/"
+     }
     const {axiosSecure} = useAxiosSecure()
     const [isShowPass, setIsShowPass] = useState(false)
     const [isConfirmShowPass, setIsConfirmShowPass] = useState(false)

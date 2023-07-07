@@ -5,17 +5,24 @@ import NavLink from "../HelpingCompo/NavLink";
 import logo from '../../../../../public/assets/img/logo.png'
 import Image from "next/image";
 import Link from "next/link";
+import useAuth from "@/hooks/useAuth";
 
 function Nav() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const {user} = useAuth()
+    const logOut = () => {
+        localStorage.removeItem("access-token")
+    }
     const menu = <>
         <NavLink href={'/'}>Home</NavLink>
         <NavLink href={'/about'}>About</NavLink>
         <NavLink href={'/blog'}>Blogs</NavLink>
         <NavLink href={'/shop'}>Shop</NavLink>
         <NavLink href={'/contact'}>Contact</NavLink>
-        <NavLink href={'/signin'}>Signin</NavLink>
+        {
+            user ? <button onClick={logOut} className="my-btn-one">Logout</button> : <NavLink href={'/signin'}>Signin</NavLink>
+        }
+       
     </>
 
     return (
