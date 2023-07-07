@@ -26,9 +26,11 @@ const BlogPage = () => {
   }, []);
   return (
     <main className="container mx-auto">
-       <div className={`${
+      <div
+        className={`${
           isOpen ? "" : "hidden"
-        } w-[100vw] z-10 bg-black blur-xl bg-opacity-50 h-screen left-0 right-0 top-0 bottom-0 fixed`}></div>
+        } w-[100vw] z-10 bg-black blur-xl bg-opacity-50 h-screen left-0 right-0 top-0 bottom-0 fixed`}
+      ></div>
       <div
         className={`${
           isOpen ? "" : "hidden"
@@ -40,21 +42,30 @@ const BlogPage = () => {
         >
           <IoMdClose className="text-white" />
         </button>
-       
+
         <section className="md:grid md:grid-cols-2 gap-5 relative z-20">
           <div className="flex items-center">
-             <img className="w-full" src={blog.thumbnail} alt="" />
+            <img className="w-full" src={blog.thumbnail} alt="" />
           </div>
           <div className="flex flex-col justify-center">
             <h2 className="text-2xl font-[700]">{blog.title}</h2>
             <p className="mt-3">{blog.blog_details}</p>
-              <p className="flex items-center gap-4 my-3"><span className="text-md font-bold">Publish On:</span><span>{moment(blog.publish_date).format('DD/MM/YYYY')}</span></p>
+            <p className="flex items-center gap-4 my-3">
+              <span className="text-md font-bold">Publish On:</span>
+              <span>{moment(blog.publish_date).format("DD/MM/YYYY")}</span>
+            </p>
             <div className="flex gap-5 items-center">
               <p className="text-md font-bold">Tags:</p>
               <ul className="flex flex-wrap gap-3">
-                {
-                  blog?.tags && blog?.tags.map((tag, i) => <li className="h-[30px] flex justify-center items-center whitespace-nowrap rounded-full px-4 py-2 text-white bg-sky-700">{tag}</li>)
-                }
+                {blog?.tags &&
+                  blog?.tags.map((tag, i) => (
+                    <li
+                      key={i}
+                      className="h-[30px] flex justify-center items-center whitespace-nowrap rounded-full px-4 py-2 text-white bg-sky-700"
+                    >
+                      {tag}
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

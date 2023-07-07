@@ -47,7 +47,7 @@ const ProfileEdit = () => {
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10">
-            <div className=" space-y-1">
+            <div className="space-y-1">
               <label>
                 <span className="font-semibold text-lg">Name</span>
               </label>
