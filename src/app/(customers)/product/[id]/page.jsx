@@ -136,7 +136,7 @@ const productDetailsPage = ({ params }) => {
                         {
                             similarProducts.map((similarProduct, ind) => {
                                 const { image, name, price, quantity } = similarProduct || {}
-                                return <div key={ind} className='grid grid-cols-12 gap-3 items-center my-4 p-5 border rounded'>
+                                return <div key={ind} className='grid grid-cols-12 gap-3 items-center my-4 p-5 border rounded bg-slate-50'>
                                     <div className='col-span-4'>
                                         <figure className='rounded-lg w-full h-[150px] relative z-10 cursor-zoom-in'>
                                             <Image
