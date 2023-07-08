@@ -67,22 +67,22 @@ const Invoices = () => {
                     </div>
                 </div>
 
-                <select className="select select-accent w-full max-w-xs">
-                    <option disabled selected> <FaCalendar></FaCalendar> Date range </option>
+                <select defaultValue="Light mode" className="select select-accent w-full max-w-xs">
+                    <option disabled>  Date range </option>
                     <option>Auto</option>
                     <option>Dark mode</option>
                     <option>Light mode</option>
                 </select>
 
-                <select className="select select-accent w-full max-w-xs">
-                    <option disabled selected> <FaTag></FaTag> Status</option>
+                <select defaultValue="Status" className="select select-accent w-full max-w-xs">
+                    <option disabled >  Status</option>
                     <option>Auto</option>
                     <option>Dark mode</option>
                     <option>Light mode</option>
                 </select>
 
-                <select className="select select-accent w-full max-w-xs">
-                    <option disabled selected>Dark mode or light mode?</option>
+                <select defaultValue="Dark mode or light mode?" className="select select-accent w-full max-w-xs">
+                    <option disabled></option>
                     <option>Auto</option>
                     <option>Dark mode</option>
                     <option>Light mode</option>
