@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
-const CartRow = ({ item }) => {
-  const { name, image, price } = item;
-
+const CartRow = ({ item, handlePlus, handleMinus }) => {
+  const { name, image, price, product_id, productTotal, buyQuantity, quantity } =
+    item;
   return (
     <tr>
       <td className="flex flex-col md:flex-row md:items-center md:gap-4">
@@ -22,12 +22,28 @@ const CartRow = ({ item }) => {
       </td>
       <td>
         <div className="flex">
-          <button className="border rounded-s-md p-2"><FaMinus /></button>
-          <p className="border px-3 py-2">{1}</p>
-          <button className="border rounded-e-md p-2"><FaPlus /></button>
+          <button
+            onClick={() => handleMinus(product_id)}
+            className={`border rounded-s-md p-2 ${
+              buyQuantity <= 1 && "bg-[#e7e7e7]"
+            }`}
+            disabled={buyQuantity <= 1}
+          >
+            <FaMinus />
+          </button>
+          <p className="border px-3 py-2">{buyQuantity}</p>
+          <button
+            disabled={quantity <= buyQuantity}
+            onClick={() => handlePlus(product_id)}
+            className={`border rounded-e-md p-2 ${
+              quantity <= buyQuantity && "bg-[#e7e7e7]"
+            }`}
+          >
+            <FaPlus />
+          </button>
         </div>
       </td>
-      <td className="text-end">${price}</td>
+      <td className="text-end">${productTotal || price}</td>
     </tr>
   );
 };
