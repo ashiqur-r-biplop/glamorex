@@ -6,6 +6,9 @@ const User = {
   displayName: "Agun",
   email: "test@gmail.com",
   photoURL: "https://i.ibb.co/37cdWvc/images.jpg",
+  mobile: "+8801700000000",
+  birthday: "2002-01-15",
+  gender: "female",
 };
 
 const AccountPage = () => {

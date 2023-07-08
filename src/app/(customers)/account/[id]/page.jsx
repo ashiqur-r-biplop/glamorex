@@ -9,7 +9,7 @@ const User = {
   photoURL: "https://i.ibb.co/37cdWvc/images.jpg",
   mobile: "+8801700000000",
   birthday: "2002-01-15",
-  gender: "male",
+  gender: "female",
 };
 
 const ProfileEdit = () => {
