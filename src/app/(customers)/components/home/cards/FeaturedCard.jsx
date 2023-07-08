@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
+import Link from "next/link";
 
 const featuredCard = ({ product }) => {
-  const { name, image, description, rating, price, overall_sell } = product;
+  const { product_id, name, image, description, rating, price, overall_sell } = product;
 
   const myStyles = {
     itemShapes: ThinStar,
@@ -40,9 +41,12 @@ const featuredCard = ({ product }) => {
           />
           <p className="text-gray-500">({overall_sell})</p>
         </div>
-        <div>
+        <div className="space-x-3">
           <button className="px-5 py-2 border border-gray-700 rounded-full hover:bg-gray-700 hover:text-white transition-all">
             Add to Cart
+          </button>
+          <button className="px-5 py-2 border border-gray-700 rounded-full hover:bg-gray-700 hover:text-white transition-all">
+            <Link href={`/product/${product_id}`}>View Details</Link>
           </button>
         </div>
       </div>
