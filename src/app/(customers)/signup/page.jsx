@@ -77,6 +77,12 @@ const SignUpPage = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="phone" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Phone</label>
+                        <input type='number' className='my-inp' id='phone' {...register("phone", { required: true })} placeholder='Your phone number here...' />
+                        {errors.phone && <p className='text-red-500'>This field is required</p>}
+                    </div>
+
+                    <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">email</label>
                         <input type='email' id='email' className='my-inp' {...register("email", { required: true })} placeholder='Your email here' />
                         {errors.email && <p className='text-red-500'>This field is required</p>}

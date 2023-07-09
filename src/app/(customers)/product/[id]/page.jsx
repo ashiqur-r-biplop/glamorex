@@ -114,7 +114,7 @@ const productDetailsPage = ({ params }) => {
                     {/* left side (description, question, reviews) */}
                     <div className='col-span-12 md:col-span-6 xl:col-span-8'>
                         <Tabs>
-                            <TabList className={'flex justify-center items-center gap-2 my-5'}>
+                            <TabList className={'flex justify-center items-center gap-2 h-12 mb-16'}>
                                 {tabs.map((tab, ind)=> <Tab key={ind} className={`${activeTab===tab? 'my-btn-one' : 'my-btn-one-outline'}`} onClick={()=> setActiveTab(tab)}>{tab}</Tab>)}
                             </TabList>
 
