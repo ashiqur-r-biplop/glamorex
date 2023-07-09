@@ -59,7 +59,6 @@ const CartPage = () => {
   return (
     <div className="max-w-screen-2xl mx-auto my-16 sm:px-6 md:px-8 px-4 grid lg:grid-cols-[2fr,1fr] gap-5 lg:gap-10">
       <table className="w-full">
-        <img src="" alt="" />
         <thead>
           <tr className="text-xl border-b-2">
             <th className="text-start px-5 py-3">Product</th>
