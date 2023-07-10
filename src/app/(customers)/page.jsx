@@ -9,10 +9,11 @@ import TrustedSection from './components/home/TrustedSection';
 import TestimonialSectio from './components/home/TestimonialSection';
 import NewsLatterSection from './components/home/NewsLatterSection';
 import '@smastrom/react-rating/style.css';
+import GiftWheel from './components/GiftWheel/GiftWheel';
 
 const HomePage = () => {
     return (
-        <div>
+        <>
             <HeroSection/>
             <FeaturedSection/>
             <TrendingProductsSection/>
@@ -22,7 +23,8 @@ const HomePage = () => {
             <TrustedSection/>
             <TestimonialSectio/>
             <NewsLatterSection/>
-        </div>
+            <GiftWheel></GiftWheel>
+        </>
     );
 };
 

@@ -4,27 +4,35 @@ import bgImg from '/public/assets/img/signinBg.jpg'
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import Link from 'next/link';
-import signupLottie from'../../../../public/assets/lottieAnimation/signup-lottie.json'
-import successRegistrationLottie from'../../../../public/assets/lottieAnimation/successfully-registration-lottie.json'
+import signupLottie from '../../../../public/assets/lottieAnimation/signup-lottie.json'
+import registrationLoadingLottie from '../../../../public/assets/lottieAnimation/registration_loading'
+import successRegistrationLottie from '../../../../public/assets/lottieAnimation/successfully-registration-lottie.json'
 import Lottie from "lottie-react";
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import useAuth from '@/hooks/useAuth';
+import axios from 'axios';
 
 const SignUpPage = () => {
-    const {user} = useAuth()      
-    if(user) {
+    const { user } = useAuth()
+    if (user) {
         return window.location.href = "/"
-     }
-    const {axiosSecure} = useAxiosSecure()
+    }
+    const { axiosSecure } = useAxiosSecure()
     const [isShowPass, setIsShowPass] = useState(false)
     const [isConfirmShowPass, setIsConfirmShowPass] = useState(false)
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+    const formData = new FormData()
+
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const handleSignupFunc = form => {
-        const { name, photo_url, email, password, confirmPassword, terms } = form
+        setLoading(true)
+        const { name, photo, email, password, confirmPassword, terms } = form
+
+        formData.append('image', photo[0])
 
         if (!terms) {
             setError('*Please check terms and condition!')
@@ -42,20 +50,40 @@ const SignUpPage = () => {
             return
         }
 
-        const user =  {name, photo_url, email, password } 
-        axiosSecure.post("/register", user)
-        .then(res => {
-            if(res.data) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Registration Successful',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-        })
-        .catch(error => console.log(error))
+        // After hosting photo then post register info
+        const url = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_HOSTING_API_KEY}`;
+        axios.post(url, formData)
+            .then(res => {
+                const photo_url = res.data.data.url
+                const user = { name, photo_url, email, password }
+
+                axiosSecure.post("/register", user)
+                    .then(res => {
+                        if (res.data) {
+
+                            setSuccess('Registration successful')
+                            setLoading(false)
+
+                            // navigate to signin page after 3 seconds
+                            Swal.fire({
+                                title: 'Navigate to signin page!',
+                                html: 'I will land signin page after <b></b> milliseconds.',
+                                timer: 3000,
+                                timerProgressBar: true,
+          
+                            }).then((result) => {
+                                /* Read more about handling dismissals below */
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    window.location.href = '/signin'
+                                    console.log('I was closed by the timer')
+                                }
+                            })
+
+                        }
+                    })
+                    .catch(error => console.log(error))
+            })
+            .catch(e => console.log(e.message))
 
     };
 
@@ -71,8 +99,8 @@ const SignUpPage = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="photo" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">photo URL</label>
-                        <input type='url' className='my-inp' id='photo' {...register("photo_url", { required: true })} placeholder='Your photo URL here' />
+                        <label htmlFor="photo" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Photo</label>
+                        <input type="file" className="file-input file-input-bordered focus:outline-0 file-input-error my-inp !p-0" {...register("photo", { required: true })} />
                         {errors.photo && <p className='text-red-500'>This field is required</p>}
                     </div>
 
@@ -117,14 +145,14 @@ const SignUpPage = () => {
                     {error && <p className='text-red-500'>*{error}</p>}
                     {success && <p className='text-green-500'>{success}</p>}
 
-                    <button className='my-btn-one w-full' type='submit'>Signup</button>
+                    <button className={`my-btn-one w-full ${loading && '!bg-opacity-10'}`} type='submit' disabled={loading}>Signup</button>
                     <p className="text-sm font-light text-slate-300">
                         Already have an account? <Link href='/signin' className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</Link>
                     </p>
 
                 </form>
 
-                <Lottie animationData={success ? successRegistrationLottie : signupLottie} loop={true} className='h-full w-full' />
+                <Lottie animationData={success ? successRegistrationLottie : loading ? registrationLoadingLottie : signupLottie} loop={true} className='h-full w-full' />
             </div>
         </div>
     );
