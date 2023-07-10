@@ -7,7 +7,7 @@ const FeaturedSection = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("/products.json")
+    fetch("https://glamorex.vercel.app/featured-products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -17,7 +17,7 @@ const FeaturedSection = () => {
       <h2 className="font-bold text-3xl mb-8">Featured Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {products.slice(0, 8).map((product, i) => (
-          <FeaturedCard key={i+1} product={product} />
+          <FeaturedCard key={i + 1} product={product} />
         ))}
       </div>
     </div>

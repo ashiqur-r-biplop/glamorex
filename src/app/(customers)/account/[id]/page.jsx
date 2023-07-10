@@ -1,18 +1,22 @@
 "use client";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import UpdateButton from "../../components/account/UpdateButton";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
-const User = {
-  id: "123",
-  displayName: "Agun",
-  email: "test@gmail.com",
-  photoURL: "https://i.ibb.co/37cdWvc/images.jpg",
-  mobile: "+8801700000000",
-  birthday: "2002-01-15",
-  gender: "female",
-};
+// const User = {
+//   id: "123",
+//   displayName: "Agun",
+//   email: "test@gmail.com",
+//   photoURL: "https://i.ibb.co/37cdWvc/images.jpg",
+//   mobile: "+8801700000000",
+//   birthday: "2002-01-15",
+//   gender: "female",
+// };
 
 const ProfileEdit = () => {
+  const { axiosSecure } = useAxiosSecure();
+  const [User, setUser] = useState([]);
   const { register, handleSubmit } = useForm({
     defaultValues: {
       gender: User?.gender,
@@ -32,6 +36,17 @@ const ProfileEdit = () => {
     console.log(updatedProfile);
   };
 
+  useEffect(() => {
+    axiosSecure
+      .get("/profile")
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className="container mx-auto px-5 py-[100px] min-h-[70vh]">
       <div className="section-title mb-8">
@@ -41,8 +56,8 @@ const ProfileEdit = () => {
         <div>
           <img
             className="w-[200px] h-[200px] rounded-full mx-auto border"
-            src={User?.photoURL}
-            alt={User?.displayName}
+            src={User?.photo_url}
+            alt={User?.name}
           />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +69,7 @@ const ProfileEdit = () => {
               <input
                 type="text"
                 {...register("name", { required: true })}
-                defaultValue={User?.displayName}
+                defaultValue={User?.name}
                 className="border p-2 rounded-sm w-full"
               />
             </div>
@@ -78,7 +93,7 @@ const ProfileEdit = () => {
               <input
                 type="text"
                 {...register("photo", { required: true })}
-                defaultValue={User?.photoURL}
+                defaultValue={User?.photo_url}
                 className="border p-2 rounded-sm w-full"
               />
             </div>
@@ -90,6 +105,7 @@ const ProfileEdit = () => {
                 type="text"
                 {...register("mobile", { required: true })}
                 defaultValue={User?.mobile}
+                placeholder="Enter Mobile Number"
                 className="border p-2 rounded-sm w-full"
               />
             </div>
