@@ -118,9 +118,8 @@ const productDetailsPage = ({ params }) => {
                 Product available: {quantity}
               </button>
               <button
-                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${
-                  status === "in stock" ? "text-orange-500" : "text-red-500"
-                }`}
+                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${status === "in stock" ? "text-orange-500" : "text-red-500"
+                  }`}
               >
                 Status: {status}
               </button>
@@ -186,14 +185,13 @@ const productDetailsPage = ({ params }) => {
           <div className="col-span-12 md:col-span-6 xl:col-span-8">
             <Tabs>
               <TabList
-                className={"flex justify-center items-center gap-2 my-5"}
+                className={"flex justify-center items-center gap-2 my-5 h-8 mb-8"}
               >
                 {tabs.map((tab, ind) => (
                   <Tab
                     key={ind}
-                    className={`${
-                      activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
-                    }`}
+                    className={`${activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
+                      }`}
                     onClick={() => setActiveTab(tab)}
                   >
                     {tab}

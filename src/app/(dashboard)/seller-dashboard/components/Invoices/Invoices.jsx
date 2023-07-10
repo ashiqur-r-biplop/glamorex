@@ -56,6 +56,7 @@ const Invoices = () => {
     return (
         <div className='p-3'>
 
+            {/* Topbar for filtering */}
             <div className='flex justify-evenly'>
 
                 <div className="form-control">
