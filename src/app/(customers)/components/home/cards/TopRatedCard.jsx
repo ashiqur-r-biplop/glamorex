@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import AddCartButton from "../../Buttons/AddCartButton";
 
 const TopRatedCard = ({ product }) => {
   const { name, previous_price, price, image, discount, rating } =
@@ -33,7 +32,7 @@ const TopRatedCard = ({ product }) => {
           <span>{rating}</span>
           <div className="bg-black rounded-2xl bg-opacity-75 opacity-0 hover:opacity-100 text-blue-100 font-medium p-2 flex justify-center items-center absolute inset-0 transition duration-300 ease-in-out">
             <div onClick={() => handleAddToCart(product)}>
-              <AddCartButton>Add To Cart</AddCartButton>
+              <button className="my-btn-one">Add to cart</button>
             </div>
           </div>
         </div>
