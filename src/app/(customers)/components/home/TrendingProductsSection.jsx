@@ -7,7 +7,7 @@ const TopRatedProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("/products.json")
+    fetch("https://glamorex.vercel.app/trending-products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
