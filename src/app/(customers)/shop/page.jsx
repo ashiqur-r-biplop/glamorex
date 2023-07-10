@@ -5,12 +5,13 @@ import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
 import TopCard from "../components/shop/TopCard";
 import ShopSideBar from "../components/shop/ShopSidebar";
+import { correntLayout } from "../components/shop/HandleGridSystem";
 const ShopPage = () => {
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
-  console.log(control);
-  const layout = JSON.parse(localStorage.getItem("layout")) || "grid";
+
+  const layout = JSON.parse(correntLayout()) ;
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())

@@ -7,6 +7,7 @@ import contactBanner from "../../../../public/contact-banner.jpg";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import UpdateButton from "../components/account/UpdateButton";
+import NewsletterCard from "../components/home/cards/NewsletterCard";
 
 const addressData = [
   {
@@ -59,7 +60,7 @@ const ContactPage = () => {
   return (
     <div>
       <div
-        className="banner-section bg-slate-800 bg-blend-overlay bg-cover bg-center h-[40vh] flex justify-center items-center"
+        className="banner-section bg-slate-800 bg-blend-overlay bg-cover bg-center h-[60vh] flex justify-center items-center"
         style={{ backgroundImage: `url(${contactBanner.src})` }}
       >
         <div className="bg-black py-5 px-20 rounded-2xl bg-opacity-50 text-white space-y-3">
@@ -79,8 +80,8 @@ const ContactPage = () => {
               <div className="space-y-2">
                 <h4 className="text-lg font-semibold">{card.title}</h4>
                 <div>
-                  {card.content.map((line, lineIndex) => (
-                    <p key={lineIndex}>{line}</p>
+                  {card.content.map((line, i) => (
+                    <p key={i}>{line}</p>
                   ))}
                 </div>
               </div>
@@ -149,6 +150,7 @@ const ContactPage = () => {
           ))}
         </div>
       </div>
+      <NewsletterCard />
     </div>
   );
 };

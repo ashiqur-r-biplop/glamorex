@@ -1,15 +1,11 @@
 "use client";
-
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Rating } from "@smastrom/react-rating";
-import "@smastrom/react-rating/style.css";
-import productImage from "../../../../../public/product-1.jpg";
+import TopRatedCard from "./cards/TopRatedCard";
 
 const TopRatedProductsSection = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("products.json")
+    fetch("https://glamorex.vercel.app/top-rated-products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -20,6 +16,7 @@ const TopRatedProductsSection = () => {
         <h2 className="text-2xl font-semibold">Top Rated Products</h2>
       </div>
       <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+<<<<<<< HEAD
         {products.map((product, i) => {
           return (
             <div
@@ -56,6 +53,10 @@ const TopRatedProductsSection = () => {
               </div>
             </div>
           );
+=======
+        {products.map((product) => {
+          return <TopRatedCard key={product?._id} product={product} />;
+>>>>>>> 38944bd20c53eaf0a250aaea9446f36941224f3b
         })}
       </div>
     </div>

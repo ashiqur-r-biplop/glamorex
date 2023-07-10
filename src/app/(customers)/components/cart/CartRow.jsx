@@ -14,14 +14,14 @@ const CartRow = ({ item, handlePlus, handleMinus }) => {
           height={100}
           alt="image"
         />
-        <div>
+        <span>
           <p className="text-lg">{name}</p>
           <p>Price: ${price}.00</p>
           <p className="text-red-500 cursor-pointer">Remove</p>
-        </div>
+        </span>
       </td>
       <td>
-        <div className="flex">
+        <span className="flex">
           <button
             onClick={() => handleMinus(product_id)}
             className={`border rounded-s-md p-2 ${
@@ -41,7 +41,7 @@ const CartRow = ({ item, handlePlus, handleMinus }) => {
           >
             <FaPlus />
           </button>
-        </div>
+        </span>
       </td>
       <td className="text-end">${productTotal || price}</td>
     </tr>

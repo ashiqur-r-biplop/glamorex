@@ -13,7 +13,7 @@ import useAuth from '@/hooks/useAuth';
 
 
 const SignInPage = () => {
-    const {user} = useAuth()      
+    const {user, loading} = useAuth()      
     if(user) {
         return window.location.href = "/"
      }

@@ -3,7 +3,8 @@ import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
 
 const featuredCard = ({ product }) => {
-  const { product_id, name, image, description, rating, price, overall_sell } = product;
+  const { product_id, name, image, description, rating, price, overall_sell } =
+    product;
 
   const myStyles = {
     itemShapes: ThinStar,
@@ -28,6 +29,7 @@ const featuredCard = ({ product }) => {
           <p className="font-semibold text-lg leading-none flex">
             <span className="text-xs">$</span>
             <span>{price}</span>
+            {/* TODO: modify here  */}
             <span className="text-xs">.00</span>
           </p>
         </div>
