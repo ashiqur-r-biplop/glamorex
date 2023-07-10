@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import bannerBg from '../../../../../public/assets/img/heroBg.jpg'
+import Link from 'next/link';
 
 const HeroSection = () => {
     return (
@@ -10,8 +11,8 @@ const HeroSection = () => {
                     <h2 className='my-title'>Level up your style with our new collection!</h2>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident repudiandae mollitia laudantium praesentium minus hic nemo explicabo voluptate, id architecto nam aspernatur voluptates ex quisquam?</p>
 
-                 <button className='my-btn-one mx-2'>View details</button>
-                 <button className='my-btn-one-outline mx-2'>View cart</button>
+                 <button className='my-btn-one mx-2'><Link href={'/shop'}>View Shop</Link></button>
+                 <button className='my-btn-one-outline mx-2'><Link href={'/about'}>About us</Link></button>
 
                 </div>
             </div>

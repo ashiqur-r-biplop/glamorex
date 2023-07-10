@@ -4,11 +4,7 @@ import { inter } from "@/app/layout";
 
 const OfferBannerSection = () => {
   return (
-<<<<<<< HEAD
     <div className="relative w-full my-12">
-=======
-    <div className="relative w-full mt-[100px]">
->>>>>>> 38944bd20c53eaf0a250aaea9446f36941224f3b
       <div className="relative md:h-[500px] h-[500px] bg-[#3935c9]">
         <Image src={offerBanner} alt="offer banner" fill={true}></Image>
       </div>

@@ -92,103 +92,6 @@ const productDetailsPage = ({ params }) => {
             </figure>
           </div>
 
-<<<<<<< HEAD
-                    {/* product info */}
-                    <div className='col-span-12 lg:col-span-7 bg-slate-50 rounded p-5 space-y-5'>
-                        <h2 className='my-subtitle text-slate-900'>{name}</h2>
-                        <h2 className='flex gap-2 font-semibold text-slate-600'><span className='flex items-center gap-2'> <span className='text-orange-500'><FaStar></FaStar></span> {rating}</span> | <span>{review} reviews</span> | <span>{overall_sell} sold</span></h2>
-
-                        <div className='flex flex-wrap gap-2'>
-                            <button className='px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500'>Price: ${price}</button>
-                            <button className='px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500'>Regular Price: $<span className='line-through'>{previous_price}</span></button>
-                            <button className='px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500'>Product available: {quantity}</button>
-                            <button className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${status === 'in stock' ? 'text-orange-500' : 'text-red-500'}`}>Status: {status}</button>
-                        </div>
-
-                        <div className='!my-5'>
-                            <h2 className='my-subtitle'>Key feature</h2>
-                            <ul className='space-y-2'>
-                                {
-                                    keyFeatures.map(kf => <li>{kf}</li>)
-                                }
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h2 className='my-subtitle text-slate-900 mb-2'>Size</h2>
-                            <div className='flex flex-wrap gap-2'>
-                                <button className='px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500'>S</button>
-                                <button className='px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500'>M</button>
-                                <button className='px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500'>L</button>
-                                <button className='px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500'>XL</button>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h2 className='my-subtitle text-slate-900 mb-2'>Colors <span className='text-slate-500'>({colors.length})</span></h2>
-                            <div className='flex flex-wrap gap-2'>
-                                {colors.map(color => <button className={`h-5 w-5 border border-black rounded-full`} style={{ backgroundColor: color }}></button>)}
-                            </div>
-                        </div>
-
-                        <div className='flex gap-3 items-center'>
-                            <button className='my-btn-one'> <span><FaBagShopping></FaBagShopping></span> Add to bag</button>
-                            <button className='my-btn-one-outline'>Add to wishlist</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                {/* description and similar products */}
-                <div className='my-14 grid grid-cols-12 gap-5'>
-                    {/* left side (description, question, reviews) */}
-                    <div className='col-span-12 md:col-span-6 xl:col-span-8'>
-                        <Tabs>
-                            <TabList className={'flex justify-center items-center gap-2 h-12 mb-16'}>
-                                {tabs.map((tab, ind)=> <Tab key={ind} className={`${activeTab===tab? 'my-btn-one' : 'my-btn-one-outline'}`} onClick={()=> setActiveTab(tab)}>{tab}</Tab>)}
-                            </TabList>
-
-                            <TabPanel>
-                                <h2>{description}</h2>
-                            </TabPanel>
-                            <TabPanel>
-                                <h2>Question</h2>
-                            </TabPanel>
-                            <TabPanel>
-                                <h2>Reviews</h2>
-                            </TabPanel>
-                        </Tabs>
-                    </div>
-
-                    {/* similar product */}
-                    <div className='col-span-12 md:col-span-6 xl:col-span-4'>
-                        <h2 className='my-title mb-3'>Related Products</h2>
-                        {
-                            similarProducts.map((similarProduct, ind) => {
-                                const { image, name, price, quantity } = similarProduct || {}
-                                return <div key={ind} className='grid grid-cols-12 gap-3 items-center my-4 p-5 border rounded bg-slate-50'>
-                                    <div className='col-span-4'>
-                                        <figure className='rounded-lg w-full h-[150px] relative z-10 cursor-zoom-in'>
-                                            <Image
-                                                src={image}
-                                                fill
-                                            />
-                                        </figure>
-                                    </div>
-                                    <div className='col-span-8 space-y-3'>
-                                        <h2 className='my-subtitle'>{name}</h2>
-                                        <p>${price}</p>
-                                        <p>{quantity} product left</p>
-                                        <button className='my-btn-one'>Add to Bag</button>
-                                    </div>
-                                </div>
-                            })
-                        }
-                    </div>
-                </div>
-=======
           {/* product info */}
           <div className="col-span-12 lg:col-span-7 bg-slate-50 rounded p-5 space-y-5">
             <h2 className="my-subtitle text-slate-900">{name}</h2>
@@ -202,7 +105,6 @@ const productDetailsPage = ({ params }) => {
               </span>{" "}
               | <span>{review} reviews</span> | <span>{overall_sell} sold</span>
             </h2>
->>>>>>> 38944bd20c53eaf0a250aaea9446f36941224f3b
 
             <div className="flex flex-wrap gap-2">
               <button className="px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500">
@@ -216,9 +118,8 @@ const productDetailsPage = ({ params }) => {
                 Product available: {quantity}
               </button>
               <button
-                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${
-                  status === "in stock" ? "text-orange-500" : "text-red-500"
-                }`}
+                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${status === "in stock" ? "text-orange-500" : "text-red-500"
+                  }`}
               >
                 Status: {status}
               </button>
@@ -284,14 +185,13 @@ const productDetailsPage = ({ params }) => {
           <div className="col-span-12 md:col-span-6 xl:col-span-8">
             <Tabs>
               <TabList
-                className={"flex justify-center items-center gap-2 my-5"}
+                className={"flex justify-center items-center gap-2 my-5 h-8 mb-8"}
               >
                 {tabs.map((tab, ind) => (
                   <Tab
                     key={ind}
-                    className={`${
-                      activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
-                    }`}
+                    className={`${activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
+                      }`}
                     onClick={() => setActiveTab(tab)}
                   >
                     {tab}
