@@ -1,25 +1,14 @@
 Arguments: 
-<<<<<<< HEAD
-  C:\Program Files\nodejs\node.exe C:\Users\USER\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
-
-PATH: 
-  C:\Users\USER\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\USER\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\dotnet;C:\Users\USER\AppData\Local\Microsoft\WindowsApps;C:\Users\USER\AppData\Roaming\npm;C:\Users\USER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
-=======
   C:\Program Files\nodejs\node.exe C:\Users\Armaan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
 
 PATH: 
   C:\Users\Armaan\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Armaan\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Users\Armaan\AppData\Local\Microsoft\WindowsApps;C:\Users\Armaan\AppData\Local\GitHubDesktop\bin;C:\Users\Armaan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Armaan\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
->>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
 
 Yarn version: 
   1.22.19
 
 Node version: 
-<<<<<<< HEAD
-  18.15.0
-=======
   20.3.0
->>>>>>> 4fadbbf9310428ef246c12a9a6c3a48b098682b6
 
 Platform: 
   win32 x64
