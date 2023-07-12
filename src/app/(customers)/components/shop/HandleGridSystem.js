@@ -1,4 +1,4 @@
-"use client"
+"use client";
 export const GridSystem = (display) => {
   let currentLayoutGrid = JSON.parse(localStorage.getItem("layout"));
   if (currentLayoutGrid) {
@@ -15,5 +15,6 @@ export const GridSystem = (display) => {
   }
 };
 
-
-export   const correntLayout = () => localStorage.getItem("layout") || "grid"
+export const currentLayout = () => {
+  return localStorage.getItem("layout") || JSON.stringify("grid");
+};
