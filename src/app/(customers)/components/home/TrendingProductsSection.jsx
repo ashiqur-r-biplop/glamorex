@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import FeaturedCard from "./cards/FeaturedCard";
+import useAddToCart from "@/hooks/useAddToCart";
 
 const TopRatedProducts = () => {
   const [products, setProducts] = useState([]);
+  const {handleAddToCart}= useAddToCart()
 
   useEffect(() => {
     fetch("https://glamorex.vercel.app/trending-products")
@@ -17,7 +19,7 @@ const TopRatedProducts = () => {
       <h2 className="font-bold text-3xl mb-8">Trending Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {products.slice(0, 8).map((product, i) => (
-          <FeaturedCard key={i + 1} product={product} />
+          <FeaturedCard handleAddToCart={handleAddToCart} key={i + 1} product={product} />
         ))}
       </div>
     </div>

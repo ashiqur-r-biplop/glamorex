@@ -5,12 +5,21 @@ import FeaturedCard from "./cards/FeaturedCard";
 
 const FeaturedSection = () => {
   const [products, setProducts] = useState([]);
-
+  const [loading,setLoading]= useState(true)
+  
+// TODO: api no data 
   useEffect(() => {
     fetch("https://glamorex.vercel.app/featured-products")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setProducts(data)
+        setLoading(false)
+      });
   }, []);
+
+  if (loading) {
+    return <h2>Loading...</h2>
+  }
 
   return (
     <div className="max-w-screen-2xl mx-auto sm:px-6 md:px-8 px-4 py-12">

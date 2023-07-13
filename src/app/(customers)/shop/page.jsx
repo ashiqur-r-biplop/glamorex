@@ -11,7 +11,7 @@ const ShopPage = () => {
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
 
-  const layout = JSON.parse(correntLayout()) ;
+  const layout = correntLayout() ;
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())

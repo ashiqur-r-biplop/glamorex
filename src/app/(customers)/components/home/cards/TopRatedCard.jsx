@@ -1,14 +1,12 @@
 import Image from "next/image";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import Link from "next/link";
 
-const TopRatedCard = ({ product }) => {
-  const { name, previous_price, price, image, discount, rating } =
+const TopRatedCard = ({ product, handleAddToCart }) => {
+  const { product_id,name, previous_price, price, image, discount, rating } =
     product || [];
 
-  const handleAddToCart = (product) => {
-    console.log(product);
-  };
   return (
     <div className="border-2 border-gray-100 transition duration-200 cursor-pointer rounded-2xl relative">
       <figure className="w-[90%] mx-auto h-[300px] relative">
@@ -31,8 +29,16 @@ const TopRatedCard = ({ product }) => {
           <Rating style={{ maxWidth: 80 }} value={rating} readOnly />{" "}
           <span>{rating}</span>
           <div className="bg-black rounded-2xl bg-opacity-75 opacity-0 hover:opacity-100 text-blue-100 font-medium p-2 flex justify-center items-center absolute inset-0 transition duration-300 ease-in-out">
-            <div onClick={() => handleAddToCart(product)}>
-              <button className="my-btn-one">Add to cart</button>
+            <div className="space-x-3">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="my-btn-one"
+              >
+                Add to Cart
+              </button>
+              <button className="my-btn-one-outline">
+                <Link href={`/product/${product_id}`}>View Details</Link>
+              </button>
             </div>
           </div>
         </div>
