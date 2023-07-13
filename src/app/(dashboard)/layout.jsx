@@ -1,7 +1,15 @@
-import Sidebar from "./seller-dashboard/components/shared/Sidebar";
+"use client"
+import { useDispatch } from "react-redux";
+import { setToken } from "@/redux-toolkit/slice/authSlice/authSlice";
+import { useEffect } from "react";
 
 
 const DashboardLayout = ({ children }) => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+      const token = localStorage.getItem("access-token")
+      dispatch(setToken(token))  
+    },[])
     return (
         <>
          {children}

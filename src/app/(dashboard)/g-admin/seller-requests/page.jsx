@@ -4,52 +4,54 @@ import { FaSearch } from 'react-icons/fa';
 import { MdDone } from 'react-icons/md';
 import { IoCloseOutline } from 'react-icons/io5';
 import Swal from 'sweetalert2';
+import { useGetRequestedUsersQuery } from '@/redux-toolkit/slice/adminApis/adminGetApies';
 
 
 const SellerRequestPage = () => {
-    const users = [
-        {
+    const {data: users, isLoading} = useGetRequestedUsersQuery()
+    // const users = [
+    //     {
             
-            _id: 1,
-            name: 'John Doe',
-            role: "customer",
-            email: "demo@gmail.com",
-            message: "please make make seller",
-            photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
-        },
-        {
-            _id: 2,
-            name: 'Jane Smith',
-            role: "customer",
-            email: "demo@gmail.com",
-            message: "please make make seller",
-            photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
-        },
-        {
-            _id: 3,
-            name: 'Mike Johnson',
-            role: "customer",
-            email: "demo@gmail.com",
-            message: "please make make seller",
-            photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
-        },
-        {
-            _id: 4,
-            name: 'Sarah Williams',
-            role: "customer",
-            email: "demo@gmail.com",
-            message: "please make make seller",
-            photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
-        },
-        {
-            _id: 5,
-            name: 'David Brown',
-            role: "customer",
-            email: "demo@gmail.com",
-            message: "please make make seller",
-            photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
-        }
-    ];
+    //         _id: 1,
+    //         name: 'John Doe',
+    //         role: "customer",
+    //         email: "demo@gmail.com",
+    //         message: "please make make seller",
+    //         photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
+    //     },
+    //     {
+    //         _id: 2,
+    //         name: 'Jane Smith',
+    //         role: "customer",
+    //         email: "demo@gmail.com",
+    //         message: "please make make seller",
+    //         photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
+    //     },
+    //     {
+    //         _id: 3,
+    //         name: 'Mike Johnson',
+    //         role: "customer",
+    //         email: "demo@gmail.com",
+    //         message: "please make make seller",
+    //         photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
+    //     },
+    //     {
+    //         _id: 4,
+    //         name: 'Sarah Williams',
+    //         role: "customer",
+    //         email: "demo@gmail.com",
+    //         message: "please make make seller",
+    //         photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
+    //     },
+    //     {
+    //         _id: 5,
+    //         name: 'David Brown',
+    //         role: "customer",
+    //         email: "demo@gmail.com",
+    //         message: "please make make seller",
+    //         photo_url: "https://i.ibb.co/cbB7cV8/les-wise.png"
+    //     }
+    // ];
 
     const options = [
         { value: 'customer', label: 'Customer' },
@@ -76,6 +78,7 @@ const SellerRequestPage = () => {
           })
         console.log(status, id)
     }
+    if(isLoading) return "loading"
     return (
         <div className='p-3'>
         <div className='my-8 bg-slate-50 shadow rounded p-5'>
@@ -105,7 +108,7 @@ const SellerRequestPage = () => {
                     <tbody>
 
                         {
-                            users.map((user, i) => {
+                            users && users.map((user, i) => {
                                 const {_id, name, role,photo_url ,message, email} = user || {}
                                 return <tr key={_id}>
                                     <th>{i + 1}</th>
@@ -119,7 +122,7 @@ const SellerRequestPage = () => {
                                     <td>{message}</td>
                                     <td>{role}</td>
                                     <td>
-                                    <td ><span className="p-3 rounded border border-[#14a650] cursor-pointer text-[#14a650] bg-[#14a65122] inline-block mx-2" ><MdDone/></span><span className='p-3 rounded border border-[#a61414] cursor-pointer text-[#a61414] bg-[#a6141922] inline-block mx-2'  ><IoCloseOutline/></span></td>
+                                    <span className="p-3 rounded border border-[#14a650] cursor-pointer text-[#14a650] bg-[#14a65122] inline-block mx-2" ><MdDone/></span><span className='p-3 rounded border border-[#a61414] cursor-pointer text-[#a61414] bg-[#a6141922] inline-block mx-2'  ><IoCloseOutline/></span>
                                     </td>
                                 </tr>
                             })
