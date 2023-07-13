@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }) => {
       dispatch(setToken(token))  
     },[])
     return (
-        < >
+        <>
          {children}
         </>
     );
