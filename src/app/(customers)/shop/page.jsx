@@ -5,13 +5,17 @@ import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
 import TopCard from "../components/shop/TopCard";
 import ShopSideBar from "../components/shop/ShopSidebar";
-import { correntLayout } from "../components/shop/HandleGridSystem";
+import { currentLayout } from "../components/shop/HandleGridSystem";
 const ShopPage = () => {
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
 
+<<<<<<< HEAD
   const layout = correntLayout() ;
+=======
+  const layout = JSON.parse(currentLayout());
+>>>>>>> df025d2b5a755db590db503003ac77ce99c8e71b
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())
@@ -28,12 +32,8 @@ const ShopPage = () => {
       <div className="bg-slate-300">
         <div className="container mx-auto flex flex-col-reverse md:flex-row py-5 justify-center md:justify-between items-center">
           <div className="text-center space-y-1 md:space-y-3  py-10 md:py-0 ">
-            <h2 className={`uppercase  md:text-5xl text-2xl`}>
-              The Biggest
-            </h2>
-            <h1
-              className={`uppercase  md:text-7xl font-bold text-4xl`}
-            >
+            <h2 className={`uppercase  md:text-5xl text-2xl`}>The Biggest</h2>
+            <h1 className={`uppercase  md:text-7xl font-bold text-4xl`}>
               Sale
             </h1>
             <div className="flex justify-between ps-3 items-center bg-transparent border border-[#47a369]">

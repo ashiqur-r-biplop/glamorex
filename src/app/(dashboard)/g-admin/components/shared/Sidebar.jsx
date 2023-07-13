@@ -16,11 +16,11 @@ const Sidebar = () => {
             </div>
 
             <ul className="py-10">
-                <li><Navlink href={'/g-admin'}> <span className='flex gap-2 items-center'><FaHome></FaHome> <span className='hidden lg:inline-block whitespace-nowrap'>Dashboard</span></span></Navlink></li>
+                <li><Navlink exact={true} href={'/g-admin'}> <span className='flex gap-2 items-center'><FaHome></FaHome> <span className='hidden lg:inline-block whitespace-nowrap'>Dashboard</span></span></Navlink></li>
 
                 <li><Navlink href={'/g-admin/user-management'}> <span className='flex gap-2 items-center'><BsFillPeopleFill/> <span className='hidden lg:inline-block whitespace-nowrap'>User management</span></span></Navlink></li>
 
-                <li><Navlink href={'/g-admin/product-management'}> <span className='flex items-center gap-2'><FaProductHunt/><span className='hidden lg:inline-block whitespace-nowrap'>Product management</span></span></Navlink></li>
+                <li><Navlink href={'/g-admin/product-management/all_products'}> <span className='flex items-center gap-2'><FaProductHunt/><span className='hidden lg:inline-block whitespace-nowrap'>Product management</span></span></Navlink></li>
                 <li><Navlink href={'/g-admin/seller-requests'}> <span className='flex items-center gap-2'><GiEntryDoor/><span className='hidden lg:inline-block whitespace-nowrap'>Seller Requests</span></span></Navlink></li>
                 
                 <li><Navlink href={'/g-admin/support'}> <span className='flex items-center gap-2'> <BiSupport/> <span className='hidden lg:inline-block whitespace-nowrap'>Support</span></span> </Navlink>  </li>

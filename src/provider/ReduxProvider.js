@@ -8,7 +8,9 @@ import { Provider } from "react-redux";
 const ReduxProvider = ({children}) => {
     useAuth()
     return (
-        <Provider store={store}>{children}</Provider>
+        <Provider store={store}>
+                {children}
+        </Provider>
     )
 };
 

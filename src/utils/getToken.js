@@ -1,8 +1,6 @@
 "use client"
 
-const useGetToken = () => {
+const getToken = () => {
     const token = localStorage.getItem("access-token")
     return {token}
-};
-
-export default useGetToken;
+}
