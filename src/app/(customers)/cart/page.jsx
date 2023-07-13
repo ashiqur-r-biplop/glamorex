@@ -7,14 +7,18 @@ import Link from "next/link";
 const CartPage = () => {
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
-  const [tax, seTax] = useState(10);
+  const [tax, seTax] = useState(.2);
   const [ShippingCharge, setShippingCharge] = useState(20);
   const [buyCurrentQuantity, setCurrentQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [discountGift, setDiscountGift] = useState('')
 
   const [control, setControl] = useState(false);
 
   useEffect(() => {
+
+    setDiscountGift(localStorage.getItem('giftPrize'))
+
     fetch("/cart.json")
       .then((res) => res.json())
       .then((data) => {
@@ -23,16 +27,22 @@ const CartPage = () => {
             previousPrice + currentPrice.productTotal,
           0
         );
-        const totalTax = Math.floor((totalAmount * tax) / 100);
-        const ShippingAmount = Math.floor((totalAmount * ShippingCharge) / 100);
+        const totalTax = Math.round((totalAmount / 100) * tax);// per 100 dollar purchase , tax is 2 cent
+        const ShippingAmount = Math.round((totalAmount / 1000) * ShippingCharge); // per 1000 dollar purchase , shipping charge is 20 dollar
         const totalOrdersPrice = totalAmount + totalTax + ShippingAmount;
-        setTotalPrice(totalOrdersPrice);
-        setSubtotal(totalAmount);
+
         seTax(totalTax);
         setShippingCharge(ShippingAmount);
+
+        const discountPrice = discountGift !== 'Free Delivery' ? discountGift?.split('%')[0] : setShippingCharge(0);
+        setSubtotal(totalAmount); //subtotal of all product
+        setTotalPrice(discountPrice > 0 ? Math.floor(totalOrdersPrice - ((discountPrice / 100) * totalOrdersPrice)) : discountGift === 'Free Delivery' ? (totalOrdersPrice - ShippingAmount) : totalOrdersPrice); //total price with delivery charge,tax and reduce discount
+
         setCart(data);
-      });
-  }, []);
+      }).catch(e => console.log(e.message))
+  }, [discountGift]);
+
+
 
   const handlePlus = (id) => {
     const product = cart.find((pd) => pd?.product_id === id);
@@ -78,24 +88,36 @@ const CartPage = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Order summary */}
       <div className="bg-gray-100 rounded-md space-y-4 p-5 h-fit lg:mt-14 sticky top-24">
         <p className="text-3xl font-bold text-center py-5">Order Summary</p>
         <div className="flex justify-between w-full">
+
           <span>Subtotal</span>
           <span>${subtotal}</span>
         </div>
+
         <div className="flex justify-between">
           <span>Tax</span>
           <span>${tax}</span>
         </div>
+
         <div className="flex justify-between">
           <span>Shipping Charge</span>
           <span>${ShippingCharge}</span>
         </div>
+
+        {discountGift && <div className="flex justify-between">
+          <span className="font-bold">Discount</span>
+          <span className="font-bold">{discountGift}</span>
+        </div>}
+
         <div className="flex justify-between">
           <span className="font-bold">Total</span>
           <span className="font-bold">${totalPrice}</span>
         </div>
+
         <div className="flex justify-end pt-4">
           <Link href={"/checkout"}>
             <button className="my-btn-one">

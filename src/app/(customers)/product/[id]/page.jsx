@@ -134,6 +134,7 @@ const productDetailsPage = ({ params }) => {
               </ul>
             </div>
 
+            {/* size button */}
             <div>
               <h2 className="my-subtitle text-slate-900 mb-2">Size</h2>
               <div className="flex flex-wrap gap-2">
@@ -152,6 +153,7 @@ const productDetailsPage = ({ params }) => {
               </div>
             </div>
 
+            {/* color button */}
             <div>
               <h2 className="my-subtitle text-slate-900 mb-2">
                 Colors <span className="text-slate-500">({colors.length})</span>

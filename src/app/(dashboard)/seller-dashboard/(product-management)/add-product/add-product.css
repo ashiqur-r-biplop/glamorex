@@ -1,0 +1,9 @@
+.status-btn{
+    @apply px-5 py-2.5 inline-flex items-center justify-center gap-2 rounded text-slate-500 font-bold bg-transparent border border-slate-500 transition duration-500 cursor-pointer;
+}
+.status-btn-active{
+    @apply px-5 py-2.5 inline-flex items-center justify-center gap-2 rounded text-green-500 font-bold bg-transparent border border-green-500 transition duration-500 cursor-pointer;
+}
+.add-product-main .my-inp{
+    @apply block w-full p-3 bg-slate-50 text-slate-800 font-semibold placeholder:text-slate-400 shadow-inner shadow-slate-400 border-none rounded focus:outline-none
+}
