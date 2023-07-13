@@ -2,6 +2,7 @@ import Sidebar from "./components/shared/Sidebar";
 
 
 const layout = ({children}) => {
+
     return (
         <main className="flex">
             <div className="w-2/12 h-screen sticky top-0">

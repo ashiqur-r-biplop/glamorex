@@ -23,7 +23,9 @@
     "publish_date": "2023-06-15",
     "category": "Dresses",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Leather Jacket",
@@ -49,7 +51,9 @@
     "publish_date": "2023-06-20",
     "category": "Jackets",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Striped T-Shirt",
@@ -75,7 +79,9 @@
     "publish_date": "2023-06-10",
     "category": "T-Shirts",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Denim Shorts",
@@ -101,7 +107,9 @@
     "publish_date": "2023-06-25",
     "category": "Shorts",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Evening Gown",
@@ -127,7 +135,9 @@
     "publish_date": "2023-06-18",
     "category": "Dresses",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Floral Print Dress",
@@ -153,7 +163,9 @@
     "publish_date": "2023-06-15",
     "category": "Dresses",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Leather Jacket",
@@ -179,7 +191,9 @@
     "publish_date": "2023-06-20",
     "category": "Jackets",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Striped Shirt",
@@ -205,7 +219,9 @@
     "publish_date": "2023-06-25",
     "category": "Shirts",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Embroidered Jeans",
@@ -231,7 +247,9 @@
     "publish_date": "2023-06-30",
     "category": "Jeans",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Printed Scarf",
@@ -257,7 +275,9 @@
     "publish_date": "2023-07-01",
     "category": "Accessories",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Elegant Dress",
@@ -283,7 +303,9 @@
     "publish_date": "2023-06-15",
     "category": "Dresses",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "pending",
+    "is_featured": false
   },
   {
     "name": "Casual T-Shirt",
@@ -309,7 +331,9 @@
     "publish_date": "2023-06-20",
     "category": "T-Shirts",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": true
   },
   {
     "name": "Stylish Sunglasses",
@@ -335,7 +359,9 @@
     "publish_date": "2023-06-25",
     "category": "Accessories",
     "label": "regular",
-    "status": "in stock"
+    "status": "in stock",
+    "product_status": "approved",
+    "is_featured": false
   },
   {
     "name": "Formal Suit",
@@ -361,7 +387,9 @@
     "publish_date": "2023-06-27",
     "category": "Suits",
     "label": "regular",
-    "status": "out of stock"
+    "status": "out of stock",
+    "product_status": "approved",
+    "is_featured": true
   },
   {
     "name": "Sporty Sneakers",
@@ -387,6 +415,8 @@
     "publish_date": "2023-06-30",
     "category": "Shoes",
     "label": "regular",
-    "status": "out of stock"
+    "status": "out of stock",
+    "product_status": "pending",
+    "is_featured": false
   }
 ]
