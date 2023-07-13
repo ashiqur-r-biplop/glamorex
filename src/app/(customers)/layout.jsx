@@ -6,9 +6,9 @@ import { useDispatch } from "react-redux";
 import { setToken } from "@/redux-toolkit/slice/authSlice/authSlice";
 
 export default function CustomerLayout({ children }) {
-  const token = localStorage.getItem("access-token")
   const dispatch = useDispatch()
   useEffect(() => {
+    const token = localStorage.getItem("access-token")
     dispatch(setToken(token))
 
   },[])
