@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 
 const AccountPage = () => {
   const { axiosSecure } = useAxiosSecure();
-  const [User, setUser] = useState([]);
+  const [User, setUser] = useState(null);
 
   useEffect(() => {
     axiosSecure

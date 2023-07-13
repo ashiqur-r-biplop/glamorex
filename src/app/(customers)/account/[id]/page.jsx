@@ -3,38 +3,21 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import UpdateButton from "../../components/account/UpdateButton";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-
-// const User = {
-//   id: "123",
-//   displayName: "Agun",
-//   email: "test@gmail.com",
-//   photoURL: "https://i.ibb.co/37cdWvc/images.jpg",
-//   mobile: "+8801700000000",
-//   birthday: "2002-01-15",
-//   gender: "female",
-// };
+import Link from "next/link";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const ProfileEdit = () => {
+  const router = useRouter()
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState([]);
+  // const [loading, setLoading] = useState(false)
   const { register, handleSubmit } = useForm({
     defaultValues: {
       gender: User?.gender,
     },
   });
-
-  const onSubmit = (data) => {
-    const { name, email, photo, mobile, birthday, gender } = data;
-    const updatedProfile = {
-      name,
-      email,
-      photo,
-      mobile,
-      birthday,
-      gender,
-    };
-    console.log(updatedProfile);
-  };
 
   useEffect(() => {
     axiosSecure
@@ -46,6 +29,53 @@ const ProfileEdit = () => {
         console.error(error);
       });
   }, []);
+
+  const onSubmit = (data) => {
+    // setLoading(true)
+    const { name, email, photo, mobile, birthday, gender } = data;
+
+    // upload image
+    const formData = new FormData();
+    formData.append("image", photo[0]);
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_HOSTING_API_KEY}`;
+
+    axios
+      .post(url, formData)
+      .then((res) => {
+        const photo_url = res.data.data.url;
+        const updatedProfile = {
+          name,
+          email,
+          mobile,
+          birthday,
+          gender,
+          photo_url,
+        };
+        axiosSecure
+          .patch("/update-profile", updatedProfile)
+          .then((res) => {
+            if (res.data) {
+              // setLoading(false);
+
+              // navigate to profile page after 3 seconds
+              router.push('/account')
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "User Profile Updated Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          })
+          .catch((error) => console.log(error));
+      })
+      .catch((e) => console.log(e.message));
+  };
+
+  // if (loading) {
+  //   return <h2>Loading...</h2>
+  // }
 
   return (
     <div className="container mx-auto px-5 py-[100px] min-h-[70vh]">
@@ -85,16 +115,14 @@ const ProfileEdit = () => {
                 className="border p-2 rounded-sm w-full"
               />
             </div>
-            {/* TODO: upload image here  */}
-            <div className=" space-y-1">
+            <div className="space-y-1">
               <label>
-                <span className="font-semibold text-lg">Photo URL</span>
+                <span className="font-semibold text-lg">Photo</span>
               </label>
               <input
-                type="text"
+                type="file"
+                className="file-input block w-full file-input-bordered focus:outline-0 !p-0"
                 {...register("photo", { required: true })}
-                defaultValue={User?.photo_url}
-                className="border p-2 rounded-sm w-full"
               />
             </div>
             <div className=" space-y-1">
@@ -152,8 +180,13 @@ const ProfileEdit = () => {
               </div>
             </div>
           </div>
-          <div className="mt-5 flex gap-3">
-            <UpdateButton type="submit">Save Changes</UpdateButton>
+          <div className="mt-5 space-x-3">
+            <button className="my-btn-one" type="submit">
+              Save Changes
+            </button>
+            <button className="my-btn-one-outline">
+              <Link href={`/account`}>Back</Link>
+            </button>
           </div>
         </form>
       </div>

@@ -11,7 +11,11 @@ const ShopPage = () => {
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
 
+<<<<<<< HEAD
+  const layout = correntLayout() ;
+=======
   const layout = JSON.parse(currentLayout());
+>>>>>>> df025d2b5a755db590db503003ac77ce99c8e71b
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())
