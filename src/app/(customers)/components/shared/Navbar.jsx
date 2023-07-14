@@ -13,7 +13,7 @@ import { BiUserCircle } from "react-icons/bi";
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
-
+  console.log(user);
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState(null);
 
@@ -26,7 +26,7 @@ function Nav() {
       .catch((error) => {
         console.error(error);
       });
-  }, [User]);
+  }, []);
 
   const logOut = () => {
     localStorage.removeItem("access-token");

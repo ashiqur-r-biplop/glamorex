@@ -5,16 +5,25 @@ import React from "react";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import { BsCartPlus } from "react-icons/bs";
 
-const TopCard = ({ product , layout }) => {
+const TopCard = ({ product, layout }) => {
   const myStyles = {
     itemShapes: ThinStar,
     activeFillColor: "#09AC00",
     inactiveFillColor: "#BCEDC5",
   };
   return (
-    <div className={`border-2 border-gray-100 transition duration-200 cursor-pointer rounded-2xl relative ${layout === "grid" ? "" : "md:w-1/3 w-full mx-auto"}`}>
+    <div
+      className={`border-2 border-gray-100 transition duration-200 cursor-pointer rounded-2xl relative ${
+        layout === "grid" ? "" : "md:w-1/3 w-full mx-auto"
+      }`}
+    >
       <figure className="w-[90%] mx-auto h-[250px] relative ">
-        <Image src={product.image} fill={true} className="p-5" alt={product?.name} />
+        <Image
+          src={product.image}
+          fill={true}
+          className="p-5"
+          alt={product?.name}
+        />
       </figure>
       {product?.discount !== null && (
         <p className="bg-green-500 absolute -top-2 right-0 transform -translate-y-[100%]  inline-block rounded-2xl text-white font-semibold ml-4 mt-8 px-4">
