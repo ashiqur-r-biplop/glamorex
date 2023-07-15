@@ -4,13 +4,9 @@ import Image from "next/image";
 import React from "react";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import { BsCartPlus } from "react-icons/bs";
+import Link from "next/link";
 
-const TopCard = ({ product, layout }) => {
-  const myStyles = {
-    itemShapes: ThinStar,
-    activeFillColor: "#09AC00",
-    inactiveFillColor: "#BCEDC5",
-  };
+const TopCard = ({ product, layout, handleAddToCart }) => {
   return (
     <div
       className={`border-2 border-gray-100 transition duration-200 cursor-pointer rounded-2xl relative ${
@@ -54,38 +50,18 @@ const TopCard = ({ product, layout }) => {
               (Ratting {product?.rating})
             </p>
           </div>
-          <div className="flex justify-evenly items-center">
-            <button>
-              <a href="#_" className="relative inline-block text-lg group">
-                <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-                  <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
-                  <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
-                  <span className="relative">Details</span>
-                </span>
-                <span
-                  className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
-                  data-rounded="rounded-lg"
-                ></span>
-              </a>
+          <div className="space-x-3">
+            <button
+              onClick={() => handleAddToCart(product)}
+              className="my-btn-one"
+            >
+              Add to Cart
             </button>
-            <button>
-              <a href="#_" className="relative inline-block text-lg group">
-                <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-                  <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
-                  <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
-                  <span className="relative">
-                    <BsCartPlus></BsCartPlus>
-                  </span>
-                </span>
-                <span
-                  className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
-                  data-rounded="rounded-lg"
-                ></span>
-              </a>
+            <button className="my-btn-one-outline">
+              <Link href={`/product/${product?.product_id}`}>View Details</Link>
             </button>
           </div>
         </div>
-        <div className="bg-green-400 rounded-2xl bg-opacity-75 opacity-0 hover:opacity-30 text-green-400 font-medium h-full flex justify-center items-center absolute inset-0 transition duration-500 ease-in-out"></div>
       </div>
     </div>
   );

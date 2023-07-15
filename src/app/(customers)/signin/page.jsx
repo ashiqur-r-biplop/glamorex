@@ -14,17 +14,10 @@ import { useRouter } from "next/navigation";
 const SignInPage = () => {
   const { user, loading } = useAuth();
   const router = useRouter();
-
   const [isShowPass, setIsShowPass] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const { axiosSecure } = useAxiosSecure();
-
-  useEffect(()=>{
-    if(user){
-        return router.push("/")
-    }
-  },[user])
 
   const {
     register,
@@ -51,7 +44,7 @@ const SignInPage = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            router.push("/");
+            router.push("/")
           } else {
             localStorage.removeItem("access-token");
           }

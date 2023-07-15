@@ -31,6 +31,8 @@ const AddProductPage = () => {
     console.log(data);
   };
 
+  console.log(productImg);
+
   // for get image via react dropzone
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -153,18 +155,20 @@ const AddProductPage = () => {
 
               <div
                 {...getRootProps()}
-                className="border-2 border-dashed bg-green-500 bg-opacity-20 border-green-500 p-8 w-3/6 mx-auto"
+                className="border-2 border-dashed bg-green-500 bg-opacity-20 border-green-500 p-8 w-3/6 h-[500px] mx-auto cursor-pointer"
               >
-                <input
-                  {...getInputProps()}
-                  {...register("productImg", { required: true })}
-                />
-                {errors.productImg && <span>This field is required</span>}
+                <input {...getInputProps()} />
 
                 {isDragActive ? (
                   <p>Drop the files here ...</p>
+                ) : productImg ? (
+                  productImg.map((img) => (
+                    <figure key={img} className="relative w-full h-full">
+                      <Image alt="Product" src={img} fill></Image>
+                    </figure>
+                  ))
                 ) : (
-                  <p className="flex flex-col gap-3 justify-center items-center py-12">
+                  <p className="flex flex-col h-full gap-3 justify-center items-center py-12">
                     {" "}
                     <span className="text-xl">
                       <FaFileArrowUp></FaFileArrowUp>
@@ -172,16 +176,6 @@ const AddProductPage = () => {
                     Drag 'n' drop some files here, or click to select files
                   </p>
                 )}
-                {productImg &&
-                  productImg.map((img) => (
-                    <Image
-                      key={img}
-                      alt="Product"
-                      src={img}
-                      height={500}
-                      width={500}
-                    ></Image>
-                  ))}
               </div>
 
               <div className="flex justify-center my-8">

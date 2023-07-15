@@ -9,6 +9,8 @@ import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { FiLogOut } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +40,7 @@ function Nav() {
       <NavLink href={"/blog"}>Blogs</NavLink>
       <NavLink href={"/shop"}>Shop</NavLink>
       <NavLink href={"/contact"}>Contact</NavLink>
+      <NavLink href={"/cart"}><AiOutlineShoppingCart/></NavLink>
       {user ? (
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
