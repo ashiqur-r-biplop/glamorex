@@ -15,10 +15,6 @@ const ShopPage = () => {
   const { handleAddToCart } = useAddToCart();
   const router = useRouter();
 
-  if (true) {
-    router.push("/signin");
-  }
-
   const layout = JSON.parse(currentLayout());
   console.log(layout);
   useEffect(() => {
