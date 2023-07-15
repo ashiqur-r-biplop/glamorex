@@ -1,15 +1,17 @@
 import Swal from "sweetalert2";
-import axios from "axios";
-import useIpApi from "./useIpApi";
+import useAuth from "./useAuth";
+import useAxiosSecure from "./useAxiosSecure";
+import { useRouter } from "next/navigation";
 
 const useAddToCart = () => {
-  const {ipAddress} = useIpApi()
-  console.log(ipAddress)
-
+  const { user } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
+  const router = useRouter()
   const handleAddToCart = (product) => {
     const { category, image, name, price, seller_email, seller_name, _id } =
       product || [];
 
+    if (user) {
       const cartItem = {
         category,
         image,
@@ -18,10 +20,10 @@ const useAddToCart = () => {
         seller_email,
         seller_name,
         product_id: _id,
-        current_ip_address: ipAddress
-      }
+        customer_email: user,
+      };
 
-      axios
+      axiosSecure
         .post("/add-to-cart", cartItem)
         .then((res) => {
           console.log(res);
@@ -37,10 +39,22 @@ const useAddToCart = () => {
           }
         })
         .catch((error) => console.log(error));
+    } else {
+      Swal.fire({
+        title: "Please login to order Product",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/signin")
+        }
+      });
     }
-    return { handleAddToCart };
   };
-  
-
+  return { handleAddToCart };
+};
 
 export default useAddToCart;

@@ -1,16 +1,10 @@
 "use client"
 import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
-
-
-
-
 const useAuth = () => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const {axiosSecure} = useAxiosSecure()
-
-
     useEffect(() => {
         const token = localStorage.getItem("access-token")
        if(token) {
@@ -22,7 +16,6 @@ const useAuth = () => {
         })
        }
     },[])
-
     return {user, loading}
 };
 
