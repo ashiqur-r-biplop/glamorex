@@ -1,4 +1,5 @@
 'use client'
+import { useGetHomeCountsQuery } from '@/redux-toolkit/slice/adminApis/adminGetApies';
 import React from 'react';
 import { FaDollarSign,  FaSearch } from 'react-icons/fa';
 import { FaArrowDown, FaPeopleCarryBox, FaArrowUp, FaPeopleArrows, FaPeopleGroup, FaProductHunt, FaWallet } from 'react-icons/fa6';
@@ -18,12 +19,13 @@ import {
 } from 'recharts';
 
 const AdminHomePage = () => {
+    const {data: counts} = useGetHomeCountsQuery()
     const sellerStats = [
         {
             name: 'Customers',
             icon: <FaPeopleGroup></FaPeopleGroup>,
-            total: 150,
-            lastWeek: 120,
+            total: counts?.customers || 1,
+            
             get growthPercentage() {
                 return ((this.total - this.lastWeek) / this.lastWeek * 100).toFixed(2);
             }
@@ -31,8 +33,8 @@ const AdminHomePage = () => {
         {
             name: 'Seller',
             icon: <FaPeopleCarryBox />,
-            total: 350.00,
-            lastWeek: 300.00,
+            total: counts?.sellers || 1,
+            lastWeek: 1,
             get growthPercentage() {
                 return ((parseFloat(this.total) - parseFloat(this.lastWeek)) / parseFloat(this.lastWeek) * 100).toFixed(2);
             }
@@ -41,8 +43,8 @@ const AdminHomePage = () => {
         {
             name: 'Products',
             icon: <FaProductHunt></FaProductHunt>,
-            total: 800,
-            lastWeek: 700,
+            total: counts?.products || 1,
+            lastWeek: 1,
             get growthPercentage() {
                 return ((this.total - this.lastWeek) / this.lastWeek * 100).toFixed(2);
             }
@@ -51,7 +53,7 @@ const AdminHomePage = () => {
             name: 'Revenue',
             icon: <FaDollarSign></FaDollarSign>,
             total: 2000,
-            lastWeek: 2500,
+            lastWeek: 1,
             get growthPercentage() {
                 return ((this.total - this.lastWeek) / this.lastWeek * 100).toFixed(2);
             }

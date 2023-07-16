@@ -3,7 +3,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const baseUrl = "https://glamorex.vercel.app/admin"
+const baseUrl = "http://localhost:5000/admin"
 export const adminGetApies = createApi({
     reducerPath: "adminGetApies",
     baseQuery: fetchBaseQuery({
@@ -27,6 +27,9 @@ export const adminGetApies = createApi({
         getProducts: builder.query({
           query: (filterName) => `/products?status=${filterName ? filterName : "all_products"}`,
         }),
+        getHomeCounts: builder.query({
+          query: () => `/home`,
+        }),
       
     })
 })
@@ -36,5 +39,6 @@ export const {
     useGetUsersQuery,
     useGetRequestedUsersQuery,
     useGetProductsQuery,
+    useGetHomeCountsQuery
 
 } = adminGetApies
