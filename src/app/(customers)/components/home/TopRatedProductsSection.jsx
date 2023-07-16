@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import TopRatedCard from "./cards/TopRatedCard";
 import useAddToCart from "@/hooks/useAddToCart";
+import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 
 const TopRatedProductsSection = () => {
   const [products, setProducts] = useState([]);
@@ -14,10 +15,11 @@ const TopRatedProductsSection = () => {
 
 
   return (
-    <div className="container mx-auto px-5 py-20">
-      <div className="section-title mb-8">
-        <h2 className="text-2xl font-semibold">Top Rated Products</h2>
-      </div>
+    <div className="container mx-auto px-4 sm:px-5 md:px-8 py-20">
+      <CmnSectionTitle
+        title={"Top Rated Products"}
+        subtitle={"Best of the Best: Top-Rated Product Showcase"}
+      ></CmnSectionTitle>
       <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => {
           return <TopRatedCard handleAddToCart={handleAddToCart} key={product?._id} product={product} />;

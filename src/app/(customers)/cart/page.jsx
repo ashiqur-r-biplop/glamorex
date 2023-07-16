@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CartRow from "../components/cart/CartRow";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -12,23 +13,25 @@ const CartPage = () => {
   const [buyCurrentQuantity, setCurrentQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [discountGift, setDiscountGift] = useState("");
+  const { axiosSecure } = useAxiosSecure();
 
   const [control, setControl] = useState(false);
 
   useEffect(() => {
     setDiscountGift(localStorage.getItem("giftPrize"));
-    fetch("/cart.json")
-      .then((res) => res.json())
+    axiosSecure("/carts")
       .then((data) => {
-        const totalAmount = data?.reduce(
+        const totalAmount = data?.data?.reduce(
           (previousPrice, currentPrice) =>
-            previousPrice + currentPrice.productTotal,
+            previousPrice + parseInt(currentPrice.price),
           0
         );
-        const totalTax = Math.round((totalAmount / 100) * tax); // per 100 dollar purchase , tax is 2 cent
+        console.log(data?.data);
+        const totalTax = Math.round((totalAmount / 100) * tax);
         const ShippingAmount = Math.round(
           (totalAmount / 1000) * ShippingCharge
-        ); // per 1000 dollar purchase , shipping charge is 20 dollar
+        );
+        console.log(ShippingAmount);
         const totalOrdersPrice = totalAmount + totalTax + ShippingAmount;
 
         seTax(totalTax);
@@ -38,7 +41,7 @@ const CartPage = () => {
           discountGift !== "Free Delivery"
             ? discountGift?.split("%")[0]
             : setShippingCharge(0);
-        setSubtotal(totalAmount); //subtotal of all product
+        setSubtotal(totalAmount);
         setTotalPrice(
           discountPrice > 0
             ? Math.floor(
@@ -47,15 +50,16 @@ const CartPage = () => {
             : discountGift === "Free Delivery"
             ? totalOrdersPrice - ShippingAmount
             : totalOrdersPrice
-        ); //total price with delivery charge,tax and reduce discount
+        );
 
-        setCart(data);
+        setCart(data?.data);
       })
       .catch((e) => console.log(e.message));
-  }, [discountGift]);
+  }, [discountGift, control]);
 
   const handlePlus = (id) => {
     const product = cart.find((pd) => pd?.product_id === id);
+    console.log(product);
     const currentQuantity = product.buyQuantity + 1;
     const productTotalPrice = product?.price * currentQuantity;
     product.buyQuantity = currentQuantity;
@@ -76,6 +80,15 @@ const CartPage = () => {
     }
     // setControl(!control)
   };
+  const handleDeleteProduct = (id) => {
+    console.log(id);
+    axiosSecure.delete(`/delete-cart-product?id=${id}`)
+    .then(Response => {
+      console.log(Response);
+      setControl(!control)
+    })
+  }
+
   return (
     <div className="max-w-screen-2xl mx-auto my-16 sm:px-6 md:px-8 px-4 grid lg:grid-cols-[2fr,1fr] gap-5 lg:gap-10">
       <table className="w-full">
@@ -94,6 +107,7 @@ const CartPage = () => {
               handlePlus={handlePlus}
               handleMinus={handleMinus}
               buyCurrentQuantity={buyCurrentQuantity}
+              handleDeleteProduct={handleDeleteProduct}
             />
           ))}
         </tbody>

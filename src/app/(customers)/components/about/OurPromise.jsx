@@ -66,24 +66,3 @@ const OurPromise = () => {
 };
 
 export default OurPromise;
-
-{
-  /* <div className="grid grid-cols-2">
-  <div>
-    <img src={visionImg.src} alt="Vision" />
-  </div>
-  <div className="flex flex-col justify-center gap-5 lg:gap-10">
-    {featureData.map((card, index) => (
-      <div key={index} className={`flex gap-4 items-center px-5 py-3`}>
-        <div className="text-5xl hover:scale-125 transition-all duration-500">
-          {card.icon}
-        </div>
-        <div className="space-y-2">
-          <h4 className="text-lg font-semibold">{card.title}</h4>
-          <p>{card.content}</p>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>; */
-}

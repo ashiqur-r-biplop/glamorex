@@ -6,7 +6,7 @@ const MemberCard = ({ member }) => {
     <div className="shadow rounded-md bg-green-50 pt-5">
       <figure>
         <img
-          className="w-[200px] h-[200px] rounded-full mx-auto object-cover object-center"
+          className="w-[200px] h-[200px] rounded-full mx-auto object-cover object-center border"
           src={img}
           alt={name}
         />
