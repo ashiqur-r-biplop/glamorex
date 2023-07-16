@@ -6,6 +6,7 @@ import "@smastrom/react-rating/style.css";
 import moment from "moment";
 import RecentProductCard from "./cards/RecentProductCard";
 import useAddToCart from "@/hooks/useAddToCart";
+import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 
 const RecentProductsSection = () => {
   const [products, setProducts] = useState([]);
@@ -17,10 +18,11 @@ const RecentProductsSection = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-5 py-20">
-      <div className="section-title mb-8">
-        <h2 className="text-2xl font-semibold">New Collection</h2>
-      </div>
+    <div className="container mx-auto px-4 sm:px-5 md:px-8 py-200">
+      <CmnSectionTitle
+        title={"New Collection"}
+        subtitle={"Fresh Arrivals: Explore our Latest Collection"}
+      ></CmnSectionTitle>
       <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => {
           return <RecentProductCard handleAddToCart={handleAddToCart} key={product?._id} product={product} />;
