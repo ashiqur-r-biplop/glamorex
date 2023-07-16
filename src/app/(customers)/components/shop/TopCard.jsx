@@ -4,26 +4,21 @@ import GridLayout from "./GridLayout";
 import ColumnLayout from "./ColumnLayout";
 import { GridSystem } from "./HandleGridSystem";
 
-const TopCard = ({ product,handleAddToCart,  layout }) => {
-  
-
+const TopCard = ({ product, handleAddToCart, layout }) => {
   const isMobileScreen = () => {
     return window.innerWidth <= 768;
   };
   const clearLayoutOnMobile = () => {
     if (isMobileScreen()) {
-      GridSystem("grid")
+      GridSystem("grid");
     }
   };
   useEffect(() => {
     clearLayoutOnMobile();
-
-    // Add event listener for window resize
     const handleResize = () => {
       clearLayoutOnMobile();
     };
     window.addEventListener("resize", handleResize);
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
