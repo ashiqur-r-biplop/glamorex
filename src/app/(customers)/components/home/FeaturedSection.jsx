@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FeaturedCard from "./cards/FeaturedCard";
 import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import useAddToCart from "@/hooks/useAddToCart";
+import ProductCard from "./cards/ProductCard";
 
 const FeaturedSection = () => {
   const [products, setProducts] = useState([]);
@@ -29,7 +29,7 @@ const FeaturedSection = () => {
       <CmnSectionTitle title={'Featured Products'} subtitle={'Explore our Unique Selection and Exclusive Offers'}></CmnSectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {products.slice(0, 8).map((product, i) => (
-          <FeaturedCard
+          <ProductCard
             key={i + 1}
             product={product}
             handleAddToCart={handleAddToCart}

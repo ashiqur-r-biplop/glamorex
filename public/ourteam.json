@@ -1,48 +1,48 @@
 [
     {
       "id": "1",
-      "name": "John Doe",
-      "img": "https://i.ibb.co/5GrJfPY/mask.jpg",
-      "title": "CEO",
+      "name": "Ashiqur Rahman Biplop",
+      "img": "https://i.ibb.co/tDT76sj/42883-removebg-preview.png",
+      "title": "Frontend Developer",
       "social_links": [
         {
-          "link": "https://www.facebook.com/johndoe",
+          "link": "https://www.facebook.com/BBTT.biplop22/",
           "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
         },
         {
-          "link": "https://www.twitter.com/johndoe",
+          "link": "https://twitter.com/a_r_biplop",
           "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
         },
         {
-          "link": "https://www.linkedin.com/in/johndoe",
+          "link": "https://www.linkedin.com/in/ashiqur-r-biplop/",
           "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
         },
         {
-          "link": "https://www.instagram.com/johndoe",
+          "link": "https://www.instagram.com/mohammad_ashiqur_rahman_biplop/",
           "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
         }
       ]
     },
     {
       "id": "2",
-      "name": "Jane Smith",
-      "img": "https://i.ibb.co/5GrJfPY/mask.jpg",
-      "title": "COO",
+      "name": "Aothy Mahamud Moon",
+      "img": "https://i.ibb.co/5M178K2/Aothy-Mahamud-Moon.png",
+      "title": "Frontend Developer",
       "social_links": [
         {
-          "link": "https://www.facebook.com/janesmith",
+          "link": "https://facebook.com/aothymoon59",
           "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
         },
         {
-          "link": "https://www.twitter.com/janesmith",
+          "link": "https://twitter.com/aothymoon59",
           "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
         },
         {
-          "link": "https://www.linkedin.com/in/janesmith",
+          "link": "https://www.linkedin.com/in/aothymoon59/",
           "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
         },
         {
-          "link": "https://www.instagram.com/janesmith",
+          "link": "https://instagram.com/aothymoon59",
           "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
         }
       ]
