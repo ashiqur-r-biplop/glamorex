@@ -25,9 +25,11 @@ const ShopPage = () => {
         setLoading(false);
       });
   }, [control]);
+
   if (loading) {
     return <>Loading....</>;
   }
+  
   return (
     <div className="">
       <div className="bg-slate-300">
