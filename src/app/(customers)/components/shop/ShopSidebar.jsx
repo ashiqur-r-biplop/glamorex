@@ -125,7 +125,7 @@ const ShopSideBar = ({ setControl, control }) => {
             options={options}
           />
         </div>
-        <from onChange={handleSubCategory}>
+        <form onChange={handleSubCategory}>
           {Category?.value === "Clothing" && (
             <div className="border-b-2 py-3">
               {[
@@ -327,7 +327,7 @@ const ShopSideBar = ({ setControl, control }) => {
               ))}
             </div>
           )}
-        </from>
+        </form>
         {gander && Category && subCategory && (
           <div className="text-center">
             <button

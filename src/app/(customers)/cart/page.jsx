@@ -81,9 +81,10 @@ const CartPage = () => {
     // setControl(!control)
   };
   const handleDeleteProduct = (id) => {
-    axiosSecure.delete(`/delete-single-product?id=${id}`)
-    .then(data => {
-      console.log(data);
+    console.log(id);
+    axiosSecure.delete(`/delete-cart-product?id=${id}`)
+    .then(Response => {
+      console.log(Response);
       setControl(!control)
     })
   }
