@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
 
-const featuredCard = ({ product,handleAddToCart }) => {
+const featuredCard = ({ product, handleAddToCart }) => {
   const { product_id, name, image, description, rating, price, overall_sell } =
     product;
 
@@ -44,16 +44,16 @@ const featuredCard = ({ product,handleAddToCart }) => {
           <p className="text-gray-500">({overall_sell})</p>
         </div>
         <div className="space-x-3">
-              <button
-                onClick={() => handleAddToCart(product)}
-                className="my-btn-one"
-              >
-                Add to Cart
-              </button>
-              <button className="my-btn-one-outline">
-                <Link href={`/product/${product_id}`}>View Details</Link>
-              </button>
-            </div>
+          <button
+            onClick={() => handleAddToCart(product)}
+            className="my-btn-one"
+          >
+            Add to Cart
+          </button>
+          <button className="my-btn-one-outline">
+            <Link href={`/product/${product_id}`}>View Details</Link>
+          </button>
+        </div>
       </div>
     </div>
   );

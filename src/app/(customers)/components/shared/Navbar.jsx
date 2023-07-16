@@ -9,11 +9,13 @@ import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { FiLogOut } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
-
+  console.log(user);
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState(null);
 
@@ -26,7 +28,7 @@ function Nav() {
       .catch((error) => {
         console.error(error);
       });
-  }, [User]);
+  }, []);
 
   const logOut = () => {
     localStorage.removeItem("access-token");
@@ -38,6 +40,7 @@ function Nav() {
       <NavLink href={"/blog"}>Blogs</NavLink>
       <NavLink href={"/shop"}>Shop</NavLink>
       <NavLink href={"/contact"}>Contact</NavLink>
+      <NavLink href={"/cart"}><AiOutlineShoppingCart/></NavLink>
       {user ? (
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

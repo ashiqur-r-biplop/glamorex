@@ -6,12 +6,17 @@ import { useEffect, useState } from "react";
 import TopCard from "../components/shop/TopCard";
 import ShopSideBar from "../components/shop/ShopSidebar";
 import { currentLayout } from "../components/shop/HandleGridSystem";
+import useAddToCart from "@/hooks/useAddToCart";
+import { useRouter } from "next/navigation";
 const ShopPage = () => {
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
+  const { handleAddToCart } = useAddToCart();
+  const router = useRouter();
 
-  const layout = currentLayout() ;
+  const layout = JSON.parse(currentLayout());
+  console.log(layout);
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())
@@ -85,6 +90,7 @@ const ShopPage = () => {
                 key={product?.product_id}
                 product={product}
                 layout={layout}
+                handleAddToCart={handleAddToCart}
               ></TopCard>
             ))}
           </div>
