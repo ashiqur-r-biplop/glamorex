@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux";
+
+import AdminOnly from "@/private/AdminOnly";
 import Sidebar from "./components/shared/Sidebar";
 
 const AdminLayout = ({children}) => {
    
     return (
+    <AdminOnly>
         <main className="flex">
             <div className="w-2/12 h-screen sticky top-0">
                 <Sidebar />
@@ -12,6 +14,7 @@ const AdminLayout = ({children}) => {
                 {children}
             </div>
         </main>
+    </AdminOnly>
     );
 };
 

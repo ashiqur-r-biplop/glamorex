@@ -23,9 +23,9 @@ const FeaturedSection = () => {
   }
 
   return (
-    <div className="max-w-screen-2xl mx-auto sm:px-6 md:px-8 px-4 py-12">
+    <div className="my-container px-4 py-12">
       <CmnSectionTitle title={'Featured Products'} subtitle={'Explore our Unique Selection and Exclusive Offers'}></CmnSectionTitle>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {products.slice(0, 8).map((product, i) => (
           <FeaturedCard key={i + 1} product={product} />
         ))}

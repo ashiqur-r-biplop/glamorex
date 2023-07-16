@@ -18,6 +18,20 @@ const AddProductPage = () => {
     } = useForm()
     const onSubmit = (data) => {
         console.log(data)
+       {
+        productCategory:"Clothing"
+        productCoupon: "Eddfgasd"
+        productDetails:"this is product"
+        productImg : "jkj"
+        FileList : 0
+        productName : "Learde"
+        productPriceNew :"10"
+        productPriceOld: "50"
+        productQuantity:"50"
+        productSubCategory:"shirt"
+        publishDate: "7/16/2023"
+        
+       }
     }
 
 
