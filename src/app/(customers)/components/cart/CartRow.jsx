@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
-const CartRow = ({ item, handlePlus, handleMinus }) => {
+const CartRow = ({ item, handlePlus, handleMinus, handleDeleteProduct }) => {
   const { name, image, price, product_id, productTotal, buyQuantity, quantity } =
     item;
   return (
@@ -17,7 +17,7 @@ const CartRow = ({ item, handlePlus, handleMinus }) => {
         <span>
           <p className="text-lg">{name}</p>
           <p>Price: ${price}.00</p>
-          <p className="text-red-500 cursor-pointer">Remove</p>
+          <p onClick={()=>handleDeleteProduct(product_id)} className="text-red-500 cursor-pointer">Remove</p>
         </span>
       </td>
       <td>
