@@ -1,5 +1,4 @@
 "use client";
-
 import ShopHeader from "../../../../public/assets/lottieAnimation/shop-lotti.json";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
@@ -7,18 +6,16 @@ import TopCard from "../components/shop/TopCard";
 import ShopSideBar from "../components/shop/ShopSidebar";
 import { currentLayout } from "../components/shop/HandleGridSystem";
 import useAddToCart from "@/hooks/useAddToCart";
-import { useRouter } from "next/navigation";
 const ShopPage = () => {
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
   const { handleAddToCart } = useAddToCart();
-  const router = useRouter();
 
   const layout = JSON.parse(currentLayout());
   console.log(layout);
   useEffect(() => {
-    fetch("/products.json")
+    fetch("https://glamorex.vercel.app/all-products")
       .then((res) => res.json())
       .then((data) => {
         setTopSale(data);
@@ -74,17 +71,17 @@ const ShopPage = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto px-3 grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div className="container  my-10 mx-auto px-3 grid grid-cols-1 md:grid-cols-12 gap-10">
         {/* TODO */}
         <div className="md:col-span-3 relative">
           <ShopSideBar setControl={setControl} control={control}></ShopSideBar>
         </div>
         <div className="md:col-span-9">
           <div
-            className={`grid gap-5 ${
+            className={`${
               layout === "grid"
-                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-                : "grid-cols-1"
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+                : ""
             }`}
           >
             {TopSale.map((product) => (

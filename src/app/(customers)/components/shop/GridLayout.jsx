@@ -1,8 +1,11 @@
+import React from "react";
+import moment from "moment";
 import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
+import { BsCartPlus } from "react-icons/bs";
 import Link from "next/link";
 
-const featuredCard = ({ product, handleAddToCart }) => {
+const GridLayout = ({ product, handleAddToCart }) => {
   const { product_id, name, image, description, rating, price, overall_sell } =
     product;
 
@@ -11,7 +14,6 @@ const featuredCard = ({ product, handleAddToCart }) => {
     activeFillColor: "#09AC00",
     inactiveFillColor: "#BCEDC5",
   };
-
   return (
     <div className="flex flex-col rounded-md md:max-w-xs w-full h-full">
       <div className="w-full bg-gray-100 p-5">
@@ -59,4 +61,4 @@ const featuredCard = ({ product, handleAddToCart }) => {
   );
 };
 
-export default featuredCard;
+export default GridLayout;

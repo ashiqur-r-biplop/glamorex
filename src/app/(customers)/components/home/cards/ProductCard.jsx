@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
 
-const TopRatedCard = ({ product, handleAddToCart }) => {
+const ProductCard = ({ product, handleAddToCart }) => {
   const {
     product_id,
     name,
@@ -73,4 +73,4 @@ const TopRatedCard = ({ product, handleAddToCart }) => {
   );
 };
 
-export default TopRatedCard;
+export default ProductCard;

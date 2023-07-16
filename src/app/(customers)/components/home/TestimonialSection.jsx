@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import { FaQuoteLeft } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
@@ -21,7 +22,11 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-[100px]">
+    <section className="py-[100px] bg-green-50">
+      <CmnSectionTitle
+        title={"Testimonial"}
+        subtitle={"Words of Delight: Happy Customers Share Experiences"}
+      ></CmnSectionTitle>
       <div className="container mx-auto">
         <Swiper
           navigation={true}
