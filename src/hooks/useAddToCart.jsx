@@ -9,7 +9,7 @@ const useAddToCart = () => {
   const router = useRouter();
   const handleAddToCart = (product) => {
     console.log(product);
-    const { category, image, name, price, seller_email, seller_name, _id } =
+    const { category, quantity, image, name, price, seller_email, seller_name, _id } =
       product || [];
 
     if (user) {
@@ -20,6 +20,7 @@ const useAddToCart = () => {
         price,
         seller_email,
         seller_name,
+        quantity,
         product_id: _id,
         customer_email: user,
       };

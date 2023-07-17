@@ -25,7 +25,7 @@ const AdminHomePage = () => {
             name: 'Customers',
             icon: <FaPeopleGroup></FaPeopleGroup>,
             total: counts?.customers || 1,
-            
+            lastWeek: 1,
             get growthPercentage() {
                 return ((this.total - this.lastWeek) / this.lastWeek * 100).toFixed(2);
             }
