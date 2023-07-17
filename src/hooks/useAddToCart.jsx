@@ -38,7 +38,7 @@ const useAddToCart = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            console.log(_id);
+            console.log(res.data, "41");
           }
         })
         .catch((error) => console.log(error));

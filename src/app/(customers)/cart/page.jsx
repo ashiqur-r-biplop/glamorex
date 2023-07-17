@@ -21,12 +21,11 @@ const CartPage = () => {
     setDiscountGift(localStorage.getItem("giftPrize"));
     axiosSecure("/carts")
       .then((data) => {
-        const totalAmount = data?.data?.reduce(
-          (previousPrice, currentPrice) =>
-            previousPrice + parseInt(currentPrice.price),
+        console.log(data?.data);
+        const totalAmount = data?.data?.reduce((previousPrice, currentPrice) =>previousPrice + parseInt(currentPrice.price),
           0
         );
-        console.log(data?.data);
+
         const totalTax = Math.round((totalAmount / 100) * tax);
         const ShippingAmount = Math.round(
           (totalAmount / 1000) * ShippingCharge
@@ -59,10 +58,9 @@ const CartPage = () => {
 
   const handlePlus = (id) => {
     const product = cart.find((pd) => pd?.product_id === id);
-    console.log(product);
-    const currentQuantity = product.buyQuantity + 1;
-    const productTotalPrice = product?.price * currentQuantity;
-    product.buyQuantity = currentQuantity;
+    const currentQuantity = product.buy_quantity + 1;
+    const productTotalPrice = parseInt(product?.price) * currentQuantity;
+    product.buy_quantity = currentQuantity;
     product.productTotal = productTotalPrice;
     setCurrentQuantity(currentQuantity);
     // setControl(!control);
@@ -70,9 +68,9 @@ const CartPage = () => {
 
   const handleMinus = (id) => {
     const product = cart.find((pd) => pd?.product_id === id);
-    const previousQuantity = product.buyQuantity - 1;
-    product.buyQuantity = previousQuantity;
-    const productTotalPrice = product?.price * previousQuantity;
+    const previousQuantity = product.buy_quantity - 1;
+    product.buy_quantity = previousQuantity;
+    const productTotalPrice = parseInt(product?.price) * previousQuantity;
     product.productTotal = productTotalPrice;
     if (previousQuantity >= 0) {
       setCurrentQuantity(previousQuantity);
@@ -82,12 +80,11 @@ const CartPage = () => {
   };
   const handleDeleteProduct = (id) => {
     console.log(id);
-    axiosSecure.delete(`/delete-cart-product?id=${id}`)
-    .then(Response => {
+    axiosSecure.delete(`/delete-cart-product?id=${id}`).then((Response) => {
       console.log(Response);
-      setControl(!control)
-    })
-  }
+      setControl(!control);
+    });
+  };
 
   return (
     <div className="max-w-screen-2xl mx-auto my-16 sm:px-6 md:px-8 px-4 grid lg:grid-cols-[2fr,1fr] gap-5 lg:gap-10">

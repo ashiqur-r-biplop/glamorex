@@ -6,28 +6,244 @@ import { RxColumns } from "react-icons/rx";
 import { GridSystem } from "./HandleGridSystem.js";
 import { AiOutlineMinus } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
-import ColorProduct from "./ColorProduct";
-import ProductSize from "./ProductSize";
 
 const ShopSideBar = ({ setControl, control }) => {
-  const [Category, setSelectedOption] = useState(null);
+  const [gander, setGander] = useState("");
   const [controlProductColor, setControlProductColor] = useState(false);
   const [controlProductSize, setControlProductSize] = useState(false);
   const [filterIngData, setFilteringData] = useState(null);
-  const [subCategory, setSubcategory] = useState("");
-  const [gander, setGander] = useState("");
-  const options = [
-    { value: "Clothing", label: "Clothing" },
-    { value: "Footwear", label: "Footwear" },
-    { value: "Accessories", label: "Accessories" },
-    { value: "Outerwear", label: "Outerwear" },
-    { value: "Swimwear", label: "Swimwear" },
-    { value: "Intimates", label: "Intimates" },
-    { value: "Activewear", label: "Activewear" },
-    { value: "Formal_Wear", label: "Formal Wear" },
-    { value: "Beauty_and_Cosmetics", label: "Beauty and Cosmetics" },
-    { value: "Sale_and_Clearance", label: "Sale and Clearance" },
-  ];
+
+  // chat GPT
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [category, setCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
+  // chat GPT
+  const categories = {
+    Clothing: {
+      "T-Shirts": {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Red", "Blue", "Green", "Black", "White"],
+      },
+      Jeans: {
+        sizes: ["26", "28", "30", "32", "34"],
+        colors: ["Blue", "Black"],
+      },
+      Dresses: {
+        sizes: ["S", "M", "L"],
+        colors: ["Red", "Blue", "Black"],
+      },
+      Shirts: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["White", "Blue", "Black"],
+      },
+      Pants: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Gray"],
+      },
+      Blouses: {
+        sizes: ["S", "M", "L"],
+        colors: ["White", "Pink", "Yellow"],
+      },
+      Skirts: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Red", "Navy"],
+      },
+      Jackets: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Brown", "Gray"],
+      },
+      Coats: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Beige"],
+      },
+      Sweaters: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Gray", "Navy", "Burgundy"],
+      },
+      Hoodies: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Gray", "Blue"],
+      },
+      Shorts: {
+        sizes: ["S", "M", "L"],
+        colors: ["Blue", "Khaki"],
+      },
+      Leggings: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Gray", "Navy"],
+      },
+    },
+    Footwear: {
+      Sneakers: {
+        sizes: ["7", "8", "9", "10", "11"],
+        colors: ["White", "Black", "Blue", "Red"],
+      },
+      Boots: {
+        sizes: ["7", "8", "9", "10", "11"],
+        colors: ["Brown", "Black"],
+      },
+      Sandals: {
+        sizes: ["6", "7", "8", "9", "10"],
+        colors: ["Black", "Brown", "Beige"],
+      },
+      Flats: {
+        sizes: ["6", "7", "8", "9"],
+        colors: ["Black", "Silver", "Pink"],
+      },
+      Heels: {
+        sizes: ["6", "7", "8", "9"],
+        colors: ["Black", "Red", "Nude"],
+      },
+    },
+    Accessories: {
+      Bags: {
+        sizes: [],
+        colors: ["Black", "Brown", "Blue", "Red"],
+      },
+      Belts: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Brown"],
+      },
+      Hats: {
+        sizes: ["One Size"],
+        colors: ["Black", "White", "Beige"],
+      },
+      Scarves: {
+        sizes: ["One Size"],
+        colors: ["Red", "Blue", "Gray"],
+      },
+      Jewelry: {
+        sizes: [],
+        colors: ["Gold", "Silver"],
+      },
+      Sunglasses: {
+        sizes: ["One Size"],
+        colors: ["Black", "Brown", "Gray"],
+      },
+      Watches: {
+        sizes: ["One Size"],
+        colors: ["Silver", "Gold", "Rose Gold"],
+      },
+    },
+    Outerwear: {
+      Jackets: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Brown", "Gray"],
+      },
+      Coats: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Beige"],
+      },
+      Sweaters: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Gray", "Navy", "Burgundy"],
+      },
+      Hoodies: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Gray", "Blue"],
+      },
+      Raincoats: {
+        sizes: ["S", "M", "L"],
+        colors: ["Yellow", "Blue", "Transparent"],
+      },
+    },
+    Swimwear: {
+      Swimsuits: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Blue", "Red"],
+      },
+      Bikinis: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "White", "Pink"],
+      },
+      "Board Shorts": {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Blue", "Black", "Green"],
+      },
+    },
+    Intimates: {
+      Bras: {
+        sizes: ["32A", "32B", "34A", "34B", "36A", "36B"],
+        colors: ["Black", "White", "Pink"],
+      },
+      Panties: {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "White", "Beige", "Pink"],
+      },
+      Lingerie: {
+        sizes: ["S", "M", "L"],
+        colors: ["Red", "Black", "Purple"],
+      },
+    },
+    Activewear: {
+      "Athletic Tops": {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Gray", "Blue"],
+      },
+      Leggings: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Gray", "Navy"],
+      },
+      "Sports Bras": {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "White", "Pink"],
+      },
+      "Athletic Shorts": {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Gray", "Blue"],
+      },
+    },
+    "Formal Wear": {
+      "Evening Gowns": {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Red", "Blue"],
+      },
+      Tuxedos: {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Red"],
+      },
+      "Formal Dresses": {
+        sizes: ["S", "M", "L"],
+        colors: ["Black", "Navy", "Burgundy"],
+      },
+      "Formal Suits": {
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Gray", "Navy"],
+      },
+    },
+    "Beauty and Cosmetics": {
+      Makeup: {
+        sizes: [],
+        colors: [],
+      },
+      "Skincare Products": {
+        sizes: [],
+        colors: [],
+      },
+      Fragrances: {
+        sizes: [],
+        colors: [],
+      },
+      "Haircare Products": {
+        sizes: [],
+        colors: [],
+      },
+    },
+    "Sale and Clearance": {
+      "Discounted Items": {
+        sizes: [],
+        colors: [],
+      },
+      "Clearance Items": {
+        sizes: [],
+        colors: [],
+      },
+    },
+  };
+
   const handleLayout = (display) => {
     GridSystem(display);
     setControl(!control);
@@ -35,23 +251,119 @@ const ShopSideBar = ({ setControl, control }) => {
   const handleColorProduct = () => {
     setControlProductColor(!controlProductColor);
   };
+
   const handleSizeProduct = () => {
     setControlProductSize(!controlProductSize);
   };
   const handleGander = (e) => {
     setGander(e.target.value);
   };
-  const handleSubCategory = (e) => {
-    setSubcategory(e.target.value);
+  const handleCategoryChange = (selectedOption) => {
+    setSelectedCategory(selectedOption);
+    setCategory(selectedOption?.value);
+    setSelectedSubCategory(null);
+    setSelectedSizes([]);
+    setSelectedColors([]);
+  };
+  const handleSubCategoryChange = (selectedOption) => {
+    setSelectedSubCategory(selectedOption);
+    setSubCategory(selectedOption);
+
+    setSelectedSizes([]);
+    setSelectedColors([]);
+  };
+  const handleSizeChange = (e) => {
+    const size = e.target.value;
+    setSelectedSizes((prevSizes) =>
+      prevSizes.includes(size)
+        ? prevSizes.filter((s) => s !== size)
+        : [...prevSizes, size]
+    );
+  };
+  const handleColorChange = (e) => {
+    const color = e.target.value;
+    setSelectedColors((prevColors) =>
+      prevColors.includes(color)
+        ? prevColors.filter((c) => c !== color)
+        : [...prevColors, color]
+    );
+  };
+  const renderCategories = () => {
+    return Object.keys(categories).map((category) => ({
+      value: category,
+      label: category,
+    }));
+  };
+  // sub Category
+  const renderSubCategories = () => {
+    if (selectedCategory) {
+      const subCategories = categories[selectedCategory.value];
+      return Object.keys(subCategories).map((subCategory) => (
+        <div key={subCategory} className="py-1">
+          <input
+            className="me-2"
+            type="radio"
+            id={subCategory}
+            name={selectedCategory.value}
+            value={subCategory}
+            checked={selectedSubCategory === subCategory}
+            onChange={() => handleSubCategoryChange(subCategory)}
+          />
+          <label htmlFor={subCategory}>{subCategory}</label>
+        </div>
+      ));
+    }
+    return null;
+  };
+console.log(selectedColors);
+  const renderSizes = () => {
+    if (selectedSubCategory) {
+      const { sizes } = categories[selectedCategory.value][selectedSubCategory];
+      return sizes.map((size) => (
+        <div key={size} className="flex items-center py-1 space-x-2">
+          <input
+            type="checkbox"
+            id={size}
+            name={size}
+            value={size}
+            checked={selectedSizes.includes(size)}
+            onChange={handleSizeChange}
+          />
+          <label htmlFor={size}>{size}</label>
+        </div>
+      ));
+    }
+    return null;
+  };
+  const renderColors = () => {
+    if (selectedSubCategory) {
+      const { colors } =
+        categories[selectedCategory.value][selectedSubCategory];
+      return colors.map((color) => (
+        <div key={color} className="flex items-center py-1  space-x-2">
+          <input
+            type="checkbox"
+            id={color}
+            name={color}
+            value={color}
+            checked={selectedColors.includes(color)}
+            onChange={handleColorChange}
+          />
+          <label htmlFor={color}>{color}</label>
+        </div>
+      ));
+    }
+    return null;
   };
   const handleShopFilter = () => {
     const obj = {
       gander: gander,
-      category: Category?.value,
+      category: category,
       subCategory: subCategory,
     };
-
-    setFilteringData(obj);
+    setFilteringData({...obj});
+    console.log(filterIngData);
+    console.log(obj);
   };
   console.log(filterIngData);
   return (
@@ -120,215 +432,14 @@ const ShopSideBar = ({ setControl, control }) => {
         </div>
         <div className="border-b-2 py-5">
           <Select
-            defaultValue={Category}
-            onChange={setSelectedOption}
-            options={options}
+            id="category"
+            options={renderCategories()}
+            value={selectedCategory}
+            onChange={handleCategoryChange}
           />
         </div>
-        <form onChange={handleSubCategory}>
-          {Category?.value === "Clothing" && (
-            <div className="border-b-2 py-3">
-              {[
-                "T-Shirts",
-                "Jeans",
-                "Dresses",
-                "Shirts",
-                "Pants",
-                "Blouses",
-                "Skirts",
-                "Jackets",
-                "Coats",
-                "Sweaters",
-                "Hoodies",
-                "Shorts",
-                "Leggings",
-              ].map((subCategory, i) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Clothing"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-          {Category?.value === "Footwear" && (
-            <div className="border-b-2 py-3">
-              {["Sneakers", "Boots", "Sandals", "Flats", "Heels"].map(
-                (subCategory, i) => (
-                  <div key={i}>
-                    <input
-                      className="me-2"
-                      type="radio"
-                      id={subCategory}
-                      name="Footwear"
-                      value={subCategory}
-                    />
-                    <label htmlFor={subCategory}>{subCategory}</label>
-                  </div>
-                )
-              )}
-            </div>
-          )}
-          {Category?.value === "Accessories" && (
-            <div className="border-b-2 py-3">
-              {[
-                "Bags",
-                "Belts",
-                "Hats",
-                "Scarves",
-                "Jewelry",
-                "Sunglasses",
-                "Watches",
-              ].map((subCategory, i) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Accessories"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-          {Category?.value === "Outerwear" && (
-            <div className="border-b-2 py-3">
-              {["Jackets", "Coats", "Sweaters", "Hoodies", "Raincoats"].map(
-                (subCategory, i) => (
-                  <div key={i}>
-                    <input
-                      className="me-2"
-                      type="radio"
-                      id={subCategory}
-                      name="Outerwear"
-                      value={subCategory}
-                    />
-                    <label htmlFor={subCategory}>{subCategory}</label>
-                  </div>
-                )
-              )}
-            </div>
-          )}
-          {Category?.value === "Swimwear" && (
-            <div className="border-b-2 py-3">
-              {["Swimsuits", "Bikinis", "Board Shorts"].map((subCategory, i) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Swimwear"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-          {Category?.value === "Intimates" && (
-            <div className="border-b-2 py-3">
-              {["Bras", "Panties", "Lingerie"].map((subCategory, i) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Intimates"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-          {Category?.value === "Activewear" && (
-            <div className="border-b-2 py-3">
-              {[
-                "Athletic Tops",
-                "Leggings",
-                "Sports Bras",
-                "Athletic Shorts",
-              ].map((subCategory, i) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Activewear"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-          {Category?.value === "Formal_Wear" && (
-            <div className="border-b-2 py-3">
-              {[
-                "Evening Gowns",
-                "Tuxedos",
-                "Formal Dresses",
-                "Formal Suits",
-              ].map((subCategory, i) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Formal_Wear"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-          {Category?.value === "Beauty_and_Cosmetics" && (
-            <div className="border-b-2 py-3">
-              {[
-                "Makeup",
-                "Skincare Products",
-                "Fragrances",
-                "Haircare Products",
-              ].map((subCategory, key) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Beauty_and_Cosmetics"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-          {Category?.value === "Sale_and_Clearance" && (
-            <div className="border-b-2 py-3">
-              {["Discounted Items", "Clearance Items"].map((subCategory, i) => (
-                <div key={i}>
-                  <input
-                    className="me-2"
-                    type="radio"
-                    id={subCategory}
-                    name="Sale_and_Clearance"
-                    value={subCategory}
-                  />
-                  <label htmlFor={subCategory}>{subCategory}</label>
-                </div>
-              ))}
-            </div>
-          )}
-        </form>
-        {gander && Category && subCategory && (
+        <div>{renderSubCategories()}</div>
+        {gander && selectedCategory && selectedSubCategory && (
           <div className="text-center">
             <button
               onClick={handleShopFilter}
@@ -349,7 +460,7 @@ const ShopSideBar = ({ setControl, control }) => {
               )}
             </div>
           </div>
-          {controlProductColor == true && <ColorProduct></ColorProduct>}
+          {controlProductColor == true && <div>{renderColors()}</div>}
         </div>
         <div className="border-b-2 pb-3">
           <div className="flex justify-between items-center pt-3 text-2xl">
@@ -362,7 +473,7 @@ const ShopSideBar = ({ setControl, control }) => {
               )}
             </div>
           </div>
-          {controlProductSize == true && <ProductSize></ProductSize>}
+          {controlProductSize == true && <div>{renderSizes()}</div>}
         </div>
       </div>
     </div>
