@@ -21,18 +21,19 @@ const CartPage = () => {
     setDiscountGift(localStorage.getItem("giftPrize"));
     axiosSecure("/carts")
       .then((data) => {
-        const totalAmount = data?.data?.reduce(
+        console.log(data?.data);
+        const totalSubTotalAmount = data?.data?.reduce(
           (previousPrice, currentPrice) =>
-            previousPrice + parseInt(currentPrice.price),
+            previousPrice + parseInt(currentPrice.sub_total),
           0
         );
-        console.log(data?.data);
-        const totalTax = Math.round((totalAmount / 100) * tax);
+
+        const totalTax = Math.round((totalSubTotalAmount / 100) * tax);
         const ShippingAmount = Math.round(
-          (totalAmount / 1000) * ShippingCharge
+          (totalSubTotalAmount / 1000) * ShippingCharge
         );
         console.log(ShippingAmount);
-        const totalOrdersPrice = totalAmount + totalTax + ShippingAmount;
+        const totalOrdersPrice = totalSubTotalAmount + totalTax + ShippingAmount;
 
         seTax(totalTax);
         setShippingCharge(ShippingAmount);
@@ -41,7 +42,7 @@ const CartPage = () => {
           discountGift !== "Free Delivery"
             ? discountGift?.split("%")[0]
             : setShippingCharge(0);
-        setSubtotal(totalAmount);
+        setSubtotal(totalSubTotalAmount);
         setTotalPrice(
           discountPrice > 0
             ? Math.floor(
@@ -59,21 +60,22 @@ const CartPage = () => {
 
   const handlePlus = (id) => {
     const product = cart.find((pd) => pd?.product_id === id);
-    console.log(product);
-    const currentQuantity = product.buyQuantity + 1;
-    const productTotalPrice = product?.price * currentQuantity;
-    product.buyQuantity = currentQuantity;
-    product.productTotal = productTotalPrice;
+    const currentQuantity = product.buy_quantity + 1;
+    const productTotalPrice = parseInt(product?.price) * currentQuantity;
+    product.buy_quantity = currentQuantity;
+    product.sub_total = productTotalPrice;
+    axiosSecure.patch("/inc-dec", {product})
     setCurrentQuantity(currentQuantity);
     // setControl(!control);
   };
 
   const handleMinus = (id) => {
     const product = cart.find((pd) => pd?.product_id === id);
-    const previousQuantity = product.buyQuantity - 1;
-    product.buyQuantity = previousQuantity;
-    const productTotalPrice = product?.price * previousQuantity;
-    product.productTotal = productTotalPrice;
+    console.log(product);
+    const previousQuantity = product.buy_quantity - 1;
+    product.buy_quantity = previousQuantity;
+    const productTotalPrice = parseInt(product?.price) * previousQuantity;
+    product.sub_total = productTotalPrice;
     if (previousQuantity >= 0) {
       setCurrentQuantity(previousQuantity);
       // setControl(!control);
@@ -81,17 +83,16 @@ const CartPage = () => {
     // setControl(!control)
   };
   const handleDeleteProduct = (id) => {
-    console.log(id);
-    axiosSecure.delete(`/delete-cart-product?id=${id}`)
-    .then(Response => {
+    // console.log(id);
+    axiosSecure.delete(`/delete-cart-product?id=${id}`).then((Response) => {
       console.log(Response);
-      setControl(!control)
-    })
-  }
+      setControl(!control);
+    });
+  };
 
   return (
-    <div className="max-w-screen-2xl mx-auto my-16 sm:px-6 md:px-8 px-4 grid lg:grid-cols-[2fr,1fr] gap-5 lg:gap-10">
-      <table className="w-full">
+    <div className="my-container my-16  grid lg:grid-cols-3 gap-5 items-start lg:gap-10">
+      <table className="w-full lg:col-span-2">
         <thead>
           <tr className="text-xl border-b-2">
             <th className="text-start px-5 py-3">Product</th>
@@ -99,7 +100,7 @@ const CartPage = () => {
             <th className="text-end">Subtotal</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="">
           {cart.map((item, i) => (
             <CartRow
               key={i}
@@ -114,7 +115,7 @@ const CartPage = () => {
       </table>
 
       {/* Order summary */}
-      <div className="bg-gray-100 rounded-md space-y-4 p-5 h-fit lg:mt-14 sticky top-24">
+      <div className="bg-gray-100 rounded-md space-y-4 p-5 lg:col-span-1 h-fit lg:mt-14 sticky top-24">
         <p className="text-3xl font-bold text-center py-5">Order Summary</p>
         <div className="flex justify-between w-full">
           <span>Subtotal</span>

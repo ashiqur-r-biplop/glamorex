@@ -128,8 +128,8 @@ const productDetailsPage = ({ params }) => {
             <div className="!my-5">
               <h2 className="my-subtitle">Key feature</h2>
               <ul className="space-y-2">
-                {keyFeatures.map((kf) => (
-                  <li>{kf}</li>
+                {keyFeatures.map((kf, i) => (
+                  <li key={i}>{kf}</li>
                 ))}
               </ul>
             </div>
@@ -159,8 +159,9 @@ const productDetailsPage = ({ params }) => {
                 Colors <span className="text-slate-500">({colors.length})</span>
               </h2>
               <div className="flex flex-wrap gap-2">
-                {colors.map((color) => (
+                {colors.map((color, i) => (
                   <button
+                  key={i}
                     className={`h-5 w-5 border border-black rounded-full`}
                     style={{ backgroundColor: color }}
                   ></button>

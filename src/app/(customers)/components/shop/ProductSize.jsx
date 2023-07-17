@@ -22,12 +22,7 @@ const ColorProduct = () => {
 
   return (
     <form onChange={handleColorSelect} className="py-3 uppercase">
-      <div className="flex items-center py-1">
-        <input type="checkbox" ref={smRef} name="sm" id="sm" />
-        <label htmlFor="sm" className="ms-2">
-          Sm
-        </label>
-      </div>
+      
       <div className="flex items-center py-1">
         <input type="checkbox" ref={mdRef} name="md" id="md" />
         <label htmlFor="md" className="ms-2">
