@@ -10,11 +10,12 @@ const CartRow = ({ item, handlePlus, handleMinus, handleDeleteProduct }) => {
     productTotal,
     buy_quantity,
     quantity,
+    sub_total,
     _id,
   } = item;
-  console.log(buy_quantity, "cartRow");
+  // console.log(item, "cartRow");
   return (
-    <tr>
+    <tr className="">
       <td className="flex flex-col md:flex-row md:items-center md:gap-4">
         <Image
           className="py-5"
@@ -57,7 +58,7 @@ const CartRow = ({ item, handlePlus, handleMinus, handleDeleteProduct }) => {
           </button>
         </span>
       </td>
-      <td className="text-end">${productTotal || price}</td>
+      <td className="text-end">${sub_total}</td>
     </tr>
   );
 };
