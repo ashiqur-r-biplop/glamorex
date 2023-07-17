@@ -3,7 +3,6 @@ import aboutBanner from "../../../../public/bg-about.jpg";
 import TrustedSection from "../components/home/TrustedSection";
 import AboutGlamorex from "../components/about/AboutGlamorex";
 import OurMission from "../components/about/OurMission";
-import NewsletterCard from "../components/home/cards/NewsletterCard";
 import OurPromise from "../components/about/OurPromise";
 import OurTeam from "../components/about/OurTeam";
 const AboutPage = () => {
