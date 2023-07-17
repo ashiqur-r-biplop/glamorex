@@ -1,9 +1,9 @@
 [
     {
       "id": "1",
-      "name": "Ashiqur Rahman Biplop",
-      "img": "https://i.ibb.co/tDT76sj/42883-removebg-preview.png",
-      "title": "Frontend Developer",
+      "name": "Alex Hales",
+      "img": "https://i.ibb.co/cNnxZh3/member-4.png",
+      "title": "Founder",
       "social_links": [
         {
           "link": "https://www.facebook.com/BBTT.biplop22/",
@@ -25,9 +25,9 @@
     },
     {
       "id": "2",
-      "name": "Aothy Mahamud Moon",
-      "img": "https://i.ibb.co/5M178K2/Aothy-Mahamud-Moon.png",
-      "title": "Frontend Developer",
+      "name": "Brenden williams",
+      "img": "https://i.ibb.co/JKGhWyH/member-3.png",
+      "title": "CEO",
       "social_links": [
         {
           "link": "https://facebook.com/aothymoon59",
@@ -49,8 +49,8 @@
     },
     {
       "id": "3",
-      "name": "Alex Johnson",
-      "img": "https://i.ibb.co/5GrJfPY/mask.jpg",
+      "name": "Alexina Brownie",
+      "img": "https://i.ibb.co/ncXvNJX/member-1.png",
       "title": "CTO",
       "social_links": [
         {
@@ -73,8 +73,8 @@
     },
     {
       "id": "4",
-      "name": "Emily Davis",
-      "img": "https://i.ibb.co/5GrJfPY/mask.jpg",
+      "name": "Emily Era",
+      "img": "https://i.ibb.co/YtqWph0/member-5.png",
       "title": "Marketing Manager",
       "social_links": [
         {
@@ -98,7 +98,7 @@
     {
       "id": "5",
       "name": "Michael Brown",
-      "img": "https://i.ibb.co/5GrJfPY/mask.jpg",
+      "img": "https://i.ibb.co/yySpFJh/member-6.png",
       "title": "Sales Manager",
       "social_links": [
         {
@@ -122,7 +122,7 @@
     {
       "id": "6",
       "name": "Sarah Wilson",
-      "img": "https://i.ibb.co/5GrJfPY/mask.jpg",
+      "img": "https://i.ibb.co/KNRGS3d/member-2.png",
       "title": "Customer Support Specialist",
       "social_links": [
         {
@@ -143,4 +143,4 @@
         }
       ]
     }
-  ]
+  ] 

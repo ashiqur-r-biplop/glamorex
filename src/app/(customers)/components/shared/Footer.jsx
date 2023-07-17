@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <div className="bg-black text-white py-40 px-3">
@@ -38,7 +40,7 @@ const Footer = () => {
             <h1 className="text-2xl">Plans & Pricing</h1>
             <div className="space-y-1">
               <p>E-commerce</p>
-              <p>Teams</p>
+              <Link href={'/developers'}>Developer Team</Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useState } from "react";
+import useAuth from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const TopRatedCard = ({ product, handleAddToCart }) => {
   const {
@@ -13,6 +17,57 @@ const TopRatedCard = ({ product, handleAddToCart }) => {
     discount,
     previous_price,
   } = product || [];
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { user } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
+
+  const handleFavoriteControl = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  const handleFavorite = (product) => {
+    console.log({ ...product, user, is_favorite: true });
+    const favoriteCard = { ...product, user, is_favorite: true };
+
+    axiosSecure
+      .post("/add-favorite", favoriteCard)
+      .then((response) => {
+        console.log(response.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Product added to favorite",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleUnfavorite = (product) => {
+    product.is_favorite = false;
+    const favoriteCard = { ...product };
+    console.log(favoriteCard);
+
+    axiosSecure
+      .delete("/remove-favorite", favoriteCard)
+      .then((response) => {
+        console.log(response.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Product remove from favorite",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const myStyles = {
     itemShapes: ThinStar,
@@ -35,6 +90,25 @@ const TopRatedCard = ({ product, handleAddToCart }) => {
         <p className="bg-green-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
           - {discount}%
         </p>
+      )}
+      {user && (
+        <div onClick={handleFavoriteControl}>
+          {isFavorite === false ? (
+            <button
+              onClick={() => handleFavorite(product)}
+              className="favorite-btn"
+            >
+              <FaRegHeart />
+            </button>
+          ) : (
+            <button
+              onClick={() => handleUnfavorite(product)}
+              className="favorite-btn"
+            >
+              <FaHeart />
+            </button>
+          )}
+        </div>
       )}
       <div className="flex flex-col justify-between space-y-3 h-full p-2">
         <div className="flex justify-between items-center mt-4">
