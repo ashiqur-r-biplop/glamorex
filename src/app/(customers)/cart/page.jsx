@@ -64,7 +64,13 @@ const CartPage = () => {
     const productTotalPrice = parseInt(product?.price) * currentQuantity;
     product.buy_quantity = currentQuantity;
     product.sub_total = productTotalPrice;
-    axiosSecure.patch("/inc-dec", {product})
+    const cart_product = {
+      _id: product._id,
+      sub_total: product.sub_total,
+      buy_quantity: product.buy_quantity
+    }
+    axiosSecure.patch("/inc-dec", cart_product)
+    .then(res => console.log(res.data))
     setCurrentQuantity(currentQuantity);
     // setControl(!control);
   };
@@ -80,6 +86,13 @@ const CartPage = () => {
       setCurrentQuantity(previousQuantity);
       // setControl(!control);
     }
+    const cart_product = {
+      _id: product._id,
+      sub_total: product.sub_total,
+      buy_quantity: product.buy_quantity
+    }
+    axiosSecure.patch("/inc-dec", cart_product)
+    .then(res => console.log(res.data))
     // setControl(!control)
   };
   const handleDeleteProduct = (id) => {
