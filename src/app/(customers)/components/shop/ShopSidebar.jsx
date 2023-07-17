@@ -395,25 +395,25 @@ console.log(selectedColors);
               <input
                 className="me-2 cursor-pointer"
                 type="radio"
-                id="Men"
+                id="woman"
                 name="handleGander"
-                value="Men"
+                value="woman"
               />
-              <label htmlFor="Men" className="ms-1 cursor-pointer">
-                Men
+              <label htmlFor="woman" className="ms-1 cursor-pointer">
+                Woman
               </label>
             </div>
             <div className="flex items-center">
               <input
                 className="me-2 cursor-pointer"
                 type="radio"
-                id="female"
+                id="men"
                 name="handleGander"
-                value="female"
+                value="men"
               />
 
-              <label htmlFor="female" className="ms-1 cursor-pointer">
-                Female
+              <label htmlFor="men" className="ms-1 cursor-pointer">
+                Men
               </label>
             </div>
             <div className="flex items-center ">
