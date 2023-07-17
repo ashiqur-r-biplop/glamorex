@@ -243,7 +243,7 @@ const ShopSideBar = ({ setControl, control }) => {
       },
     },
   };
-
+console.log(selectedSizes);
   const handleLayout = (display) => {
     GridSystem(display);
     setControl(!control);
