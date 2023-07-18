@@ -9,7 +9,7 @@ const CartPage = () => {
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
   const [tax, seTax] = useState(0.2);
-  const [ShippingCharge, setShippingCharge] = useState(20);
+  const [ShippingCharge, setShippingCharge] = useState(0);
   const [buyCurrentQuantity, setCurrentQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [discountGift, setDiscountGift] = useState("");
@@ -28,12 +28,11 @@ const CartPage = () => {
           0
         );
 
-        const totalTax = Math.round((totalSubTotalAmount / 100) * tax);
-        const ShippingAmount = Math.round(
-          (totalSubTotalAmount / 1000) * ShippingCharge
-        );
+        const totalTax = Math.round((totalSubTotalAmount / 100) * 10);
+        const ShippingAmount = Math.round((totalSubTotalAmount / 100) * 15);
         console.log(ShippingAmount);
-        const totalOrdersPrice = totalSubTotalAmount + totalTax + ShippingAmount;
+        const totalOrdersPrice =
+          totalSubTotalAmount + totalTax + ShippingAmount;
 
         seTax(totalTax);
         setShippingCharge(ShippingAmount);
@@ -67,12 +66,40 @@ const CartPage = () => {
     const cart_product = {
       _id: product._id,
       sub_total: product.sub_total,
-      buy_quantity: product.buy_quantity
-    }
-    axiosSecure.patch("/inc-dec", cart_product)
-    .then(res => console.log(res.data))
+      buy_quantity: product.buy_quantity,
+    };
+    axiosSecure
+      .patch("/inc-dec", cart_product)
+      .then((res) => setControl(!control));
     setCurrentQuantity(currentQuantity);
-    // setControl(!control);
+
+    const totalSubTotalAmount = cart?.reduce(
+      (previousPrice, currentPrice) =>
+        previousPrice + parseInt(currentPrice.sub_total),
+      0
+    );
+    const totalTax = Math.round((totalSubTotalAmount / 100) * 10);
+    console.log(totalTax);
+    const ShippingAmount = Math.round((totalSubTotalAmount / 100) * 15);
+    console.log(ShippingAmount);
+    const totalOrdersPrice = totalSubTotalAmount + totalTax + ShippingAmount;
+    const discountPrice =
+      discountGift !== "Free Delivery"
+        ? discountGift?.split("%")[0]
+        : setShippingCharge(0);
+    setSubtotal(totalSubTotalAmount);
+    setTotalPrice(
+      discountPrice > 0
+        ? Math.floor(
+            totalOrdersPrice - (discountPrice / 100) * totalOrdersPrice
+          )
+        : discountGift === "Free Delivery"
+        ? totalOrdersPrice - ShippingAmount
+        : totalOrdersPrice
+    );
+    seTax(totalTax);
+    setShippingCharge(ShippingAmount);
+    setSubtotal(totalSubTotalAmount);
   };
 
   const handleMinus = (id) => {
@@ -89,11 +116,41 @@ const CartPage = () => {
     const cart_product = {
       _id: product._id,
       sub_total: product.sub_total,
-      buy_quantity: product.buy_quantity
-    }
-    axiosSecure.patch("/inc-dec", cart_product)
-    .then(res => console.log(res.data))
-    // setControl(!control)
+      buy_quantity: product.buy_quantity,
+    };
+    axiosSecure
+      .patch("/inc-dec", cart_product)
+      .then((res) => setControl(!control));
+    const totalSubTotalAmount = cart?.reduce(
+      (previousPrice, currentPrice) =>
+        previousPrice + parseInt(currentPrice.sub_total),
+      0
+    );
+
+    const totalTax = Math.round((totalSubTotalAmount / 100) * 10);
+    console.log(totalTax);
+    const ShippingAmount = Math.round((totalSubTotalAmount / 100) * 15);
+    console.log(ShippingAmount);
+    const totalOrdersPrice = totalSubTotalAmount + totalTax + ShippingAmount;
+    const discountPrice =
+      discountGift !== "Free Delivery"
+        ? discountGift?.split("%")[0]
+        : setShippingCharge(0);
+    setSubtotal(totalSubTotalAmount);
+    setTotalPrice(
+      discountPrice > 0
+        ? Math.floor(
+            totalOrdersPrice - (discountPrice / 100) * totalOrdersPrice
+          )
+        : discountGift === "Free Delivery"
+        ? totalOrdersPrice - ShippingAmount
+        : totalOrdersPrice
+    );
+    seTax(totalTax);
+    setShippingCharge(ShippingAmount);
+    setSubtotal(totalSubTotalAmount);
+
+    setSubtotal(totalSubTotalAmount);
   };
   const handleDeleteProduct = (id) => {
     // console.log(id);
