@@ -2,6 +2,10 @@ import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
 import moment from "moment";
+import { useState } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import useAuth from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const RecentProductCard = ({ product, handleAddToCart }) => {
   const {
@@ -13,8 +17,59 @@ const RecentProductCard = ({ product, handleAddToCart }) => {
     price,
     discount,
     previous_price,
-    publish_date
+    publish_date,
   } = product || [];
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { user } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
+
+  const handleFavoriteControl = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  const handleFavorite = (product) => {
+    console.log({ ...product, user, is_favorite: true });
+    const favoriteCard = { ...product, user, is_favorite: true };
+
+    axiosSecure
+      .post("/add-favorite", favoriteCard)
+      .then((response) => {
+        console.log(response.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Product added to favorite",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleUnfavorite = (product) => {
+    product.is_favorite = false;
+    const favoriteCard = { ...product };
+    console.log(favoriteCard);
+
+    axiosSecure
+      .delete("/remove-favorite", favoriteCard)
+      .then((response) => {
+        console.log(response.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Product remove from favorite",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const myStyles = {
     itemShapes: ThinStar,
@@ -38,6 +93,25 @@ const RecentProductCard = ({ product, handleAddToCart }) => {
           - {discount}%
         </p>
       )}
+      {user && (
+        <div onClick={handleFavoriteControl}>
+          {isFavorite === false ? (
+            <button
+              onClick={() => handleFavorite(product)}
+              className="favorite-btn"
+            >
+              <FaRegHeart />
+            </button>
+          ) : (
+            <button
+              onClick={() => handleUnfavorite(product)}
+              className="favorite-btn"
+            >
+              <FaHeart />
+            </button>
+          )}
+        </div>
+      )}
       <div className="flex flex-col justify-between space-y-3 h-full p-2">
         <div className="flex justify-between items-center mt-4">
           <p className="font-semibold text-xl">{name}</p>
@@ -48,7 +122,9 @@ const RecentProductCard = ({ product, handleAddToCart }) => {
             <p className="font-bold text-red-500">${price}</p>
           </div>
         </div>
-        <div className="font-semibold text-sm">Release Date: {moment(publish_date).format("DD MMMM YYYY")}</div>
+        <div className="font-semibold text-sm">
+          Release Date: {moment(publish_date).format("DD MMMM YYYY")}
+        </div>
         <p className="text-gray-500">{description}</p>
         <div className="flex items-center gap-1">
           <Rating

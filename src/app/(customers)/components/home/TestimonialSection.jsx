@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { FaQuoteLeft } from "react-icons/fa";
@@ -16,27 +16,26 @@ const Testimonials = () => {
     fetch("/reviews.json")
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setReviews(data);
       });
   }, []);
-
+  // TODO: previous button not working
   return (
-    <section className="py-[100px] bg-green-50">
+    <section className="py-[100px]">
       <CmnSectionTitle
         title={"Testimonial"}
         subtitle={"Words of Delight: Happy Customers Share Experiences"}
       ></CmnSectionTitle>
-      <div className="container mx-auto">
+      <div className="bg-green-50 py-10">
         <Swiper
-          navigation={true}
+
+          modules={[ Autoplay]}
           loop={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
           }}
-          modules={[Navigation, Autoplay]}
-          className="mySwiper"
+          className="mySwiper container mx-auto"
         >
           {reviews.map((review, i) => (
             <SwiperSlide key={i}>
