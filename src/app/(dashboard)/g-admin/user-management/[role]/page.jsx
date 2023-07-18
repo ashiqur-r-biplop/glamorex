@@ -7,18 +7,27 @@ import { useGetUsersQuery } from "@/redux-toolkit/slice/adminApis/adminGetApies"
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import TapLink from "@/app/(dashboard)/components/TapLink";
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const UserManagementPage = () => {
+  const {handleSubmit, register} = useForm()
   const { role } = useParams();
   const { axiosSecure } = useAxiosSecure();
-  const { data: users, isLoading } = useGetUsersQuery(role);
+  const [users, setUsers] = useState()
+  const { data: all_users, isLoading } = useGetUsersQuery(role);
+
+  useEffect(() => {
+    setUsers(all_users)
+    console.log(users)
+  },[all_users])
 
   const options = [
     { value: "customer", label: "Customer" },
     { value: "seller", label: "Seller" },
     { value: "admin", label: "Admin" },
   ];
-
+  
   const updateOrderStatus = (role, userId) => {
     Swal.fire({
       title: "Are you sure?",
@@ -48,9 +57,11 @@ const UserManagementPage = () => {
       }
     });
   };
-  const search = (e) => {
-    axiosSecure(`/admin/search?query=${e.target.search_text.value}`).then(
+  const search = (data) => {
+    console.log(data.search_text)
+    axiosSecure(`/admin/search?query=${data.search_text}`).then(
       (res) => {
+        console.log("63",res.data)
         setUsers(res.data);
       }
     );
@@ -76,11 +87,12 @@ const UserManagementPage = () => {
           <hr className="-mt-[29px]" />
         </div>
         <form
-          onSubmit={search}
+          onSubmit={handleSubmit(search)}
           className="relative mx-auto w-[80%] flex justify-center my-8"
         >
           <input
             name="search_text"
+            {...register("search_text")}
             placeholder="search here..."
             type="text"
             className="bg-white py-3 w-full pl-14 border-2 rounded-full outline-none border-stone-300 text-black"
