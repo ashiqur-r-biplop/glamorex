@@ -70,7 +70,7 @@ const CartPage = () => {
     };
     axiosSecure
       .patch("/inc-dec", cart_product)
-      .then((res) => setControl(!control));
+      .then((res) => {});
     setCurrentQuantity(currentQuantity);
 
     const totalSubTotalAmount = cart?.reduce(
@@ -120,7 +120,7 @@ const CartPage = () => {
     };
     axiosSecure
       .patch("/inc-dec", cart_product)
-      .then((res) => setControl(!control));
+      .then((res) => {});
     const totalSubTotalAmount = cart?.reduce(
       (previousPrice, currentPrice) =>
         previousPrice + parseInt(currentPrice.sub_total),
