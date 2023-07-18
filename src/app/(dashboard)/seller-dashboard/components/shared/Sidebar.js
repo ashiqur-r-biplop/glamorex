@@ -10,8 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const Sidebar = () => {
-  const [productManagementDropdown, setProductManagementDropdown] =
-    useState(false);
+  const [productManagementDropdown, setProductManagementDropdown] = useState(false);
 
   return (
     <aside className="bg-[#081229] h-full p-3 text-slate-50 relative">

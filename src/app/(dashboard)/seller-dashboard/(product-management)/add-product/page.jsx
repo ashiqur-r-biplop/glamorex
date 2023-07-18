@@ -30,14 +30,14 @@ const AddProductPage = () => {
     const formData = new FormData()
 
     //  Hold form field via react hook form
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, resetField, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         setLoading(true)
         setProductAddedSuccess(true)
-        setLoading(false)
+        // setLoading(false)
 
-        const { productName, productQuantity, productCategory, productSubCategory, productGender, productStatus, productColor, price, discount } = data
-        const product = { productName, productImage: imageLink, productQuantity, productCategory, productSubCategory, productGender, productStatus, productColor, price, discount };
+        const { name, quantity, category, sub_category, productGender, productStatus, sizes, colors, price, discount, description } = data
+        const product = { name, image: imageLink, quantity, category, sub_category, productGender, sizes, productStatus,colors, price, discount, description };
         console.log(product);
     }
 
@@ -56,26 +56,249 @@ const AddProductPage = () => {
     }, [setProductImg]);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+
     // Category and product for dropdown
-    const categories = [
-        "Clothing", "Footwear", "Accessories", "Outerwear", "Swimwear", "Intimates", "Activewear", "Formal Wear", "Beauty and Cosmetics", "Sale and Clearance"]
-    const products = {
-        Clothing: ["T-Shirts", "Jeans", "Dresses", "Shirts", "Pants", "Blouses", "Skirts", "Jackets", "Coats", "Sweaters", "Hoodies", "Shorts", "Leggings"],
-        Footwear: ["Sneakers", "Boots", "Sandals", "Flats", "Heels"],
-        Accessories: ["Bags", "Belts", "Hats", "Scarves", "Jewelry", "Sunglasses", "Watches"],
-        Outerwear: ["Jackets", "Coats", "Sweaters", "Hoodies", "Raincoats"],
-        Swimwear: ["Swimsuits", "Bikinis", "Board Shorts"],
-        Intimates: ["Bras", "Panties", "Lingerie"],
-        Activewear: ["Athletic Tops", "Leggings", "Sports Bras", "Athletic Shorts"],
-        "Formal Wear": ["Evening Gowns", "Tuxedos", "Formal Dresses", "Formal Suits"],
-        "Beauty and Cosmetics": ["Makeup", "Skincare Products", "Fragrances", "Haircare Products"],
-        "Sale and Clearance": ["Discounted Items", "Clearance Items"]
+    const categories = {
+        Clothing: {
+            "T-Shirts": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Red", "Blue", "Green", "Black", "White"]
+            },
+            "Jeans": {
+                sizes: ["26", "28", "30", "32", "34"],
+                colors: ["Blue", "Black"]
+            },
+            "Dresses": {
+                sizes: ["S", "M", "L"],
+                colors: ["Red", "Blue", "Black"]
+            },
+            "Shirts": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["White", "Blue", "Black"]
+            },
+            "Pants": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Gray"]
+            },
+            "Blouses": {
+                sizes: ["S", "M", "L"],
+                colors: ["White", "Pink", "Yellow"]
+            },
+            "Skirts": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Red", "Navy"]
+            },
+            "Jackets": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Brown", "Gray"]
+            },
+            "Coats": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Beige"]
+            },
+            "Sweaters": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Gray", "Navy", "Burgundy"]
+            },
+            "Hoodies": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Gray", "Blue"]
+            },
+            "Shorts": {
+                sizes: ["S", "M", "L"],
+                colors: ["Blue", "Khaki"]
+            },
+            "Leggings": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Gray", "Navy"]
+            }
+        },
+        Footwear: {
+            "Sneakers": {
+                sizes: ["7", "8", "9", "10", "11"],
+                colors: ["White", "Black", "Blue", "Red"]
+            },
+            "Boots": {
+                sizes: ["7", "8", "9", "10", "11"],
+                colors: ["Brown", "Black"]
+            },
+            "Sandals": {
+                sizes: ["6", "7", "8", "9", "10"],
+                colors: ["Black", "Brown", "Beige"]
+            },
+            "Flats": {
+                sizes: ["6", "7", "8", "9"],
+                colors: ["Black", "Silver", "Pink"]
+            },
+            "Heels": {
+                sizes: ["6", "7", "8", "9"],
+                colors: ["Black", "Red", "Nude"]
+            }
+        },
+        Accessories: {
+            "Bags": {
+                sizes: [],
+                colors: ["Black", "Brown", "Blue", "Red"]
+            },
+            "Belts": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Brown"]
+            },
+            "Hats": {
+                sizes: ["One Size"],
+                colors: ["Black", "White", "Beige"]
+            },
+            "Scarves": {
+                sizes: ["One Size"],
+                colors: ["Red", "Blue", "Gray"]
+            },
+            "Jewelry": {
+                sizes: [],
+                colors: ["Gold", "Silver"]
+            },
+            "Sunglasses": {
+                sizes: ["One Size"],
+                colors: ["Black", "Brown", "Gray"]
+            },
+            "Watches": {
+                sizes: ["One Size"],
+                colors: ["Silver", "Gold", "Rose Gold"]
+            }
+        },
+        Outerwear: {
+            "Jackets": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Brown", "Gray"]
+            },
+            "Coats": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Beige"]
+            },
+            "Sweaters": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Gray", "Navy", "Burgundy"]
+            },
+            "Hoodies": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Gray", "Blue"]
+            },
+            "Raincoats": {
+                sizes: ["S", "M", "L"],
+                colors: ["Yellow", "Blue", "Transparent"]
+            }
+        },
+        Swimwear: {
+            "Swimsuits": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Blue", "Red"]
+            },
+            "Bikinis": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "White", "Pink"]
+            },
+            "Board Shorts": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Blue", "Black", "Green"]
+            }
+        },
+        Intimates: {
+            "Bras": {
+                sizes: ["32A", "32B", "34A", "34B", "36A", "36B"],
+                colors: ["Black", "White", "Pink"]
+            },
+            "Panties": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "White", "Beige", "Pink"]
+            },
+            "Lingerie": {
+                sizes: ["S", "M", "L"],
+                colors: ["Red", "Black", "Purple"]
+            }
+        },
+        Activewear: {
+            "Athletic Tops": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Gray", "Blue"]
+            },
+            "Leggings": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Gray", "Navy"]
+            },
+            "Sports Bras": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "White", "Pink"]
+            },
+            "Athletic Shorts": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Gray", "Blue"]
+            }
+        },
+        "Formal Wear": {
+            "Evening Gowns": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Red", "Blue"]
+            },
+            "Tuxedos": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Red"],
+            },
+            "Formal Dresses": {
+                sizes: ["S", "M", "L"],
+                colors: ["Black", "Navy", "Burgundy"]
+            },
+            "Formal Suits": {
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Black", "Gray", "Navy"]
+            }
+        },
+        "Beauty and Cosmetics": {
+            "Makeup": {
+                sizes: [],
+                colors: []
+            },
+            "Skincare Products": {
+                sizes: [],
+                colors: []
+            },
+            "Fragrances": {
+                sizes: [],
+                colors: []
+            },
+            "Haircare Products": {
+                sizes: [],
+                colors: []
+            }
+        },
+        "Sale and Clearance": {
+            "Discounted Items": {
+                sizes: [],
+                colors: []
+            },
+            "Clearance Items": {
+                sizes: [],
+                colors: []
+            }
+        }
     };
 
-    // Condition to pass each page
-    const isGeneralInfoDone = watch('productName') && watch('productQuantity') && watch('productCategory') && watch('productSubCategory') && watch('productCoupon') && watch('productGender') && watch('productStatus') && watch('productColor') && watch('productSize')
+
+    // Condition to pass
+    const isColorsPass = (categories[watch('category')]?.[watch('sub_category')]?.colors?.length > 0)
+    const isSizePass = (categories[watch('category')]?.[watch('sub_category')]?.sizes?.length > 0)
+
+    const isGeneralInfoDone = watch('name') && watch('quantity') && watch('category') && watch('sub_category') && watch('productCoupon') && watch('productGender') && watch('productStatus') && (isColorsPass ? watch('colors') : true) && (isSizePass ? watch('sizes') : true)
     const isPricingDone = watch('price') && watch('discount')
-    const productDetailsDone = watch('productDetails')
+    const productDetailsDone = watch('description')
+
+
+
+    // clear color and sized field when category and subCategory file is changing
+    const productCategoryField = register("category", { required: true });
+    const productSubCategoryField = register("sub_category", { required: true });
+    const clearColorsSizesField = () => {
+        resetField('colors')
+        resetField('sizes')
+    }
 
     if (loading) {
         return <div className="h-screen flex flex-col gap-3 justify-center items-center">
@@ -186,15 +409,11 @@ const AddProductPage = () => {
                                         >
                                             Product Name
                                         </label>
-                                        <input
-                                            type="text"
-                                            className="my-inp"
-                                            id="productName"
-                                            placeholder="Your name here"
-                                            {...register("productName", { required: true })}
+                                        <input type="text" className="my-inp" id="productName" placeholder="Your name here" {...register("name", { required: true })}
                                         />
-                                        {errors.productName && <span className="text-red-500">This field is required</span>}
+                                        {errors.name && <span className="text-red-500">This field is required</span>}
                                     </div>
+
                                     <div className="flex-1">
                                         <label
                                             htmlFor="quantity"
@@ -202,14 +421,9 @@ const AddProductPage = () => {
                                         >
                                             Quantity
                                         </label>
-                                        <input
-                                            type="number"
-                                            className="my-inp"
-                                            id="quantity"
-                                            placeholder="Quantity"
-                                            {...register("productQuantity", { required: true })}
+                                        <input type="number" className="my-inp" id="quantity" placeholder="Quantity" {...register("quantity", {required: true })}
                                         />
-                                        {errors.productQuantity && (
+                                        {errors.quantity && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
                                     </div>
@@ -260,14 +474,12 @@ const AddProductPage = () => {
                                         <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">
                                             Product Category
                                         </label>
-                                        <select className="my-inp" defaultValue={'default'} {...register("productCategory", { required: true })}
-                                        >
-                                            <option disabled value={'default'}>
-                                                Your category here
-                                            </option>
-                                            {categories.map((category, ind) => <option key={ind}>{category}</option>)}
+                                        <select className="my-inp" defaultValue={'default'} {...productCategoryField}
+                                            onChange={(e) => { clearColorsSizesField(); resetField('sub_category'); productCategoryField.onChange(e) }}>
+                                            <option disabled value={'default'}>Your category here </option>
+                                            {Object.keys(categories).map((category, ind) => <option key={ind}>{category}</option>)}
                                         </select>
-                                        {errors.productCategory && (
+                                        {errors.category && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
                                     </div>
@@ -275,61 +487,57 @@ const AddProductPage = () => {
                                     {/* sub-categories */}
                                     <div className="flex-1">
                                         <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"> Product Sub category </label>
-                                        <select className="my-inp" defaultValue={'default'} {...register("productSubCategory", { required: true })}
-                                        >
-                                            <option disabled value={'default'}> Your Sub category here </option>
+                                        <select className="my-inp" {...productSubCategoryField}
+                                            onChange={(e) => { clearColorsSizesField(); productSubCategoryField.onChange(e) }}>
+                                            <option disabled value={''} selected> Your Sub category here </option>
                                             {
-                                                products[watch('productCategory')]?.map((subcat, ind) => {
+                                                Object.keys(categories?.[watch('category')] || {})?.map((subcat, ind) => {
                                                     return <option key={ind}>{subcat}</option>;
                                                 })
                                             }
                                         </select>
-                                        {errors.productSubCategory && (
+                                        {errors.sub_category && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
                                     </div>
                                 </div>
 
                                 {/* Color & Size */}
-                                <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
+                                {(isColorsPass || isSizePass) && <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
                                     {/* Color */}
-                                    <div className="flex-1">
+                                    {isColorsPass && <div className="flex-1">
                                         <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Color</label>
 
                                         <div className="grid grid-cols-3 gap-6 items-center justify-between">
-                                            {["Black", "White", "Red", "Green", "Blue", "Yellow", "Orange"].map((color, ind) => {
-                                                return (
-                                                    <span className="flex items-center gap-2" key={ind}>
-                                                        <input type="radio" id={color} className="radio radio-success" value={color} {...register("productColor", { required: true })} />
-                                                        <label htmlFor={color}>{color}</label>
-                                                    </span>
-                                                );
+                                            {categories[watch('category')]?.[watch('sub_category')]?.colors?.map((color, ind) => {
+                                                return <span className="flex items-center gap-2" key={ind}>
+                                                    <input type="radio" id={color} className="radio radio-success" value={color} {...register("colors", { required: true })} />
+                                                    <label htmlFor={color}>{color}</label>
+                                                </span>
                                             })}
                                         </div>
-                                        {errors.productGender && (
+                                        {errors.colors && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
-                                    </div>
+                                    </div>}
 
                                     {/* Size */}
-                                    <div className="flex-1">
+                                    {isSizePass && <div className="flex-1">
                                         <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Size</label>
 
                                         <div className="grid grid-cols-3 gap-6 items-center justify-between">
-                                            {["XS", "S", "M", "L", "XL", "XXL"].map((size, ind) => {
-                                                return (
-                                                    <span className="flex items-center gap-2" key={ind}>
-                                                        <input type="radio" id={size} className="radio radio-success" value={size} {...register("productSize", { required: true })} />
-                                                        <label htmlFor={size}>{size}</label>
-                                                    </span>
-                                                );
+                                            {categories[watch('category')]?.[watch('sub_category')]?.sizes?.map((size, ind) => {
+                                                return <span className="flex items-center gap-2" key={ind}>
+                                                    <input type="radio" id={size} className="radio radio-success" value={size} {...register("sizes", { required: true })} />
+                                                    <label htmlFor={size}>{size}</label>
+                                                </span>
                                             })}
                                         </div>
-                                        {errors.productGender && (
+                                        {errors.sizes && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
-                                    </div>
-                                </div>
+                                    </div>}
+                                </div>}
 
                                 {/* Gender & Status */}
                                 <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
@@ -401,9 +609,9 @@ const AddProductPage = () => {
 
                                     <div className="flex-1">
                                         <label htmlFor="discount" className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Discount</label>
-                                        <select className="my-inp" defaultValue={'default'} {...register("discount", { required: true })}>
-                                            <option disabled value={'default'}>Your category here</option>
-                                            {['5%', '10%', '15%', '20%', '25%', '30%', '35%', '40%', '45%', '50%', '55%', '60%', '65%', '70%', '75%', '80%'].map((discount, ind) => <option key={ind}>{discount}</option>)}
+                                        <select className="my-inp" {...register("discount", { required: true })}>
+                                            <option disabled value={''} selected>Your category here</option>
+                                            {['0%', '5%', '10%', '15%', '20%', '25%', '30%', '35%', '40%', '45%', '50%', '55%', '60%', '65%', '70%', '75%', '80%'].map((discount, ind) => <option key={ind}>{discount}</option>)}
                                         </select>
                                         {errors.discount && (<span className="text-red-500">This field is required</span>)}
                                     </div>
@@ -442,9 +650,9 @@ const AddProductPage = () => {
                                             className="my-inp h-[300px]"
                                             id="description"
                                             placeholder="Description"
-                                            {...register("productDetails", { required: true })}
+                                            {...register("description", { required: true })}
                                         />
-                                        {errors.productDetails && (
+                                        {errors.description && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
                                     </div>
