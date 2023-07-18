@@ -40,7 +40,7 @@ const ShopSideBar = ({ setControl, control }) => {
         colors: ["White", "Blue", "Black"],
       },
       Pants: {
-        sizes: ["S", "M", "L", "XL"],
+        sizes: ["28", "30", "32", "36"],
         colors: ["Black", "Gray"],
       },
       Blouses: {
@@ -243,7 +243,7 @@ const ShopSideBar = ({ setControl, control }) => {
       },
     },
   };
-console.log(selectedSizes);
+  console.log(selectedSizes);
   const handleLayout = (display) => {
     GridSystem(display);
     setControl(!control);
@@ -315,7 +315,7 @@ console.log(selectedSizes);
     }
     return null;
   };
-console.log(selectedColors);
+  console.log(selectedColors);
   const renderSizes = () => {
     if (selectedSubCategory) {
       const { sizes } = categories[selectedCategory.value][selectedSubCategory];
@@ -361,7 +361,7 @@ console.log(selectedColors);
       category: category,
       subCategory: subCategory,
     };
-    setFilteringData({...obj});
+    setFilteringData({ ...obj });
     console.log(filterIngData);
     console.log(obj);
   };
