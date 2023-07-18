@@ -9,7 +9,14 @@
       "High-quality fabric",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "FD001",
     "seller_name": "Fashion Boutique",
     "seller_email": "info@fashionboutique.com",
@@ -37,7 +44,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "LJ002",
     "seller_name": "Fashion Forward",
     "seller_email": "sales@fashionforward.com",
@@ -65,7 +79,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "ST003",
     "seller_name": "Fashion Hub",
     "seller_email": "hello@fashionhub.com",
@@ -93,7 +114,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "DS004",
     "seller_name": "Denim Delight",
     "seller_email": "info@denimdelight.com",
@@ -121,7 +149,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "EG005",
     "seller_name": "Glamour Couture",
     "seller_email": "sales@glamourcouture.com",
@@ -149,7 +184,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "1001",
     "seller_name": "Fashion Boutique",
     "seller_email": "info@fashionboutique.com",
@@ -177,7 +219,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "1002",
     "seller_name": "Style Central",
     "seller_email": "contact@stylecentral.com",
@@ -205,7 +254,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "1003",
     "seller_name": "Fashion Emporium",
     "seller_email": "sales@fashionemporium.com",
@@ -233,7 +289,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "1004",
     "seller_name": "Trendy Denim",
     "seller_email": "info@trendydenim.com",
@@ -261,7 +324,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "1005",
     "seller_name": "Accessories Galore",
     "seller_email": "sales@accessoriesgalore.com",
@@ -289,7 +359,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "FDW001",
     "seller_name": "Fashion Paradise",
     "seller_email": "info@fashionparadise.com",
@@ -317,7 +394,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "FDW002",
     "seller_name": "Urban Fashion",
     "seller_email": "info@urbanfashion.com",
@@ -345,7 +429,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "FDW003",
     "seller_name": "Sunshine Fashion",
     "seller_email": "info@sunshinefashion.com",
@@ -373,7 +464,14 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [
+      "black",
+      "white",
+      "green",
+      "orange",
+      "blue",
+      "red"
+    ],
     "product_id": "FDW004",
     "seller_name": "Classic Attire",
     "seller_email": "info@classicattire.com",
@@ -401,7 +499,7 @@
       "Perfect for all seasons",
       "Available in various sizes"
     ],
-    "colors": ["black", "white", "green", "orange", "blue", "red"],
+    "colors": [ "black", "white", "green", "orange", "blue", "red" ],
     "product_id": "FDW005",
     "seller_name": "Active Gear",
     "seller_email": "info@activegear.com",

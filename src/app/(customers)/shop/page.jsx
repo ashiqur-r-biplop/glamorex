@@ -26,6 +26,7 @@ const ShopPage = () => {
   if (loading) {
     return <>Loading....</>;
   }
+  
   return (
     <div className="">
       <div className="bg-slate-300">

@@ -10,14 +10,16 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { FiLogOut } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import useUserRole from "@/hooks/useUserRole";
+import { FaDashcube } from "react-icons/fa6";
 
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
-  console.log(user);
+  const { user, loading:authLoading } = useAuth();
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState(null);
+  const { role, loading:userRoleLoading } = useUserRole()
 
   useEffect(() => {
     axiosSecure
@@ -40,8 +42,8 @@ function Nav() {
       <NavLink href={"/blog"}>Blogs</NavLink>
       <NavLink href={"/shop"}>Shop</NavLink>
       <NavLink href={"/contact"}>Contact</NavLink>
-      <NavLink href={"/cart"}><AiOutlineShoppingCart/></NavLink>
-      {user ? (
+      <NavLink href={"/cart"}><AiOutlineShoppingCart /></NavLink>
+      {userRoleLoading || authLoading? '':user ? (
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
@@ -52,9 +54,13 @@ function Nav() {
             tabIndex={0}
             className=" dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 text-white rounded-box w-52 font-semibold"
           >
+            {
+              (role === 'seller' || role === 'admin') &&
+              <li> <Link href={`${role === 'seller' ? '/seller-dashboard' : role === 'admin' ? 'g-admin' : '#'}`} className="p-2 flex gap-2 items-center">Dashboard <FaDashcube /> </Link></li>
+            }
             <li>
               <Link href={"/account"} className="p-2 flex gap-2 items-center">
-                Profile <BiUserCircle/>
+                Profile <BiUserCircle />
               </Link>
             </li>
             <li>
@@ -67,9 +73,6 @@ function Nav() {
       ) : (
         <NavLink href={"/signin"}>Signin</NavLink>
       )}
-      {/* {
-            user ? <button onClick={logOut} className="my-btn-one">Logout</button> : <NavLink href={'/signin'}>Signin</NavLink>
-        } */}
     </>
   );
 
