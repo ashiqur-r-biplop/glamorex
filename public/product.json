@@ -16,6 +16,7 @@
         "publish_date": "",
         "category": "",
         "sub_category": "",
+        "gender": "",
         "product_coupon": "",
         "sizes": [],
         "status": "in stock",
@@ -36,6 +37,7 @@
         "quantity": 0,
         "category": "",
         "sub_category": "",
+        "gender": "",
         "product_coupon": "",
         "sizes": []
     }

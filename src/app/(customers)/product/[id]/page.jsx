@@ -1,33 +1,45 @@
 "use client";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import  { useEffect, useState } from "react";
 import { FaHome } from "react-icons/fa";
 import { FaBagShopping, FaStar } from "react-icons/fa6";
 import ReactImageZoom from "react-image-zoom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
-const productDetailsPage = ({ params }) => {
-  const { id } = params;
+const productDetailsPage = () => {
+  const {id} = useParams();
+  console.log(id)
   const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("Description");
+  const {axiosSecure} = useAxiosSecure()
 
   useEffect(() => {
-    axios("/products.json")
-      .then((res) => {
-        const extractProduct = res.data.find((p) => p.product_id === id);
-        const similarProducts = res.data.filter(
-          (p) => p.category === extractProduct.category
-        );
-        setProduct(extractProduct);
-        setSimilarProducts(similarProducts);
+    axiosSecure.get(`/product/${id}`)
+      .then((res) => {        
+        setProduct(res.data);
         setLoading(false);
       })
       .catch((e) => console.log(e.message));
-  }, []);
+
+      
+  }, [id]);
+
+  useEffect(() => {
+    if(product) {
+      console.log("34",product?._id)
+      axiosSecure.get(`/related-products?category=${product?.category}&id=${product?._id}`)
+      .then((res) => {
+
+        setSimilarProducts(res.data);
+      })
+     }
+  },[product])
 
   if (loading) {
     return (
@@ -60,7 +72,7 @@ const productDetailsPage = ({ params }) => {
   } = product || {};
   const tabs = ["Description", "Question", "Reviews"];
 
-  console.log(product);
+  console.log(tabs);
   console.log(similarProducts);
 
   return (
@@ -128,7 +140,7 @@ const productDetailsPage = ({ params }) => {
             <div className="!my-5">
               <h2 className="my-subtitle">Key feature</h2>
               <ul className="space-y-2">
-                {keyFeatures.map((kf, i) => (
+                {keyFeatures && keyFeatures.map((kf, i) => (
                   <li key={i}>{kf}</li>
                 ))}
               </ul>
@@ -156,10 +168,10 @@ const productDetailsPage = ({ params }) => {
             {/* color button */}
             <div>
               <h2 className="my-subtitle text-slate-900 mb-2">
-                Colors <span className="text-slate-500">({colors.length})</span>
+                Colors <span className="text-slate-500">({colors && colors.length})</span>
               </h2>
               <div className="flex flex-wrap gap-2">
-                {colors.map((color, i) => (
+                {colors && colors.map((color, i) => (
                   <button
                   key={i}
                     className={`h-5 w-5 border border-black rounded-full`}
@@ -190,7 +202,7 @@ const productDetailsPage = ({ params }) => {
               <TabList
                 className={"flex justify-center items-center gap-2 my-5 h-8 mb-8"}
               >
-                {tabs.map((tab, ind) => (
+                {tabs && tabs.map((tab, ind) => (
                   <Tab
                     key={ind}
                     className={`${activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
@@ -217,7 +229,7 @@ const productDetailsPage = ({ params }) => {
           {/* similar product */}
           <div className="col-span-12 md:col-span-6 xl:col-span-4">
             <h2 className="my-title mb-3">Related Products</h2>
-            {similarProducts.map((similarProduct, ind) => {
+            {similarProducts  && similarProducts.map((similarProduct, ind) => {
               const { image, name, price, quantity } = similarProduct || {};
               return (
                 <div
