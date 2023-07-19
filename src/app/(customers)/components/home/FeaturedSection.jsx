@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import useAddToCart from "@/hooks/useAddToCart";
 import ProductCard from "./cards/ProductCard";
+import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
 
 const FeaturedSection = () => {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ const FeaturedSection = () => {
   }, []);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

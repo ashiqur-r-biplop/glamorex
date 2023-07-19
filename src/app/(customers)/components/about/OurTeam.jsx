@@ -1,17 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
-
+import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
 
 const OurTeam = () => {
   const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/ourteam.json")
       .then((res) => res.json())
-      .then((data) => setMembers(data));
+      .then((data) => setMembers(data), setLoading(false));
   }, []);
-
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
   return (
     <div className="pt-[100px]">
       <div className="section-title mb-8 text-right">

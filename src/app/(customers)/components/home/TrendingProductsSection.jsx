@@ -4,19 +4,23 @@ import { useEffect, useState } from "react";
 import useAddToCart from "@/hooks/useAddToCart";
 import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import ProductCard from "./cards/ProductCard";
+import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
 
 const TopRatedProducts = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { handleAddToCart } = useAddToCart();
 
   useEffect(() => {
     fetch("https://glamorex.vercel.app/trending-products")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data), setLoading(false));
   }, []);
-
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
   return (
-    <div className="container mx-auto px-4 sm:px-5 md:px-8 py-20"> 
+    <div className="container mx-auto px-4 sm:px-5 md:px-8 py-20">
       <CmnSectionTitle
         title={"Trending Products"}
         subtitle={"Unveiling Fashion's Hottest Trends"}
