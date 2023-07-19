@@ -1,12 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { TbListDetails } from 'react-icons/tb';
-import { BsCartPlusFill } from 'react-icons/bs';
+import { TbListDetails } from "react-icons/tb";
 
-const ColumnLayout = ({ product, handleAddToCart }) => {
-  const { product_id, name, image, description, rating, price, overall_sell } =
-    product;
+const ColumnLayout = ({ product }) => {
+  const {
+    quantity,
+    _id,
+    name,
+    image,
+    description,
+    rating,
+    price,
+    overall_sell,
+  } = product;
+
   return (
     <div className="p-5 my-4 n border w-full">
       <div className="md:flex justify-between items-center">
@@ -33,14 +41,8 @@ const ColumnLayout = ({ product, handleAddToCart }) => {
         </div>
         <div>
           <div className="space-x-3">
-            <button
-              onClick={() => handleAddToCart(product)}
-              className="my-btn-one"
-            >
-              <BsCartPlusFill></BsCartPlusFill>
-            </button>
             <button className="my-btn-one-outline">
-              <Link href={`/product/${product_id}`}>
+              <Link href={`/product/${_id}`}>
                 <TbListDetails></TbListDetails>
               </Link>
             </button>

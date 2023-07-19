@@ -78,7 +78,7 @@ function Nav() {
 
   return (
     <nav className="bg-gray-800 sticky left-0 top-0 right-0 px-3 z-50">
-      <div className="con mx-auto px-1 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-1 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* logo */}
           <div className="flex-shrink-0">

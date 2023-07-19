@@ -1,25 +1,27 @@
-import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
-import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import { useState } from "react";
 
-const useAddToCart = () => {
+export const useWishlist = () => {
   const { user } = useAuth();
   const { axiosSecure } = useAxiosSecure();
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const handleAddToCart = (product) => {
+  const handleWishList = (product) => {
     console.log(product);
     const {
       category,
-      quantity,
       image,
       name,
       price,
       seller_email,
       seller_name,
+      status,
       _id,
     } = product || [];
-
+    console.log(product?._id);
     if (user) {
       const cartItem = {
         category,
@@ -28,26 +30,33 @@ const useAddToCart = () => {
         price,
         seller_email,
         seller_name,
-        quantity,
+        status,
         product_id: _id,
         customer_email: user,
       };
       console.log(cartItem);
-
       axiosSecure
-        .post("/add-to-cart", cartItem)
+        .post("/add-to-wishlist", cartItem)
         .then((res) => {
           console.log(res);
-          if (res.data) {
+          if (res.data.insertedId) {
             //TODO: refetch here
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Product added on the cart",
+              title: "Product added on the WishList",
               showConfirmButton: false,
               timer: 1500,
             });
-            console.log(res.data, "41");
+            setLoading(false);
+          } else {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: `${res?.data?.message}`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
           }
         })
         .catch((error) => console.log(error));
@@ -66,7 +75,5 @@ const useAddToCart = () => {
       });
     }
   };
-  return { handleAddToCart };
+  return { handleWishList, loading };
 };
-
-export default useAddToCart;

@@ -6,16 +6,16 @@ import TopCard from "../components/shop/TopCard";
 import ShopSideBar from "../components/shop/ShopSidebar";
 import { currentLayout } from "../components/shop/HandleGridSystem";
 import useAddToCart from "@/hooks/useAddToCart";
+import LoadingSpinner from "../components/HelpingCompo/LoadingSpinner";
 const ShopPage = () => {
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
-  const { handleAddToCart } = useAddToCart();
 
   const layout = JSON.parse(currentLayout());
   console.log(layout);
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/all-products")
+    fetch("https://glamorex.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setTopSale(data);
@@ -24,9 +24,9 @@ const ShopPage = () => {
   }, [control]);
 
   if (loading) {
-    return <>Loading....</>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
-  
+
   return (
     <div className="">
       <div className="bg-slate-300">
@@ -89,7 +89,6 @@ const ShopPage = () => {
                 key={product?.product_id}
                 product={product}
                 layout={layout}
-                handleAddToCart={handleAddToCart}
               ></TopCard>
             ))}
           </div>
