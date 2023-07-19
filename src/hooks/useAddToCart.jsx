@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 const useAddToCart = () => {
   const { user } = useAuth();
   const { axiosSecure } = useAxiosSecure();
-  const router = useRouter()
+  const router = useRouter();
   const handleAddToCart = (product) => {
-    const { category, image, name, price, seller_email, seller_name, _id } =
+    console.log(product);
+    const { category, quantity, image, name, price, seller_email, seller_name, _id } =
       product || [];
 
     if (user) {
@@ -19,9 +20,11 @@ const useAddToCart = () => {
         price,
         seller_email,
         seller_name,
+        quantity,
         product_id: _id,
         customer_email: user,
       };
+      console.log(cartItem);
 
       axiosSecure
         .post("/add-to-cart", cartItem)
@@ -36,6 +39,7 @@ const useAddToCart = () => {
               showConfirmButton: false,
               timer: 1500,
             });
+            console.log(res.data, "41");
           }
         })
         .catch((error) => console.log(error));
@@ -49,7 +53,7 @@ const useAddToCart = () => {
         confirmButtonText: "Login now",
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push("/signin")
+          router.push("/signin");
         }
       });
     }

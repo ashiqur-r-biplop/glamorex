@@ -5,10 +5,12 @@ import { MdDone } from 'react-icons/md';
 import { IoCloseOutline } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 import { useGetRequestedUsersQuery } from '@/redux-toolkit/slice/adminApis/adminGetApies';
+import useAxiosSecure from '@/hooks/useAxiosSecure';
 
 
 const SellerRequestPage = () => {
     const {data: users, isLoading} = useGetRequestedUsersQuery()
+    const {axiosSecure} = useAxiosSecure()
     // const users = [
     //     {
             
@@ -58,7 +60,7 @@ const SellerRequestPage = () => {
         { value: 'seller', label: 'Seller' },
       ];
 
-    const updateOrderStatus = (status, id) => {
+    const acceptSellerRequest = (accepted,id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You are changed User Role",
@@ -69,14 +71,36 @@ const SellerRequestPage = () => {
             confirmButtonText: 'Yes, update it!'
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire(
-                'Updated!',
-                'User Role has Changed',
-                'success'
-              )
+            if(accepted)
+                axiosSecure.patch(`/admin/accept-seller-request`, id)
+                .then(res => {
+                    console.log(res)
+                    if(res.data) {
+                        
+                        Swal.fire(
+                            'Accepted!',
+                            'Seller Request Accepted',
+                            'success'
+                          )
+                    }
+
+                })
+            } else {
+                axiosSecure.patch(`/admin/rejected-seller-request`, id)
+                .then(res => {
+                    console.log(res)
+                    if(res.data) {
+                        Swal.fire(
+                            'Rejected!',
+                            'Seller Request Rejected',
+                            'success'
+                          )
+                    }
+
+                })
             }
           })
-        console.log(status, id)
+        
     }
     if(isLoading) return "loading"
     return (
@@ -122,7 +146,7 @@ const SellerRequestPage = () => {
                                     <td>{message}</td>
                                     <td>{role}</td>
                                     <td>
-                                    <span className="p-3 rounded border border-[#14a650] cursor-pointer text-[#14a650] bg-[#14a65122] inline-block mx-2" ><MdDone/></span><span className='p-3 rounded border border-[#a61414] cursor-pointer text-[#a61414] bg-[#a6141922] inline-block mx-2'  ><IoCloseOutline/></span>
+                                    <span onClick={() => acceptSellerRequest(true, _id)} className="p-3 rounded border border-[#14a650] cursor-pointer text-[#14a650] bg-[#14a65122] inline-block mx-2" ><MdDone/></span><span onClick={() => acceptSellerRequest(false, _id)} className='p-3 rounded border border-[#a61414] cursor-pointer text-[#a61414] bg-[#a6141922] inline-block mx-2'  ><IoCloseOutline/></span>
                                     </td>
                                 </tr>
                             })

@@ -285,8 +285,8 @@ const SignUpPage = () => {
             success
               ? successRegistrationLottie
               : loading
-              ? registrationLoadingLottie
-              : signupLottie
+                ? registrationLoadingLottie
+                : signupLottie
           }
           loop={true}
           className="h-full w-full"
