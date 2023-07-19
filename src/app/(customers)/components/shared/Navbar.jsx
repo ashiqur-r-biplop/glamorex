@@ -15,7 +15,6 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
-  console.log(user);
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState(null);
 
@@ -36,9 +35,9 @@ function Nav() {
   const menu = (
     <>
       <NavLink href={"/"}>Home</NavLink>
-      <NavLink href={"/about"}>About</NavLink>
-      <NavLink href={"/blog"}>Blogs</NavLink>
       <NavLink href={"/shop"}>Shop</NavLink>
+      <NavLink href={"/blog"}>Blogs</NavLink>
+      <NavLink href={"/about"}>About</NavLink>
       <NavLink href={"/contact"}>Contact</NavLink>
       <NavLink href={"/cart"}><AiOutlineShoppingCart/></NavLink>
       {user ? (
