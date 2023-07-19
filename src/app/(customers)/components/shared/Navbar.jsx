@@ -38,9 +38,9 @@ function Nav() {
   const menu = (
     <>
       <NavLink href={"/"}>Home</NavLink>
-      <NavLink href={"/about"}>About</NavLink>
-      <NavLink href={"/blog"}>Blogs</NavLink>
       <NavLink href={"/shop"}>Shop</NavLink>
+      <NavLink href={"/blog"}>Blogs</NavLink>
+      <NavLink href={"/about"}>About</NavLink>
       <NavLink href={"/contact"}>Contact</NavLink>
       <NavLink href={"/cart"}><AiOutlineShoppingCart /></NavLink>
       {userRoleLoading || authLoading? '':user ? (
