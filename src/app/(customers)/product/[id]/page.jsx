@@ -1,45 +1,47 @@
 "use client";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import { data } from "autoprefixer";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaHome } from "react-icons/fa";
 import { FaBagShopping, FaStar } from "react-icons/fa6";
 import ReactImageZoom from "react-image-zoom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 const productDetailsPage = () => {
-  const {id} = useParams();
-  console.log(id)
+  const { id } = useParams();
+  console.log(id);
   const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("Description");
-  const {axiosSecure} = useAxiosSecure()
+  const { axiosSecure } = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure.get(`/product/${id}`)
-      .then((res) => {        
+    axiosSecure
+      .get(`/product/${id}`)
+      .then((res) => {
         setProduct(res.data);
         setLoading(false);
       })
       .catch((e) => console.log(e.message));
-
-      
   }, [id]);
 
   useEffect(() => {
-    if(product) {
-      console.log("34",product?._id)
-      axiosSecure.get(`/related-products?category=${product?.category}&id=${product?._id}`)
-      .then((res) => {
-
-        setSimilarProducts(res.data);
-      })
-     }
-  },[product])
+    if (product) {
+      console.log("34", product?._id);
+      axiosSecure
+        .get(
+          `/related-products?category=${product?.category}&id=${product?._id}`
+        )
+        .then((res) => {
+          setSimilarProducts(res.data);
+        });
+    }
+  }, [product]);
 
   if (loading) {
     return (
@@ -53,13 +55,13 @@ const productDetailsPage = () => {
     name,
     image,
     description,
-    colors,
-    keyFeatures,
+    color,
+    key_features,
     product_id,
     seller_name,
     seller_email,
-    rating,
-    review,
+    ratings,
+    reviews,
     previous_price,
     discount,
     price,
@@ -69,9 +71,11 @@ const productDetailsPage = () => {
     category,
     label,
     status,
+    gender,
   } = product || {};
   const tabs = ["Description", "Question", "Reviews"];
 
+  console.log(product);
   console.log(tabs);
   console.log(similarProducts);
 
@@ -113,9 +117,10 @@ const productDetailsPage = () => {
                 <span className="text-orange-500">
                   <FaStar></FaStar>
                 </span>{" "}
-                {rating}
+                ({ratings})
               </span>{" "}
-              | <span>{review} reviews</span> | <span>{overall_sell} sold</span>
+              | <span>{reviews} reviews</span> |{" "}
+              <span>{overall_sell} sold</span> | <span>{gender} Product</span> |{" "}
             </h2>
 
             <div className="flex flex-wrap gap-2">
@@ -130,8 +135,9 @@ const productDetailsPage = () => {
                 Product available: {quantity}
               </button>
               <button
-                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${status === "in stock" ? "text-orange-500" : "text-red-500"
-                  }`}
+                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${
+                  status === "in stock" ? "text-orange-500" : "text-red-500"
+                }`}
               >
                 Status: {status}
               </button>
@@ -140,9 +146,8 @@ const productDetailsPage = () => {
             <div className="!my-5">
               <h2 className="my-subtitle">Key feature</h2>
               <ul className="space-y-2">
-                {keyFeatures && keyFeatures.map((kf, i) => (
-                  <li key={i}>{kf}</li>
-                ))}
+                {key_features &&
+                  key_features.map((kf, i) => <li key={i}>{kf}</li>)}
               </ul>
             </div>
 
@@ -168,28 +173,42 @@ const productDetailsPage = () => {
             {/* color button */}
             <div>
               <h2 className="my-subtitle text-slate-900 mb-2">
-                Colors <span className="text-slate-500">({colors && colors.length})</span>
+                Colors{" "}
+                <span className="text-slate-500">
+                  ({color && color.length})
+                </span>
               </h2>
               <div className="flex flex-wrap gap-2">
-                {colors && colors.map((color, i) => (
-                  <button
-                  key={i}
-                    className={`h-5 w-5 border border-black rounded-full`}
-                    style={{ backgroundColor: color }}
-                  ></button>
-                ))}
+                {color &&
+                  [{ red: 10 }, { black: 20 }, { blue: 20 }].map((item, i) => {
+                    const color = Object.keys(item)[0];
+                    console.log(color);
+                    return (
+                      <button
+                        key={i}
+                        className="h-5 w-5 border border-black rounded-full"
+                        style={{ backgroundColor: `${color}` }}
+                      ></button>
+                    );
+                  })}
               </div>
             </div>
 
             <div className="flex gap-3 items-center">
-              <button className="my-btn-one">
-                {" "}
-                <span>
-                  <FaBagShopping></FaBagShopping>
-                </span>{" "}
-                Add to bag
-              </button>
-              <button className="my-btn-one-outline">Add to wishlist</button>
+              {quantity > 0 ? (
+                <>
+                  <button className="my-btn-one">
+                    {" "}
+                    <span>
+                      <FaBagShopping></FaBagShopping>
+                    </span>{" "}
+                    Buy Now
+                  </button>
+                  <button className="my-btn-one-outline">Add To Cart</button>
+                </>
+              ) : (
+                <button className="my-btn-one-outline">Add to WishList</button>
+              )}
             </div>
           </div>
         </div>
@@ -200,18 +219,22 @@ const productDetailsPage = () => {
           <div className="col-span-12 md:col-span-6 xl:col-span-8">
             <Tabs>
               <TabList
-                className={"flex justify-center items-center gap-2 my-5 h-8 mb-8"}
+                className={
+                  "flex justify-center items-center gap-2 my-5 h-8 mb-8"
+                }
               >
-                {tabs && tabs.map((tab, ind) => (
-                  <Tab
-                    key={ind}
-                    className={`${activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
+                {tabs &&
+                  tabs.map((tab, ind) => (
+                    <Tab
+                      key={ind}
+                      className={`${
+                        activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
                       }`}
-                    onClick={() => setActiveTab(tab)}
-                  >
-                    {tab}
-                  </Tab>
-                ))}
+                      onClick={() => setActiveTab(tab)}
+                    >
+                      {tab}
+                    </Tab>
+                  ))}
               </TabList>
 
               <TabPanel>
@@ -229,27 +252,28 @@ const productDetailsPage = () => {
           {/* similar product */}
           <div className="col-span-12 md:col-span-6 xl:col-span-4">
             <h2 className="my-title mb-3">Related Products</h2>
-            {similarProducts  && similarProducts.map((similarProduct, ind) => {
-              const { image, name, price, quantity } = similarProduct || {};
-              return (
-                <div
-                  key={ind}
-                  className="grid grid-cols-12 gap-3 items-center my-4 p-5 border rounded bg-slate-50"
-                >
-                  <div className="col-span-4">
-                    <figure className="rounded-lg w-full h-[150px] relative z-10 cursor-zoom-in">
-                      <Image src={image} fill />
-                    </figure>
+            {similarProducts &&
+              similarProducts.map((similarProduct, ind) => {
+                const { image, name, price, quantity } = similarProduct || {};
+                return (
+                  <div
+                    key={ind}
+                    className="grid grid-cols-12 gap-3 items-center my-4 p-5 border rounded bg-slate-50"
+                  >
+                    <div className="col-span-4">
+                      <figure className="rounded-lg w-full h-[150px] relative z-10 cursor-zoom-in">
+                        <Image src={image} fill />
+                      </figure>
+                    </div>
+                    <div className="col-span-8 space-y-3">
+                      <h2 className="my-subtitle">{name}</h2>
+                      <p>${price}</p>
+                      <p>{quantity} product left</p>
+                      <button className="my-btn-one">Add to Bag</button>
+                    </div>
                   </div>
-                  <div className="col-span-8 space-y-3">
-                    <h2 className="my-subtitle">{name}</h2>
-                    <p>${price}</p>
-                    <p>{quantity} product left</p>
-                    <button className="my-btn-one">Add to Bag</button>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
       </div>

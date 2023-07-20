@@ -247,7 +247,7 @@ const SignUpPage = () => {
               <div className="ml-3 text-sm">
                 <label htmlFor="terms" className="text-slate-300">
                   Accept{" "}
-                  <Link href={""} className="link-hover link-primary">
+                  <Link href={"/terms"} className="link-hover link-primary">
                     Terms and Condition
                   </Link>
                 </label>

@@ -11,7 +11,9 @@ import { FiLogOut } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import useUserRole from "@/hooks/useUserRole";
-import { FaDashcube } from "react-icons/fa6";
+import {  FaUserCheck } from "react-icons/fa6";
+import Loading from "@/private/Loading";
+import { MdDashboard } from "react-icons/md";
 
 
 function Nav() {
@@ -77,15 +79,15 @@ function Nav() {
             tabIndex={0}
             className=" dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 text-white rounded-box w-52 font-semibold"
           >
-            {
-              (role === 'seller' || role === 'admin') &&
-              <li> <Link href={`${role === 'seller' ? '/seller-dashboard' : role === 'admin' ? 'g-admin' : '#'}`} className="p-2 flex gap-2 items-center">Dashboard <FaDashcube /> </Link></li>
-            }
             <li>
               <Link href={"/account"} className="p-2 flex gap-2 items-center">
-                Profile <BiUserCircle />
+                Profile <FaUserCheck />
               </Link>
             </li>
+            {
+              (role === 'seller' || role === 'admin') &&
+              <li> <Link href={`${role === 'seller' ? '/seller-dashboard' : role === 'admin' ? 'g-admin' : '#'}`} className="p-2 flex gap-2 items-center">Dashboard <MdDashboard /> </Link></li>
+            }
             <li>
               <button onClick={logOut} className="p-2 flex gap-2 items-center">
                 Logout <FiLogOut />

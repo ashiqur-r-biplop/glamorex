@@ -6,7 +6,7 @@ import { useEffect } from "react";
 // import { Route } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: "http://lacalhost:5000"
 })
 
 const useAxiosSecure = () => {
