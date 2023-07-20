@@ -9,7 +9,8 @@ const RecentProductCard = ({ product }) => {
     name,
     image,
     description,
-    rating,
+    ratings,
+    reviews,
     price,
     discount,
     previous_price,
@@ -50,7 +51,7 @@ const RecentProductCard = ({ product }) => {
           <div className="flex justify-between items-center mt-4">
             <p className="font-semibold text-xl">{name}</p>
             <div className="flex gap-2">
-              {previous_price !== null && (
+              {previous_price && (
                 <p className="line-through">${previous_price}</p>
               )}
               <p className="font-bold text-red-500">${price}</p>
@@ -63,12 +64,12 @@ const RecentProductCard = ({ product }) => {
           <div className="flex items-center gap-1">
             <Rating
               style={{ maxWidth: 90 }}
-              value={rating}
+              value={ratings}
               readOnly
               itemStyles={myStyles}
             />
-            {/* TODO: Rating count here */}
-            <p className="text-gray-500">{rating}</p>
+            {/*reviews count here */}
+            <p className="text-gray-500">({reviews}) Reviews</p>
           </div>
         </div>
       </div>
