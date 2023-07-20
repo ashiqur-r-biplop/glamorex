@@ -29,6 +29,8 @@
     "overall_sell": 10,
     "publish_date": "2023-06-15",
     "category": "Dresses",
+    "sub_category": "",
+    "gander": "male",
     "label": "regular",
     "status": "in stock",
     "product_status": "approved",
