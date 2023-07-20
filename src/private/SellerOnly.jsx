@@ -17,6 +17,7 @@ const SellerOnly = ({children}) => {
            return children
         } else {
             router.push("/")
+            return null
         }
     } 
 };

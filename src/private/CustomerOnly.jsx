@@ -1,18 +1,16 @@
 "use client"
 import useAuth from '@/hooks/useAuth';
-import useUserRole from '@/hooks/useUserRole';
 import { useRouter } from 'next/navigation';
 import Loading from './Loading';
 
-const AdminOnly = ({children}) => {
+const CustomerOnly = ({children}) => {
     const router = useRouter()
-    const {role} = useUserRole()
     const {loading, user} = useAuth()
     if(loading) {
         return <Loading/>
     }
     if(user) {
-        if(role === "admin") {
+        if(role === "customer") {
         return children
         }  
         else {
@@ -22,4 +20,6 @@ const AdminOnly = ({children}) => {
     }
 };
 
-export default AdminOnly;
+export default CustomerOnly;
+
+

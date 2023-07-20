@@ -18,13 +18,14 @@ import { MdDashboard } from "react-icons/md";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, loading:authLoading } = useAuth();
+  const { user, loading:authLoading} = useAuth();
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState(null);
   const { role, loading:userRoleLoading } = useUserRole()
-
+  const token = localStorage.getItem("access-token")
   useEffect(() => {
-    axiosSecure
+    if(token) {
+      axiosSecure
       .get("/profile")
       .then((response) => {
         setUser(response.data);
@@ -32,20 +33,42 @@ function Nav() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+    }
+  }, [token]);
+
+ 
 
   const logOut = () => {
     localStorage.removeItem("access-token");
   };
-  const menu = (
-    <>
-      <NavLink href={"/"}>Home</NavLink>
+ 
+     
+
+  return (
+    <nav className="bg-gray-800 sticky left-0 top-0 right-0 px-3 z-50">
+      <div className=" mx-auto px-1 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* logo */}
+          <div className="flex-shrink-0">
+            <Link href={"/"}>
+              <Image height={45} width={45} src={logo} alt="glamorex" />
+            </Link>
+          </div>
+
+          <div className="flex items-center">
+            {/* desktop nav */}
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-center space-x-4">
+              <NavLink href={"/"}>Home</NavLink>
       <NavLink href={"/shop"}>Shop</NavLink>
       <NavLink href={"/blog"}>Blogs</NavLink>
       <NavLink href={"/about"}>About</NavLink>
       <NavLink href={"/contact"}>Contact</NavLink>
       <NavLink href={"/cart"}><AiOutlineShoppingCart /></NavLink>
-      {userRoleLoading || authLoading? <Loading></Loading>:user ? (
+      {
+         !user &&  <NavLink href="/signin">Signin</NavLink>
+      }
+      {userRoleLoading || authLoading ? '' : user && 
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
@@ -71,28 +94,11 @@ function Nav() {
               </button>
             </li>
           </ul>
-        </div>
-      ) : (
-        <NavLink href={"/signin"}>Signin</NavLink>
-      )}
-    </>
-  );
+        </div>      
+        
+      }
 
-  return (
-    <nav className="bg-gray-800 sticky left-0 top-0 right-0 px-3 z-50">
-      <div className=" mx-auto px-1 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* logo */}
-          <div className="flex-shrink-0">
-            <Link href={"/"}>
-              <Image height={45} width={45} src={logo} alt="glamorex" />
-            </Link>
-          </div>
-
-          <div className="flex items-center">
-            {/* desktop nav */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-center space-x-4">{menu}</div>
+              </div>
             </div>
           </div>
 

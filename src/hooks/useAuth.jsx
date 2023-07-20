@@ -5,18 +5,17 @@ const useAuth = () => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const {axiosSecure} = useAxiosSecure()
+    const token = localStorage.getItem("access-token")
     useEffect(() => {
-        const token = localStorage.getItem("access-token")
        if(token) {
-
         axiosSecure.get("/is-login")
         .then(res => {  
             setUser(res?.data?.email)          
             setLoading(false)
         })
        }
-    },[])
-    return {user, loading}
+    },[token])
+    return {user, loading, setUser}
 };
 
 export default useAuth;

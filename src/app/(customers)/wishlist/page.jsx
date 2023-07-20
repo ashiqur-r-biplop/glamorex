@@ -1,9 +1,13 @@
+import CustomerOnly from "@/private/CustomerOnly";
+
 const WishListPage = () => {
     return (
-        <div>
+        <CustomerOnly>
+            <div>
             
-        </div>
+            </div>
+        </CustomerOnly>        
     );
 };
 
-export default WishListPage;
+export default  WishListPage

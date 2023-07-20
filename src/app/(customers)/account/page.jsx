@@ -3,6 +3,7 @@ import Link from "next/link";
 import EditButton from "../components/account/EditButton";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
+import CustomerOnly from "@/private/CustomerOnly";
 
 // const User = {
 //   id: "123",
@@ -30,6 +31,7 @@ const AccountPage = () => {
   }, []);
 
   return (
+    <CustomerOnly >
     <div className="container mx-auto px-5 py-[100px] min-h-[70vh]">
       <div className="section-title mb-8">
         <h2 className="text-2xl font-semibold text-center">My Profile</h2>
@@ -75,7 +77,8 @@ const AccountPage = () => {
         </div>
       </div>
     </div>
+    </CustomerOnly>
   );
 };
 
-export default AccountPage;
+export default AccountPage

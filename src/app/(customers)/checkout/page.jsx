@@ -1,9 +1,13 @@
+import CustomerOnly from "@/private/CustomerOnly";
 
 const CheckoutPage = () => {
     return (
-        <div>
-            CheckoutPage
-        </div>
+        <CustomerOnly>
+            <div>
+                CheckoutPage
+            </div>
+        </CustomerOnly>
+        
     );
 };
 
