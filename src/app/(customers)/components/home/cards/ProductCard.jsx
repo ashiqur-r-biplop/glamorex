@@ -11,7 +11,6 @@ const ProductCard = ({ product }) => {
   const { user } = useAuth();
   const {
     _id,
-    product_id,
     name,
     image,
     description,
@@ -28,7 +27,7 @@ const ProductCard = ({ product }) => {
     inactiveFillColor: "#BCEDC5",
   };
   return (
-    <Link href={`/product/${product_id}`}>
+    <Link href={`/product/${_id}`}>
       <div className="flex flex-col rounded-md md:max-w-xs w-full h-full border-2 border-gray-100 relative">
         <div className="w-full p-5">
           <Image
