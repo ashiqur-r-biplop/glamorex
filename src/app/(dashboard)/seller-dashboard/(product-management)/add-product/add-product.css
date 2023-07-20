@@ -18,3 +18,6 @@
 .add-product-main .my-inp{
     @apply block w-full p-3 bg-slate-50 text-slate-800 font-semibold placeholder:text-slate-400 shadow-inner shadow-slate-400 border-none rounded focus:outline-none
 }
+.add-product-main .my-inp-disable{
+    @apply block w-full p-3 bg-slate-300 text-slate-800 font-semibold placeholder:text-slate-500 shadow-inner shadow-slate-400 border-none rounded focus:outline-none
+}

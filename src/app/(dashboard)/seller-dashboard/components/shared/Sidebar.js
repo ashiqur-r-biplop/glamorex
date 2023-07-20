@@ -82,12 +82,12 @@ const Sidebar = () => {
                 </span>
               </span>
             </SDNavLink>
-            <SDNavLink href={"/seller-dashboard/edit-product"}>
+            <SDNavLink href={"/seller-dashboard/products"}>
               {" "}
               <span className="flex items-center gap-2">
                 <LuEdit></LuEdit>{" "}
                 <span className="hidden lg:inline-block whitespace-nowrap">
-                  Edit product
+                  Products
                 </span>
               </span>
             </SDNavLink>
