@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import GridLayout from "./GridLayout";
 import ColumnLayout from "./ColumnLayout";
 import { GridSystem } from "./HandleGridSystem";
+import ProductCard from "../home/cards/ProductCard";
 
 const TopCard = ({ product, layout }) => {
   const isMobileScreen = () => {
@@ -27,7 +28,8 @@ const TopCard = ({ product, layout }) => {
   return (
     <>
       <div>
-        {layout === "grid" && <GridLayout product={product}></GridLayout>}
+        {/* {layout === "grid" && <GridLayout product={product}></GridLayout>} */}
+        {layout === "grid" && <ProductCard product={product} />}
         <div className={`${layout === "column" ? "block" : "hidden"}`}>
           {layout === "column" && (
             <div className="flex">
