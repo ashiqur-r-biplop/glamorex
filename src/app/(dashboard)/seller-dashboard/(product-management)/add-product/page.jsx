@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { FaFileUpload, FaInfoCircle } from "react-icons/fa";
+import { FaAd, FaFileUpload, FaInfoCircle } from "react-icons/fa";
 import {
     FaArrowRight,
     FaCheck,
@@ -10,6 +10,7 @@ import {
     FaCircleCheck,
     FaCircleDot,
     FaFileArrowUp,
+    FaPlus,
     FaXmark,
 } from "react-icons/fa6";
 import "./add-product.css";
@@ -19,27 +20,66 @@ import AddProductStatusBtn from "@/app/(dashboard)/components/HelpingCompo/addPr
 import addProductSuccessfulLottie from "../../../../../../public/assets/lottieAnimation/addProductSuccessfulLottie.json";
 import loadingLottie from "../../../../../../public/assets/lottieAnimation/loadingLottie.json";
 import CommonLottie from "@/app/(dashboard)/components/HelpingCompo/CommonLottie";
+import useColorQuantity from "@/app/(dashboard)/customHook/useColorQuantity";
+import useSizeQuantity from "@/app/(dashboard)/customHook/useSizeQuantity";
+import useProfile from "@/hooks/useProfile";
+import useKeyFeature from "@/app/(dashboard)/customHook/useKeyFeature";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 
 const AddProductPage = () => {
     const [currentPageStatus, setCurrentPageStatus] = useState("Product Image");
     const [productImg, setProductImg] = useState("");
     const [imageLink, setImageLink] = useState('')
-    const [productAddedSuccess, setProductAddedSuccess] = useState('')
-    const [loading, setLoading] = useState(false)
     const formData = new FormData()
+    const { selectedColors, setSelectedColors, handleColorChange, handleQuantityChange } = useColorQuantity()
+    const { selectedSizes, setSelectedSizes, handleSizesChange, handleSizeQuantityChange } = useSizeQuantity()
+    const { user, loading: profileLoading } = useProfile()
+    const { keyFeatures, setKeyFeatures, handleChange, addEmptyField, removeField } = useKeyFeature(['']);
+    const { axiosSecure } = useAxiosSecure()
+    const [loading, setLoading] = useState(false)
+    const [productAddedSuccess, setProductAddedSuccess] = useState('')
+    const formRef = useRef();
+
+
+    // Sum of color quantity and sizes quantity for get total quantity
+    const colorsSums = selectedColors.reduce((acc, colorObj) => acc + Object.values(colorObj)[0], 0);
+    const sizesSums = selectedSizes.reduce((acc, sizeObj) => acc + Object.values(sizeObj)[0], 0);
+    const totalQuantity = colorsSums + sizesSums
+
 
     //  Hold form field via react hook form
-    const { register, handleSubmit, watch, resetField, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, resetField, reset, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         setLoading(true)
-        setProductAddedSuccess(true)
-        // setLoading(false)
 
-        const { name, quantity, category, sub_category, productGender, productStatus, sizes, colors, price, discount, description } = data
-        const product = { name, image: imageLink, quantity, category, sub_category, productGender, sizes, productStatus,colors, price, discount, description };
+        const { name, quantity, category, sub_category, productGender, productStatus, sizes, price, discount, description } = data
+        const product = { name, image: imageLink, quantity: totalQuantity || quantity, seller_name: user?.name, seller_email: user?.email, category, sub_category, productGender, sizes: selectedSizes, productStatus, colors: selectedColors, price, discount, description };
         console.log(product);
+        axiosSecure.post('/seller/add-new-product', { product }).then(res => {
+            console.log(res.data);
+            setLoading(false);
+            setProductAddedSuccess(true);
+        }).catch(e => { console.log(e.message); setLoading(false) })
     }
+
+    // save product event
+    const handleSaveProduct = () => {
+        const formData = new FormData(formRef.current); // Get the form data
+        const data = Object.fromEntries(formData.entries()); // Convert to a regular object
+        onSubmit(data); // Call the onSubmit function manually
+      };
+      
+    // reset form
+    const resetForm = () => {
+        reset()
+        setKeyFeatures([''])
+        setSelectedColors([])
+        setSelectedSizes([])
+        setProductImg('')
+        setCurrentPageStatus('Product Image')
+    }
+
 
 
     // for get image via react dropzone and hosting image
@@ -286,21 +326,26 @@ const AddProductPage = () => {
     const isColorsPass = (categories[watch('category')]?.[watch('sub_category')]?.colors?.length > 0)
     const isSizePass = (categories[watch('category')]?.[watch('sub_category')]?.sizes?.length > 0)
 
-    const isGeneralInfoDone = watch('name') && watch('quantity') && watch('category') && watch('sub_category') && watch('productCoupon') && watch('productGender') && watch('productStatus') && (isColorsPass ? watch('colors') : true) && (isSizePass ? watch('sizes') : true)
+    const isGeneralInfoDone = watch('name') && watch('category') && watch('sub_category') && watch('productCoupon') && watch('productGender') && watch('productStatus') && ((!isColorsPass && !isSizePass) ? watch('quantity') : true) && (isColorsPass ? selectedColors?.length : true) && (isSizePass ? selectedSizes?.length : true)
     const isPricingDone = watch('price') && watch('discount')
-    const productDetailsDone = watch('description')
-
+    const productDetailsDone = watch('description') && keyFeatures.every(keyFeature => keyFeature?.length)
+    const productAllDone = imageLink && isGeneralInfoDone && isPricingDone && productDetailsDone
 
 
     // clear color and sized field when category and subCategory file is changing
     const productCategoryField = register("category", { required: true });
     const productSubCategoryField = register("sub_category", { required: true });
     const clearColorsSizesField = () => {
+        setSelectedColors([])
+        setSelectedSizes([])
         resetField('colors')
         resetField('sizes')
+        resetField('quantity')
     }
 
-    if (loading) {
+
+
+    if (loading || profileLoading) {
         return <div className="h-screen flex flex-col gap-3 justify-center items-center">
             <CommonLottie animationData={loadingLottie} loop={true} className='h-72 w-80'></CommonLottie>
             <h2 className="my-title text-green-500">Please wait...</h2>
@@ -312,17 +357,17 @@ const AddProductPage = () => {
             <h2 className="my-title text-green-500">Product added successfully</h2>
         </div>
     }
-
+    // TODO: save product top btn not working!
     return (
         <div className="add-product-main">
             {/* title nav */}
             <div className="flex justify-between items-center py-3 px-4 lg:px-8 xl:px-16 border">
                 <h1 className="my-subtitle">Adding new product</h1>
                 <div className="space-x-2">
-                    <button className="my-btn-one-outline">
+                    <button className="my-btn-one-outline" onClick={resetForm}>
                         <FaXmark></FaXmark> Cancel
                     </button>
-                    <button className="my-btn-one">
+                    <button className={`${productAllDone ? 'my-btn-one' : 'nxt-prv-btn-disable'}`} disabled={!productAllDone} onClick={handleSaveProduct}>
                         <FaCheck></FaCheck> Save product
                     </button>
                 </div>
@@ -341,7 +386,7 @@ const AddProductPage = () => {
                     <AddProductStatusBtn isActive={productDetailsDone} isCurrPage={currentPageStatus === 'Description'}>Description</AddProductStatusBtn>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
                     {/* Product Image */}
                     {currentPageStatus === "Product Image" && (
                         <div className="relative">
@@ -405,11 +450,11 @@ const AddProductPage = () => {
                                     <div className="flex-1">
                                         <label
                                             htmlFor="productName"
-                                            className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"
+                                            className="block mb-2 text-sm font-medium text-slate-600 my-subtitle"
                                         >
                                             Product Name
                                         </label>
-                                        <input type="text" className="my-inp" id="productName" placeholder="Your name here" {...register("name", { required: true })}
+                                        <input type="text" className="my-inp" id="productName" placeholder="Product name here" {...register("name", { required: true })}
                                         />
                                         {errors.name && <span className="text-red-500">This field is required</span>}
                                     </div>
@@ -417,11 +462,11 @@ const AddProductPage = () => {
                                     <div className="flex-1">
                                         <label
                                             htmlFor="quantity"
-                                            className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"
+                                            className="block mb-2 text-sm font-medium text-slate-600 my-subtitle"
                                         >
                                             Quantity
                                         </label>
-                                        <input type="number" className="my-inp" id="quantity" placeholder="Quantity" {...register("quantity", {required: true })}
+                                        <input disabled={(isColorsPass || isSizePass) ? true : false} value={(isColorsPass || isSizePass) ? totalQuantity : watch('quantity')} type="number" className={`${(isColorsPass || isSizePass) ? 'my-inp-disable' : 'my-inp'}`} id="quantity" placeholder="Quantity" {...register("quantity", { required: true })}
                                         />
                                         {errors.quantity && (
                                             <span className="text-red-500">This field is required</span>
@@ -434,13 +479,14 @@ const AddProductPage = () => {
                                     <div className="flex-1">
                                         <label
                                             htmlFor="date"
-                                            className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"
+                                            className="block mb-2 text-sm font-medium text-slate-600 my-subtitle"
                                         >
                                             Date
                                         </label>
                                         <input
                                             type="text"
-                                            className="my-inp"
+                                            disabled
+                                            className="my-inp-disable"
                                             id="date"
                                             value={new Date().toLocaleDateString()}
                                             {...register("publishDate", { required: true })}
@@ -450,7 +496,7 @@ const AddProductPage = () => {
                                     <div className="flex-1">
                                         <label
                                             htmlFor="productCoupon"
-                                            className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"
+                                            className="block mb-2 text-sm font-medium text-slate-600 my-subtitle"
                                         >
                                             Product Coupon
                                         </label>
@@ -471,7 +517,7 @@ const AddProductPage = () => {
                                 <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
                                     {/* categories */}
                                     <div className="flex-1">
-                                        <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">
+                                        <label className="block mb-2 text-sm font-medium text-slate-600 my-subtitle">
                                             Product Category
                                         </label>
                                         <select className="my-inp" defaultValue={'default'} {...productCategoryField}
@@ -486,10 +532,11 @@ const AddProductPage = () => {
 
                                     {/* sub-categories */}
                                     <div className="flex-1">
-                                        <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"> Product Sub category </label>
+                                        <label className="block mb-2 text-sm font-medium text-slate-600 my-subtitle"> Product Sub category </label>
                                         <select className="my-inp" {...productSubCategoryField}
+                                            defaultValue={''}
                                             onChange={(e) => { clearColorsSizesField(); productSubCategoryField.onChange(e) }}>
-                                            <option disabled value={''} selected> Your Sub category here </option>
+                                            <option disabled value={''}> Your Sub category here </option>
                                             {
                                                 Object.keys(categories?.[watch('category')] || {})?.map((subcat, ind) => {
                                                     return <option key={ind}>{subcat}</option>;
@@ -506,13 +553,22 @@ const AddProductPage = () => {
                                 {(isColorsPass || isSizePass) && <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
                                     {/* Color */}
                                     {isColorsPass && <div className="flex-1">
-                                        <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Color</label>
+                                        <label className="block mb-2 text-sm font-medium text-slate-600 my-subtitle">Color</label>
 
                                         <div className="grid grid-cols-3 gap-6 items-center justify-between">
                                             {categories[watch('category')]?.[watch('sub_category')]?.colors?.map((color, ind) => {
-                                                return <span className="flex items-center gap-2" key={ind}>
-                                                    <input type="radio" id={color} className="radio radio-success" value={color} {...register("colors", { required: true })} />
+                                                return <span className="flex items-center gap-4" key={ind}>
+                                                    <input type="checkbox" className="checkbox checkbox-success" id={color} value={color} {...register("colors", { required: true })}
+                                                        onChange={() => { handleColorChange(color) }}
+                                                    />
+
                                                     <label htmlFor={color}>{color}</label>
+                                                    {
+                                                        selectedColors.some(sColor => sColor.hasOwnProperty(color)) &&
+                                                        <input type="number" placeholder="Quantity..." className="my-inp"
+                                                            onChange={(e) => handleQuantityChange(color, parseInt(e.target.value) || 0)}
+                                                        />
+                                                    }
                                                 </span>
                                             })}
                                         </div>
@@ -523,16 +579,26 @@ const AddProductPage = () => {
 
                                     {/* Size */}
                                     {isSizePass && <div className="flex-1">
-                                        <label className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Size</label>
+                                        <label className="block mb-2 text-sm font-medium text-slate-600 my-subtitle">Size</label>
 
                                         <div className="grid grid-cols-3 gap-6 items-center justify-between">
                                             {categories[watch('category')]?.[watch('sub_category')]?.sizes?.map((size, ind) => {
-                                                return <span className="flex items-center gap-2" key={ind}>
-                                                    <input type="radio" id={size} className="radio radio-success" value={size} {...register("sizes", { required: true })} />
+                                                return <span className="flex items-center gap-4" key={ind}>
+                                                    <input type="checkbox" className="checkbox checkbox-success" id={size} value={size} {...register("sizes", { required: true })}
+                                                        onChange={() => { handleSizesChange(size) }}
+                                                    />
+
                                                     <label htmlFor={size}>{size}</label>
+                                                    {
+                                                        selectedSizes.some(sSize => sSize.hasOwnProperty(size)) &&
+                                                        <input type="number" placeholder="Quantity..." className="my-inp"
+                                                            onChange={(e) => handleSizeQuantityChange(size, parseInt(e.target.value) || 0)}
+                                                        />
+                                                    }
                                                 </span>
                                             })}
                                         </div>
+
                                         {errors.sizes && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
@@ -543,12 +609,12 @@ const AddProductPage = () => {
                                 <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
                                     {/* Gender */}
                                     <div className="flex-1">
-                                        <label htmlFor="gender" className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Gender</label>
+                                        <label htmlFor="gender" className="block mb-2 text-sm font-medium text-slate-600 my-subtitle">Gender</label>
 
                                         <div className="flex items-center justify-between">
                                             {["Woman", "Men", "Unisex"].map((gender, ind) => {
                                                 return (
-                                                    <span className="flex gap-1 items-center" key={ind}>
+                                                    <span className="flex gap-4 items-center" key={ind}>
                                                         <input type="radio" name="gender" id={gender} className="radio radio-success" value={gender} {...register("productGender", { required: true })} />
                                                         <label htmlFor={gender}>{gender}</label>
                                                     </span>
@@ -562,12 +628,12 @@ const AddProductPage = () => {
 
                                     {/* Status */}
                                     <div className="flex-1">
-                                        <label htmlFor="status" className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Status</label>
+                                        <label htmlFor="status" className="block mb-2 text-sm font-medium text-slate-600 my-subtitle">Status</label>
 
                                         <div className="flex items-center justify-between">
                                             {["In stock", "Out of stock", "Pre order"].map((status, ind) => {
                                                 return (
-                                                    <span className="flex gap-1 items-center" key={ind}>
+                                                    <span className="flex gap-4 items-center" key={ind}>
                                                         <input type="radio" id={status} className="radio radio-success" value={status} {...register("productStatus", { required: true })} />
                                                         <label htmlFor={status}>{status}</label>
                                                     </span>
@@ -600,7 +666,7 @@ const AddProductPage = () => {
                                 {/* price and discount */}
                                 <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
                                     <div className="flex-1">
-                                        <label htmlFor="price" className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"> Price </label>
+                                        <label htmlFor="price" className="block mb-2 text-sm font-medium text-slate-600 my-subtitle"> Price </label>
                                         <input type="number" className="my-inp" id="price" placeholder="Price" {...register("price", { required: true })} />
                                         {errors.price && (
                                             <span className="text-red-500">This field is required</span>
@@ -608,9 +674,9 @@ const AddProductPage = () => {
                                     </div>
 
                                     <div className="flex-1">
-                                        <label htmlFor="discount" className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle">Discount</label>
-                                        <select className="my-inp" {...register("discount", { required: true })}>
-                                            <option disabled value={''} selected>Your category here</option>
+                                        <label htmlFor="discount" className="block mb-2 text-sm font-medium text-slate-600 my-subtitle">Discount</label>
+                                        <select className="my-inp" defaultValue={''} {...register("discount", { required: true })}>
+                                            <option disabled value={''}>Your discount here</option>
                                             {['0%', '5%', '10%', '15%', '20%', '25%', '30%', '35%', '40%', '45%', '50%', '55%', '60%', '65%', '70%', '75%', '80%'].map((discount, ind) => <option key={ind}>{discount}</option>)}
                                         </select>
                                         {errors.discount && (<span className="text-red-500">This field is required</span>)}
@@ -618,30 +684,31 @@ const AddProductPage = () => {
                                 </div>
                             </div>
 
-                            <div className="flex justify-center gap-2 my-8">
+                            <div className="flex justify-center gap-4 my-8">
                                 <button className="my-btn-one" onClick={() => setCurrentPageStatus("General Information")} > Previous </button>
                                 <button className={` ${isPricingDone ? 'my-btn-one' : 'nxt-prv-btn-disable'}`} disabled={isPricingDone ? false : true} onClick={() => setCurrentPageStatus("Description")} >  Next </button>
                             </div>
                         </div>
                     )}
 
-                    {/* Description */}
+                    {/* Description and key feature */}
                     {currentPageStatus === "Description" && (
                         <div className="relative">
                             <h2 className="flex gap-3 items-center my-subtitle mb-5">
-
                                 <span className="text-slate-500">
                                     <FaInfoCircle></FaInfoCircle>
                                 </span>
                                 Description
                             </h2>
 
-                            <div className="bg-slate-200 p-8">
+                            <div className="bg-slate-200 p-8 space-y-4">
+
+                                {/* Description */}
                                 <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
                                     <div className="flex-1">
                                         <label
                                             htmlFor="description"
-                                            className="block mb-2 text-sm font-medium text-slate-600 dark:text-slate-200 my-subtitle"
+                                            className="block mb-2 text-sm font-medium text-slate-600 my-subtitle"
                                         >
                                             Description
                                         </label>
@@ -658,9 +725,40 @@ const AddProductPage = () => {
                                     </div>
                                 </div>
 
+                                {/* Key features */}
+                                <div className="md:flex space-y-6 md:space-y-0 gap-6 lg:gap-14 justify-between">
+                                    <div className="flex-1">
+                                        <label htmlFor="key_features" className="block mb-2 text-sm font-medium text-slate-600 my-subtitle">  Key feature</label>
+
+                                        {keyFeatures.map((keyFeature, index) => (
+                                            <div key={index} className="relative">
+                                                <input
+                                                    type="text"
+                                                    className="my-inp my-2"
+                                                    value={keyFeature}
+                                                    placeholder="key feature"
+                                                    onChange={(e) => handleChange(index, e.target.value)}
+                                                />
+
+                                                {/* Button to remove this key feature */}
+                                                {index !== 0 && ( // Ensure there is always at least one input field
+                                                    <button className="h-full w-7 flex items-center justify-center border border-red-500 bg-red-500 bg-opacity-10 rounded absolute right-0 top-0" onClick={() => removeField(index)}><FaXmark></FaXmark></button>
+                                                )}
+                                            </div>
+                                        ))}
+
+                                        {/* Button to add a new key feature */}
+                                        <button type="button" className="btn btn-outline btn-success mt-2" onClick={addEmptyField}><FaPlus></FaPlus></button>
+
+                                        {keyFeatures.some(keyFeature => keyFeature.length < 1) && (
+                                            <p className="text-red-500">Key feature is required!</p>
+                                        )}
+                                    </div>
+                                </div>
+
                                 <div className="flex justify-center gap-2 my-8">
                                     <button className="my-btn-one" onClick={() => setCurrentPageStatus("Pricing")}>  Previous</button>
-                                    <button type="submit" className={` ${productDetailsDone ? 'my-btn-one' : 'nxt-prv-btn-disable'}`} disabled={productDetailsDone ? false : true} >  Done </button>
+                                    <button type="submit" className={` ${productDetailsDone ? 'my-btn-one' : 'nxt-prv-btn-disable'}`} disabled={!productDetailsDone} >  Add product  </button>
                                 </div>
                             </div>
                         </div>
