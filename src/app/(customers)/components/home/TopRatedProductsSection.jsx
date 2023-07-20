@@ -1,14 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import TopRatedCard from "./cards/TopRatedCard";
-import useAddToCart from "@/hooks/useAddToCart";
 import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
 
 const TopRatedProductsSection = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { handleAddToCart } = useAddToCart();
   useEffect(() => {
     fetch("https://glamorex.vercel.app/top-rated-products")
       .then((res) => res.json())
@@ -27,7 +25,6 @@ const TopRatedProductsSection = () => {
         {products.map((product) => {
           return (
             <TopRatedCard
-              handleAddToCart={handleAddToCart}
               key={product?._id}
               product={product}
             />
