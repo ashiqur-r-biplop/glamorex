@@ -4,23 +4,21 @@ import Select from "react-select";
 import { BsGrid } from "react-icons/bs";
 import { RxColumns } from "react-icons/rx";
 import { GridSystem } from "./HandleGridSystem.js";
-import { AiOutlineMinus } from "react-icons/ai";
-import { AiOutlinePlus } from "react-icons/ai";
 
-const ShopSideBar = ({ setControl, control }) => {
+const ShopSideBar = ({ setControl, control, shopFilter, ClearShopFilter }) => {
   const [gander, setGander] = useState("");
   const [controlProductColor, setControlProductColor] = useState(false);
   const [controlProductSize, setControlProductSize] = useState(false);
   const [filterIngData, setFilteringData] = useState(null);
 
-  // chat GPT
+
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
-  // chat GPT
+
   const categories = {
     Clothing: {
       "T-Shirts": {
@@ -272,22 +270,6 @@ const ShopSideBar = ({ setControl, control }) => {
     setSelectedSizes([]);
     setSelectedColors([]);
   };
-  const handleSizeChange = (e) => {
-    const size = e.target.value;
-    setSelectedSizes((prevSizes) =>
-      prevSizes.includes(size)
-        ? prevSizes.filter((s) => s !== size)
-        : [...prevSizes, size]
-    );
-  };
-  const handleColorChange = (e) => {
-    const color = e.target.value;
-    setSelectedColors((prevColors) =>
-      prevColors.includes(color)
-        ? prevColors.filter((c) => c !== color)
-        : [...prevColors, color]
-    );
-  };
   const renderCategories = () => {
     return Object.keys(categories).map((category) => ({
       value: category,
@@ -316,54 +298,47 @@ const ShopSideBar = ({ setControl, control }) => {
     return null;
   };
   console.log(selectedColors);
-  const renderSizes = () => {
-    if (selectedSubCategory) {
-      const { sizes } = categories[selectedCategory.value][selectedSubCategory];
-      return sizes.map((size) => (
-        <div key={size} className="flex items-center py-1 space-x-2">
-          <input
-            type="checkbox"
-            id={size}
-            name={size}
-            value={size}
-            checked={selectedSizes.includes(size)}
-            onChange={handleSizeChange}
-          />
-          <label htmlFor={size}>{size}</label>
-        </div>
-      ));
-    }
-    return null;
-  };
-  const renderColors = () => {
-    if (selectedSubCategory) {
-      const { colors } =
-        categories[selectedCategory.value][selectedSubCategory];
-      return colors.map((color) => (
-        <div key={color} className="flex items-center py-1  space-x-2">
-          <input
-            type="checkbox"
-            id={color}
-            name={color}
-            value={color}
-            checked={selectedColors.includes(color)}
-            onChange={handleColorChange}
-          />
-          <label htmlFor={color}>{color}</label>
-        </div>
-      ));
-    }
-    return null;
-  };
+  // const renderSizes = () => {
+  //   if (selectedSubCategory) {
+  //     const { sizes } = categories[selectedCategory.value][selectedSubCategory];
+  //     return sizes.map((size) => (
+  //       <div key={size} className="flex items-center py-1 space-x-2">
+  //         <input
+  //           type="checkbox"
+  //           id={size}
+  //           name={size}
+  //           value={size}
+  //           checked={selectedSizes.includes(size)}
+  //           onChange={handleSizeChange}
+  //         />
+  //         <label htmlFor={size}>{size}</label>
+  //       </div>
+  //     ));
+  //   }
+  //   return null;
+  // };
+  // const renderColors = () => {
+  //   if (selectedSubCategory) {
+  //     const { colors } =
+  //       categories[selectedCategory.value][selectedSubCategory];
+  //     return colors.map((color) => (
+  //       <div key={color} className="flex items-center py-1  space-x-2">
+  //         <input
+  //           type="checkbox"
+  //           id={color}
+  //           name={color}
+  //           value={color}
+  //           checked={selectedColors.includes(color)}
+  //           onChange={handleColorChange}
+  //         />
+  //         <label htmlFor={color}>{color}</label>
+  //       </div>
+  //     ));
+  //   }
+  //   return null;
+  // };
   const handleShopFilter = () => {
-    const obj = {
-      gander: gander,
-      category: category,
-      subCategory: subCategory,
-    };
-    setFilteringData({ ...obj });
-    console.log(filterIngData);
-    console.log(obj);
+    shopFilter(gander, category, subCategory);
   };
   console.log(filterIngData);
   return (
@@ -440,41 +415,18 @@ const ShopSideBar = ({ setControl, control }) => {
         </div>
         <div>{renderSubCategories()}</div>
         {gander && selectedCategory && selectedSubCategory && (
-          <div className="text-center">
+          <div className="text-center flex justify-evenly items-center">
+            <button onClick={handleShopFilter} className="my-btn-one my-2">
+              Filter
+            </button>
             <button
-              onClick={handleShopFilter}
+              onClick={ClearShopFilter}
               className="my-btn-one-outline my-2"
             >
-              Filter
+              Clear Filter
             </button>
           </div>
         )}
-        <div className="border-b-2 pb-3">
-          <div className="flex justify-between items-center pt-3 text-2xl">
-            <h4 className="">Color</h4>
-            <div className="cursor-pointer" onClick={handleColorProduct}>
-              {controlProductColor == false ? (
-                <AiOutlinePlus></AiOutlinePlus>
-              ) : (
-                <AiOutlineMinus></AiOutlineMinus>
-              )}
-            </div>
-          </div>
-          {controlProductColor == true && <div>{renderColors()}</div>}
-        </div>
-        <div className="border-b-2 pb-3">
-          <div className="flex justify-between items-center pt-3 text-2xl">
-            <h4 className="">Size</h4>
-            <div className="cursor-pointer" onClick={handleSizeProduct}>
-              {controlProductSize == false ? (
-                <AiOutlinePlus></AiOutlinePlus>
-              ) : (
-                <AiOutlineMinus></AiOutlineMinus>
-              )}
-            </div>
-          </div>
-          {controlProductSize == true && <div>{renderSizes()}</div>}
-        </div>
       </div>
     </div>
   );

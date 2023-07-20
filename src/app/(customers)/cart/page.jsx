@@ -4,6 +4,7 @@ import CartRow from "../components/cart/CartRow";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import LoadingSpinner from "../components/HelpingCompo/LoadingSpinner";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -16,6 +17,7 @@ const CartPage = () => {
   const { axiosSecure } = useAxiosSecure();
 
   const [control, setControl] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setDiscountGift(localStorage.getItem("giftPrize"));
@@ -53,6 +55,7 @@ const CartPage = () => {
         );
 
         setCart(data?.data);
+        setLoading(false);
       })
       .catch((e) => console.log(e.message));
   }, [discountGift, control]);
@@ -68,9 +71,7 @@ const CartPage = () => {
       sub_total: product.sub_total,
       buy_quantity: product.buy_quantity,
     };
-    axiosSecure
-      .patch("/inc-dec", cart_product)
-      .then((res) => {});
+    axiosSecure.patch("/inc-dec", cart_product).then((res) => {});
     setCurrentQuantity(currentQuantity);
 
     const totalSubTotalAmount = cart?.reduce(
@@ -118,9 +119,7 @@ const CartPage = () => {
       sub_total: product.sub_total,
       buy_quantity: product.buy_quantity,
     };
-    axiosSecure
-      .patch("/inc-dec", cart_product)
-      .then((res) => {});
+    axiosSecure.patch("/inc-dec", cart_product).then((res) => {});
     const totalSubTotalAmount = cart?.reduce(
       (previousPrice, currentPrice) =>
         previousPrice + parseInt(currentPrice.sub_total),
@@ -160,72 +159,83 @@ const CartPage = () => {
     });
   };
 
-  return (
-    <div className="my-container my-16  grid lg:grid-cols-3 gap-5 items-start lg:gap-10">
-      <table className="w-full lg:col-span-2">
-        <thead>
-          <tr className="text-xl border-b-2">
-            <th className="text-start px-5 py-3">Product</th>
-            <th className="text-start">Quantity</th>
-            <th className="text-end">Subtotal</th>
-          </tr>
-        </thead>
-        <tbody className="">
-          {cart.map((item, i) => (
-            <CartRow
-              key={i}
-              item={item}
-              handlePlus={handlePlus}
-              handleMinus={handleMinus}
-              buyCurrentQuantity={buyCurrentQuantity}
-              handleDeleteProduct={handleDeleteProduct}
-            />
-          ))}
-        </tbody>
-      </table>
-
-      {/* Order summary */}
-      <div className="bg-gray-100 rounded-md space-y-4 p-5 lg:col-span-1 h-fit lg:mt-14 sticky top-24">
-        <p className="text-3xl font-bold text-center py-5">Order Summary</p>
-        <div className="flex justify-between w-full">
-          <span>Subtotal</span>
-          <span>${subtotal}</span>
-        </div>
-
-        <div className="flex justify-between">
-          <span>Tax</span>
-          <span>${tax}</span>
-        </div>
-
-        <div className="flex justify-between">
-          <span>Shipping Charge</span>
-          <span>${ShippingCharge}</span>
-        </div>
-
-        {discountGift && (
-          <div className="flex justify-between">
-            <span className="font-bold">Discount</span>
-            <span className="font-bold">{discountGift}</span>
-          </div>
+  if (loading){
+    return <LoadingSpinner></LoadingSpinner>
+  }
+    return (
+      <div className="my-container my-16  grid lg:grid-cols-3 gap-5 items-start lg:gap-10">
+        {!cart.length ? (
+          <>
+            <div className="h-full flex justify-center items-center w-full lg:col-span-2">
+              <h2 className="my-title">No product added in cart</h2>
+            </div>
+          </>
+        ) : (
+          <table className="w-full lg:col-span-2">
+            <thead>
+              <tr className="text-xl border-b-2">
+                <th className="text-start px-5 py-3">Product</th>
+                <th className="text-start">Quantity</th>
+                <th className="text-end">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody className="">
+              {cart.map((item, i) => (
+                <CartRow
+                  key={i}
+                  item={item}
+                  handlePlus={handlePlus}
+                  handleMinus={handleMinus}
+                  buyCurrentQuantity={buyCurrentQuantity}
+                  handleDeleteProduct={handleDeleteProduct}
+                />
+              ))}
+            </tbody>
+          </table>
         )}
 
-        <div className="flex justify-between">
-          <span className="font-bold">Total</span>
-          <span className="font-bold">${totalPrice}</span>
-        </div>
+        {/* Order summary */}
+        <div className="bg-gray-100 rounded-md space-y-4 p-5 lg:col-span-1 h-fit lg:mt-14 sticky top-24">
+          <p className="text-3xl font-bold text-center py-5">Order Summary</p>
+          <div className="flex justify-between w-full">
+            <span>Subtotal</span>
+            <span>${subtotal}</span>
+          </div>
 
-        <div className="flex justify-end pt-4">
-          <Link href={"/checkout"}>
-            <button className="my-btn-one">
-              <p className="flex items-center gap-3">
-                <span>Proceed to Checkout</span> <FaArrowRight />
-              </p>
-            </button>
-          </Link>
+          <div className="flex justify-between">
+            <span>Tax</span>
+            <span>${tax}</span>
+          </div>
+
+          <div className="flex justify-between">
+            <span>Shipping Charge</span>
+            <span>${ShippingCharge}</span>
+          </div>
+
+          {discountGift && (
+            <div className="flex justify-between">
+              <span className="font-bold">Discount</span>
+              <span className="font-bold">{discountGift}</span>
+            </div>
+          )}
+
+          <div className="flex justify-between">
+            <span className="font-bold">Total</span>
+            <span className="font-bold">${totalPrice}</span>
+          </div>
+
+          <div className="flex justify-end pt-4">
+            <Link href={"/checkout"}>
+              <button className="my-btn-one">
+                <p className="flex items-center gap-3">
+                  <span>Proceed to Checkout</span> <FaArrowRight />
+                </p>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default CartPage;

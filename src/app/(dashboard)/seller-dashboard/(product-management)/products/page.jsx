@@ -8,9 +8,9 @@ const products = () => {
     // const [products, setProducts] = useState([])
     const [products, setProducts] = useState({name:"test", price: 23, quantity:20, category: 'hey', sub_category: 'hello'})
     const isProductsLoading = false
-    // useEffect(()=>{
-    //     axiosSecure('/get-my-products').then(res=> console.log(res.data)).catch(e=> console.log(e.message))
-    // },[])
+    useEffect(()=>{
+        axiosSecure('/get-my-products').then(res=> {console.log(res.data); console.log('test')}).catch(e=> console.log(e.message))
+    },[])
 
     return (
         <div className="min-h-screen bg-cover bg-center bg-slate-800 bg-blend-overlay">
@@ -18,7 +18,7 @@ const products = () => {
                 isProductsLoading ? <div className='h-screen flex items-center justify-center'>
                     <LoadingSpinner></LoadingSpinner>
                 </div>
-                    : !products.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no products added!</h2></div>
+                    : !products.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>No products have been added yet!!</h2></div>
                         : <div className='my-container py-20 px-10 xl:px-5'>
                             <div className="!overflow-x-auto xl:w-full bg-slate-900 bg-opacity-75 text-slate-200 rounded shadow-inner shadow-slate-600 py-8">
                                 <table className="table">

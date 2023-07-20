@@ -58,10 +58,9 @@ const UserManagementPage = () => {
     });
   };
   const search = (data) => {
-    console.log(data.search_text)
-    axiosSecure(`/admin/search?query=${data.search_text}`).then(
+    axiosSecure(`/admin/search-products?query=${data.search_text}`).then(
       (res) => {
-        console.log("63",res.data)
+        console.log(res)
         setUsers(res.data);
       }
     );

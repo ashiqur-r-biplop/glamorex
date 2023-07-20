@@ -4,7 +4,7 @@ import GridLayout from "./GridLayout";
 import ColumnLayout from "./ColumnLayout";
 import { GridSystem } from "./HandleGridSystem";
 
-const TopCard = ({ product, handleAddToCart, layout }) => {
+const TopCard = ({ product, layout }) => {
   const isMobileScreen = () => {
     return window.innerWidth <= 768;
   };
@@ -27,19 +27,11 @@ const TopCard = ({ product, handleAddToCart, layout }) => {
   return (
     <>
       <div>
-        {layout === "grid" && (
-          <GridLayout
-            product={product}
-            handleAddToCart={handleAddToCart}
-          ></GridLayout>
-        )}
+        {layout === "grid" && <GridLayout product={product}></GridLayout>}
         <div className={`${layout === "column" ? "block" : "hidden"}`}>
           {layout === "column" && (
             <div className="flex">
-              <ColumnLayout
-                product={product}
-                handleAddToCart={handleAddToCart}
-              ></ColumnLayout>
+              <ColumnLayout product={product}></ColumnLayout>
             </div>
           )}
         </div>

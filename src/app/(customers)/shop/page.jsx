@@ -6,27 +6,38 @@ import TopCard from "../components/shop/TopCard";
 import ShopSideBar from "../components/shop/ShopSidebar";
 import { currentLayout } from "../components/shop/HandleGridSystem";
 import useAddToCart from "@/hooks/useAddToCart";
+import LoadingSpinner from "../components/HelpingCompo/LoadingSpinner";
+import axios from "axios";
 const ShopPage = () => {
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
-  const { handleAddToCart } = useAddToCart();
+  const [isControl, setIsControl] = useState(true);
 
   const layout = JSON.parse(currentLayout());
   console.log(layout);
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/all-products")
+    fetch("https://glamorex.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setTopSale(data);
         setLoading(false);
       });
-  }, [control]);
+  }, [isControl]);
+  const shopFilter = (gander, category, subCategory) => {
+    axios(
+      `https://glamorex.vercel.app/products?category=${category}}&gander=${gander}&subCategory=${subCategory}`
+    ).then((data) => {
+      setTopSale(data?.data);
+    });
+  };
+  const ClearShopFilter = () => {
+    setIsControl(!isControl);
+  };
 
   if (loading) {
-    return <>Loading....</>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
-  
   return (
     <div className="">
       <div className="bg-slate-300">
@@ -74,7 +85,12 @@ const ShopPage = () => {
       <div className="container  my-10 mx-auto px-3 grid grid-cols-1 md:grid-cols-12 gap-10">
         {/* TODO */}
         <div className="md:col-span-3 relative">
-          <ShopSideBar setControl={setControl} control={control}></ShopSideBar>
+          <ShopSideBar
+            setControl={setControl}
+            shopFilter={shopFilter}
+            control={control}
+            ClearShopFilter={ClearShopFilter}
+          ></ShopSideBar>
         </div>
         <div className="md:col-span-9">
           <div
@@ -89,7 +105,6 @@ const ShopPage = () => {
                 key={product?.product_id}
                 product={product}
                 layout={layout}
-                handleAddToCart={handleAddToCart}
               ></TopCard>
             ))}
           </div>

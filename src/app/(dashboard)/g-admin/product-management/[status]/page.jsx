@@ -12,15 +12,19 @@ import featuredImage from '../../../../../../public/featured.png';
 import MakeFeaturedImage from '../../../../../../public/make-featured.png';
 import { useParams } from 'next/navigation';
 import TapLink from '@/app/(dashboard)/components/TapLink';
+import { useForm } from 'react-hook-form';
 
 const ProductManagementPage = () => {
+    const {handleSubmit, register} = useForm()
     const {status} = useParams()
     const {axiosSecure} = useAxiosSecure()
 
-    
-    const {data : products, isLoading} = useGetProductsQuery(status)
+    const [products, setProducts] = useState()
+    const {data : allProducts, isLoading} = useGetProductsQuery(status)
  
-
+    useEffect(() => {
+        setProducts(allProducts)
+    },[])
    const updateOrderStatus = (status, productId) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -143,6 +147,16 @@ const ProductManagementPage = () => {
 
     }
 
+
+    const search = (data) => {
+        axiosSecure.get(`/admin/search-products?query=${data.search_text}`).then(
+          (res) => {
+            setProducts(res.data);
+          }
+        )
+        .catch(error => console.log(error))
+      };
+
     const options = [
         { value: 'pending', label: 'Pending' },
         { value: 'approved', label: 'Approved' },
@@ -170,8 +184,24 @@ const ProductManagementPage = () => {
                     
                 </div>
 
-            <div className='relative mx-auto w-[80%] flex justify-center my-8'><input placeholder='search here...' type='text' className='bg-white py-3 w-full pl-14 border-2 rounded-full outline-none border-stone-300 text-black' /> <span className='absolute top-1/2 -translate-y-1/2 left-5 text-stone-300'><FaSearch></FaSearch></span> </div>
-
+                <form
+          onSubmit={handleSubmit(search)}
+          className="relative mx-auto w-[80%] flex justify-center my-8"
+        >
+          <input
+            name="search_text"
+            {...register("search_text")}
+            placeholder="search here..."
+            type="text"
+            className="bg-white py-3 w-full pl-14 border-2 rounded-full outline-none border-stone-300 text-black"
+          />{" "}
+          <button
+            type="submit"
+            className="absolute top-1/2 -translate-y-1/2 left-5 text-stone-300"
+          >
+            <FaSearch></FaSearch>
+          </button>
+        </form>
             {/* Table */}
             <div className="overflow-x-auto mt-10">
                 <table className="table">
