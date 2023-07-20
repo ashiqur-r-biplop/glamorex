@@ -1,26 +1,23 @@
 import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useState } from "react";
-import useAuth from "@/hooks/useAuth";
-import useAxiosSecure from "@/hooks/useAxiosSecure";
-import Swal from "sweetalert2";
 
 const ProductCard = ({ product }) => {
-  const { user } = useAuth();
   const {
     _id,
     product_id,
     name,
     image,
     description,
-    rating,
+    ratings,
+    reviews,
     price,
     discount,
     previous_price,
     quantity,
   } = product || [];
+
+  console.log(product)
 
   const myStyles = {
     itemShapes: ThinStar,
@@ -54,7 +51,7 @@ const ProductCard = ({ product }) => {
           <div className="flex justify-between items-center mt-4">
             <p className="font-semibold text-xl">{name}</p>
             <div className="flex gap-2">
-              {previous_price !== null && (
+              {previous_price && (
                 <p className="line-through text-red-500">${previous_price}</p>
               )}
               <p className="font-bold text-green-500">${price}</p>
@@ -64,12 +61,12 @@ const ProductCard = ({ product }) => {
           <div className="flex items-center gap-1">
             <Rating
               style={{ maxWidth: 90 }}
-              value={rating}
+              value={ratings}
               readOnly
               itemStyles={myStyles}
             />
-            {/* TODO: Rating count here */}
-            <p className="text-gray-500">{rating}</p>
+            {/*reviews count here */}
+            <p className="text-gray-500">({reviews}) Reviews</p>
           </div>
         </div>
       </div>
