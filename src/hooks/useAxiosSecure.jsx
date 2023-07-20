@@ -19,18 +19,18 @@ const useAxiosSecure = () => {
             }
             return config
         })
-        axiosSecure.interceptors.response.use(
-            (response) => response,
-            async (error) => {
-              if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-                localStorage.removeItem("access-token");
-              //  return window.location.href = "/signin"
-              // <Route path="/signin" component={SignInPage} />
-              router.push('/signin')
-              }
-              return Promise.reject(error);
-            }
-          );
+        // axiosSecure.interceptors.response.use(
+        //     (response) => response,
+        //     async (error) => {
+        //       if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+        //         localStorage.removeItem("access-token");
+        //       //  return window.location.href = "/signin"
+        //       // <Route path="/signin" component={SignInPage} />
+        //       router.push('/signin')
+        //       }
+        //       return Promise.reject(error);
+        //     }
+        //   );
     },[])
     return {axiosSecure}
 };
