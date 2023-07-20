@@ -38,7 +38,6 @@ const ShopPage = () => {
   if (loading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-
   return (
     <div className="">
       <div className="bg-slate-300">

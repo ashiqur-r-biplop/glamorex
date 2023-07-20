@@ -8,7 +8,7 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const TopRatedCard = ({ product, handleAddToCart }) => {
   const {
-    product_id,
+    _id,
     name,
     image,
     description,
@@ -28,7 +28,7 @@ const TopRatedCard = ({ product, handleAddToCart }) => {
   };
 
   return (
-    <Link href={`/product/${product_id}`}>
+    <Link href={`/product/${_id}`}>
       <div className="flex flex-col rounded-md md:max-w-xs w-full h-full border-2 border-gray-100 relative">
         <div className="w-full p-5">
           <Image
