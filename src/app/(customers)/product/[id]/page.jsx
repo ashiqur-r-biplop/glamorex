@@ -1,4 +1,5 @@
 "use client";
+import { useWishlist } from "@/hooks/UseWishlist";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { data } from "autoprefixer";
 import axios from "axios";
@@ -12,6 +13,7 @@ import ReactImageZoom from "react-image-zoom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 const productDetailsPage = () => {
+  const { handleWishList } = useWishlist();
   const { id } = useParams();
   console.log(id);
   const [product, setProduct] = useState({});
@@ -243,7 +245,12 @@ const productDetailsPage = () => {
                   <button className="my-btn-one-outline">Add To Cart</button>
                 </>
               ) : (
-                <button className="my-btn-one-outline">Add to WishList</button>
+                <button
+                  onClick={() => handleWishList(product)}
+                  className="my-btn-one-outline"
+                >
+                  Add to WishList
+                </button>
               )}
             </div>
           </div>
@@ -290,7 +297,8 @@ const productDetailsPage = () => {
             <h2 className="my-title mb-3">Related Products</h2>
             {similarProducts &&
               similarProducts.map((similarProduct, ind) => {
-                const { image, name, price, quantity } = similarProduct || {};
+                const { _id, image, name, price, quantity } =
+                  similarProduct || {};
                 return (
                   <div
                     key={ind}
@@ -305,7 +313,12 @@ const productDetailsPage = () => {
                       <h2 className="my-subtitle">{name}</h2>
                       <p>${price}</p>
                       <p>{quantity} product left</p>
-                      <button className="my-btn-one">Add to Bag</button>
+                      <Link
+                        className="my-btn-one-outline"
+                        href={`/product/${_id}`}
+                      >
+                        View Details
+                      </Link>
                     </div>
                   </div>
                 );

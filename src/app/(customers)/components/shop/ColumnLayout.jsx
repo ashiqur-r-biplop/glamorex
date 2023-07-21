@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { TbListDetails } from "react-icons/tb";
 
 const ColumnLayout = ({ product }) => {
   const {
@@ -43,7 +42,7 @@ const ColumnLayout = ({ product }) => {
           <div className="space-x-3">
             <button className="my-btn-one-outline">
               <Link href={`/product/${_id}`}>
-                <TbListDetails></TbListDetails>
+                View Details
               </Link>
             </button>
           </div>
