@@ -1,4 +1,5 @@
 "use client";
+import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ import { FaCheck } from "react-icons/fa";
 const PhotoUpdateForm = () => {
   const router = useRouter();
   const { axiosSecure } = useAxiosSecure();
+  const { user } = useAuth();
   // const [loading, setLoading] = useState(false)
 
   const { register, handleSubmit } = useForm();
@@ -28,8 +30,9 @@ const PhotoUpdateForm = () => {
         const photo_url = res.data.data.url;
         const updatePhoto = {
           photo_url,
+          email: user,
         };
-        console.log(updatePhoto)
+        console.log(updatePhoto);
         axiosSecure
           .patch("/update-photo", updatePhoto)
           .then((res) => {
