@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const WishListCard = ({ product }) => {
-  const { _id, name, image, price, status } = product || [];
+  const { product_id,_id, name, image, price, status } = product || [];
 
   return (
     <div className="p-5 my-4 n border w-full">
@@ -31,7 +31,7 @@ const WishListCard = ({ product }) => {
           <div className="space-x-3">
             {/* TODO: view details not working  */}
             <button className="my-btn-one-outline">
-              <Link href={`/product/${_id}`}>View Details</Link>
+              <Link href={`/product/${product_id}`}>View Details</Link>
             </button>
           </div>
         </div>

@@ -8,61 +8,138 @@ import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { FiLogOut } from "react-icons/fi";
+<<<<<<< HEAD
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+=======
+import { AiOutlineShoppingCart } from "react-icons/ai";
+>>>>>>> 228712bcee0299f5d11380e2f9316fc780f0c39b
 import useUserRole from "@/hooks/useUserRole";
 import { FaUserCheck } from "react-icons/fa6";
 import { MdDashboard } from "react-icons/md";
 import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
 import useMonitorToken from "@/hooks/useMonitorToken";
-
+import { FaCartPlus } from "react-icons/fa";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, setUser, loading: authLoading, setLoading: setAuthLoading } = useAuth();
+  const {
+    user,
+    setUser,
+    loading: authLoading,
+    setLoading: setAuthLoading,
+  } = useAuth();
   const { axiosSecure } = useAxiosSecure();
-  const { role, loading: userRoleLoading } = useUserRole()
-  const { storedToken, setStoredToken, control, setControl } = useMonitorToken()
+  const { role, loading: userRoleLoading } = useUserRole();
+  const { storedToken, setStoredToken, control, setControl } =
+    useMonitorToken();
 
   useEffect(() => {
     if (storedToken) {
+<<<<<<< HEAD
       setAuthLoading(true)
+=======
+      setAuthLoading(true);
+>>>>>>> 228712bcee0299f5d11380e2f9316fc780f0c39b
       axiosSecure
         .get("/profile")
         .then((response) => {
           setUser(response.data);
+<<<<<<< HEAD
           setAuthLoading(false)
         })
         .catch((error) => {
           console.error(error);
           setAuthLoading(false)
+=======
+          setAuthLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setAuthLoading(false);
+>>>>>>> 228712bcee0299f5d11380e2f9316fc780f0c39b
         });
     } else {
-      setAuthLoading(false)
+      setAuthLoading(false);
     }
   }, [control, storedToken]);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 228712bcee0299f5d11380e2f9316fc780f0c39b
   const logOut = () => {
     localStorage.removeItem("access-token");
-    setUser(null)
-    setStoredToken(null)
-    setControl(!control) //for rerender
+    setUser(null);
+    setStoredToken(null);
+    setControl(!control); //for rerender
   };
 
-  const menu = <>
-    <NavLink href={"/"}>Home</NavLink>
-    <NavLink href={"/shop"}>Shop</NavLink>
-    <NavLink href={"/blog"}>Blogs</NavLink>
-    <NavLink href={"/about"}>About</NavLink>
-    <NavLink href={"/contact"}>Contact</NavLink>
-    <NavLink href={"/cart"}><AiOutlineShoppingCart /></NavLink>
-  </>
-  const profileDropdown = <>
-    {(user && (userRoleLoading || authLoading)) ? <LoadingSpinner className={'h-14 w-14'}></LoadingSpinner> : !user ? <NavLink href="/signin">Signin</NavLink> : <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img src={user?.photo_url} />
+  const menu = (
+    <>
+      <NavLink href={"/"}>Home</NavLink>
+      <NavLink href={"/shop"}>Shop</NavLink>
+      <NavLink href={"/blog"}>Blogs</NavLink>
+      <NavLink href={"/about"}>About</NavLink>
+      <NavLink href={"/contact"}>Contact</NavLink>
+      <NavLink href={"/cart"}>
+        <AiOutlineShoppingCart />
+      </NavLink>
+    </>
+  );
+  const profileDropdown = (
+    <>
+      {user && (userRoleLoading || authLoading) ? (
+        <LoadingSpinner className={"h-14 w-14"}></LoadingSpinner>
+      ) : !user ? (
+        <NavLink href="/signin">Signin</NavLink>
+      ) : (
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user?.photo_url} />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className=" dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 text-white rounded-box w-52 font-semibold"
+          >
+            <li>
+              <Link href={"/account"} className="p-2 flex gap-2 items-center">
+                Profile <FaUserCheck />
+              </Link>
+            </li>
+            {role === "customer" && (
+              <li>
+                <Link href={"/wishlist"} className="p-2 flex gap-2 items-center">
+                  WishList <FaCartPlus />
+                </Link>
+              </li>
+            )}
+            {(role === "seller" || role === "admin") && (
+              <li>
+                {" "}
+                <Link
+                  href={`${
+                    role === "seller"
+                      ? "/seller-dashboard"
+                      : role === "admin"
+                      ? "g-admin"
+                      : "#"
+                  }`}
+                  className="p-2 flex gap-2 items-center"
+                >
+                  Dashboard <MdDashboard />{" "}
+                </Link>
+              </li>
+            )}
+            <li>
+              <button onClick={logOut} className="p-2 flex gap-2 items-center">
+                Logout <FiLogOut />
+              </button>
+            </li>
+          </ul>
         </div>
+<<<<<<< HEAD
       </label>
       <ul
         tabIndex={0}
@@ -87,6 +164,11 @@ function Nav() {
   </>
 
 
+=======
+      )}
+    </>
+  );
+>>>>>>> 228712bcee0299f5d11380e2f9316fc780f0c39b
 
   return (
     <nav className="bg-slate-800 bg-opacity-50 fixed left-0 top-0 right-0 px-3 z-50">
@@ -104,12 +186,15 @@ function Nav() {
             {/* desktop nav */}
             <div className="flex items-center">
               <div className="hidden md:block">
+<<<<<<< HEAD
                 <div className="ml-10 flex items-center space-x-4">
                   {menu}
                 </div>
+=======
+                <div className="ml-10 flex items-center space-x-4">{menu}</div>
+>>>>>>> 228712bcee0299f5d11380e2f9316fc780f0c39b
               </div>
             </div>
-
 
             {/* mobile menu toggle button */}
             <div className="-mr-2 flex md:hidden">
@@ -157,7 +242,6 @@ function Nav() {
               </button>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -183,7 +267,6 @@ function Nav() {
           </div>
         )}
       </Transition>
-
     </nav>
   );
 }
