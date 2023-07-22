@@ -9,40 +9,36 @@ import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { FiLogOut } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import useUserRole from "@/hooks/useUserRole";
-import {  FaUserCheck } from "react-icons/fa6";
+import { FaUserCheck } from "react-icons/fa6";
 import Loading from "@/private/Loading";
 import { MdDashboard } from "react-icons/md";
-
+import { FaCartPlus } from "react-icons/fa";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, loading:authLoading} = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState(null);
-  const { role, loading:userRoleLoading } = useUserRole()
-  const token = localStorage.getItem("access-token")
+  const { role, loading: userRoleLoading } = useUserRole();
+  const token = localStorage.getItem("access-token");
   useEffect(() => {
-    if(token) {
+    if (token) {
       axiosSecure
-      .get("/profile")
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+        .get("/profile")
+        .then((response) => {
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [token]);
-
- 
 
   const logOut = () => {
     localStorage.removeItem("access-token");
   };
- 
-     
 
   return (
     <nav className="bg-gray-800 sticky left-0 top-0 right-0 px-3 z-50">
@@ -59,45 +55,77 @@ function Nav() {
             {/* desktop nav */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-4">
-              <NavLink href={"/"}>Home</NavLink>
-      <NavLink href={"/shop"}>Shop</NavLink>
-      <NavLink href={"/blog"}>Blogs</NavLink>
-      <NavLink href={"/about"}>About</NavLink>
-      <NavLink href={"/contact"}>Contact</NavLink>
-      <NavLink href={"/cart"}><AiOutlineShoppingCart /></NavLink>
-      {
-         !user &&  <NavLink href="/signin">Signin</NavLink>
-      }
-      {userRoleLoading || authLoading ? '' : user && 
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src={User?.photo_url} />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className=" dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 text-white rounded-box w-52 font-semibold"
-          >
-            <li>
-              <Link href={"/account"} className="p-2 flex gap-2 items-center">
-                Profile <FaUserCheck />
-              </Link>
-            </li>
-            {
-              (role === 'seller' || role === 'admin') &&
-              <li> <Link href={`${role === 'seller' ? '/seller-dashboard' : role === 'admin' ? 'g-admin' : '#'}`} className="p-2 flex gap-2 items-center">Dashboard <MdDashboard /> </Link></li>
-            }
-            <li>
-              <button onClick={logOut} className="p-2 flex gap-2 items-center">
-                Logout <FiLogOut />
-              </button>
-            </li>
-          </ul>
-        </div>      
-        
-      }
-
+                <NavLink href={"/"}>Home</NavLink>
+                <NavLink href={"/shop"}>Shop</NavLink>
+                <NavLink href={"/blog"}>Blogs</NavLink>
+                <NavLink href={"/about"}>About</NavLink>
+                <NavLink href={"/contact"}>Contact</NavLink>
+                <NavLink href={"/cart"}>
+                  <AiOutlineShoppingCart />
+                </NavLink>
+                {!user && <NavLink href="/signin">Signin</NavLink>}
+                {userRoleLoading || authLoading
+                  ? ""
+                  : user && (
+                      <div className="dropdown dropdown-end">
+                        <label
+                          tabIndex={0}
+                          className="btn btn-ghost btn-circle avatar"
+                        >
+                          <div className="w-10 rounded-full">
+                            <img src={User?.photo_url} />
+                          </div>
+                        </label>
+                        <ul
+                          tabIndex={0}
+                          className=" dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 text-white rounded-box w-52 font-semibold"
+                        >
+                          <li>
+                            <Link
+                              href={"/account"}
+                              className="p-2 flex gap-2 items-center"
+                            >
+                              Profile <FaUserCheck />
+                            </Link>
+                          </li>
+                          {role === "customer" && (
+                            <li>
+                              <Link
+                                href={"/wishlist"}
+                                className="p-2 flex gap-2 items-center"
+                              >
+                                WishList <FaCartPlus />
+                              </Link>
+                            </li>
+                          )}
+                          {(role === "seller" || role === "admin") && (
+                            <li>
+                              {" "}
+                              <Link
+                                href={`${
+                                  role === "seller"
+                                    ? "/seller-dashboard"
+                                    : role === "admin"
+                                    ? "g-admin"
+                                    : "#"
+                                }`}
+                                className="p-2 flex gap-2 items-center"
+                              >
+                                Dashboard <MdDashboard />{" "}
+                              </Link>
+                            </li>
+                          )}
+                          <li>
+                            <button
+                              onClick={logOut}
+                              className="p-2 flex gap-2 items-center"
+                            >
+                              Logout <FiLogOut />
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
               </div>
             </div>
           </div>

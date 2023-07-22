@@ -2,21 +2,21 @@
 import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { FaCheck } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const PhotoUpdateForm = () => {
-  const router = useRouter();
   const { axiosSecure } = useAxiosSecure();
   const { user } = useAuth();
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    // setLoading(true)
+    setLoading(true);
     const { photo } = data;
 
     // upload image
@@ -32,15 +32,12 @@ const PhotoUpdateForm = () => {
           photo_url,
           email: user,
         };
-        console.log(updatePhoto);
         axiosSecure
           .patch("/update-photo", updatePhoto)
           .then((res) => {
             if (res.data) {
-              // setLoading(false);
-
-              // navigate to profile page after 3 seconds
-              router.push("/account");
+              console.log(res.data);
+              setLoading(false);
               Swal.fire({
                 position: "center",
                 icon: "success",
@@ -55,6 +52,9 @@ const PhotoUpdateForm = () => {
       .catch((e) => console.log(e.message));
   };
 
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label

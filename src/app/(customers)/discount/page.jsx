@@ -10,9 +10,8 @@ const DiscountPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // TODO: api no data
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/featured-products")
+    fetch("https://glamorex.vercel.app/discount-products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
