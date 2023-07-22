@@ -1,6 +1,7 @@
 
+import Sidebar from "@/components/admin/shared/Sidebar";
 import AdminOnly from "@/private/AdminOnly";
-import Sidebar from "./components/shared/Sidebar";
+
 
 const AdminLayout = ({children}) => {
    

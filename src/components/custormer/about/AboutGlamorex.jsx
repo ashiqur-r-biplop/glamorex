@@ -1,4 +1,4 @@
-import aboutImg from "../../../../../public/assets/img/about.jpg";
+import aboutImg from "../../../../public/assets/img/about.jpg";
 
 const AboutGlamorex = () => {
   return (

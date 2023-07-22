@@ -1,4 +1,4 @@
-import logo from "../.../../../../../../../public/assets/img/logo.png";
+import logo from "../../../../public/assets/img/logo.png";
 import Image from "next/image";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import { FaProductHunt } from "react-icons/fa6";

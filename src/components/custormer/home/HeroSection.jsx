@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import bannerBg from '../../../../../public/assets/img/heroBg.jpg'
+import bannerBg from '../../../../public/assets/img/heroBg.jpg'
 import Link from 'next/link';
 
 const HeroSection = () => {

@@ -1,4 +1,4 @@
-import visionImg from "../../../../../public/assets/img/our-vission.jpg";
+import visionImg from "../../../../public/assets/img/our-vission.jpg";
 import { FiTruck } from "react-icons/fi";
 import { FaShoppingCart, FaTrophy } from "react-icons/fa";
 import { MdSpeed } from "react-icons/md";

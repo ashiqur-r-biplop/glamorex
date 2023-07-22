@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import termsBanner from "../../../../public/terms-banner.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Link from "next/link";
-import CmnSectionTitle from "../components/HelpingCompo/CmnSectionTitle";
+import CmnSectionTitle from "@/components/custormer/HelpingCompo/CmnSectionTitle";
+
 
 const TermsCondition = () => {
   return (

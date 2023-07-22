@@ -36,7 +36,10 @@ const SignInPage = () => {
       .then((res) => {
         if (res.data) {
           if (res.data.token) {
-            localStorage.setItem("access-token", res.data.token);
+            if(typeof window !== 'undefined' && window.localStorage) {
+
+              localStorage.setItem("access-token", res.data.token);
+            }
             Swal.fire({
               position: "center",
               icon: "success",
@@ -46,7 +49,10 @@ const SignInPage = () => {
             });
             router.push("/")
           } else {
-            localStorage.removeItem("access-token");
+            if(typeof window !== 'undefined' && window.localStorage) {
+
+              localStorage.removeItem("access-token");
+            }
           }
         }
       })

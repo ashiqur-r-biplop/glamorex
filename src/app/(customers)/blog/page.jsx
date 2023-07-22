@@ -3,9 +3,10 @@ import { IoMdClose } from "react-icons/io";
 import { fetchBlogs } from "@/redux-toolkit/slice/blogReducer/blogSlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BlogCard from "../components/blog/BlogCard";
+
 import axios from "axios";
 import moment from "moment";
+import BlogCard from "@/components/custormer/blog/BlogCard";
 
 const BlogPage = () => {
   const [isOpen, setIsOpen] = useState(false);

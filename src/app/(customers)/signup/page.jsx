@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bgImg from "/public/assets/img/signinBg.jpg";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
@@ -15,9 +15,11 @@ import axios from "axios";
 
 const SignUpPage = () => {
   const { user } = useAuth();
-  if (user) {
-    return (window.location.href = "/");
-  }
+  useEffect(() => {
+    if (user) {
+      return (window.location.href = "/");
+    }
+  },[])
   const { axiosSecure } = useAxiosSecure();
   const [isShowPass, setIsShowPass] = useState(false);
   const [isConfirmShowPass, setIsConfirmShowPass] = useState(false);

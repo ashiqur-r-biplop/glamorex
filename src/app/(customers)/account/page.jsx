@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import EditButton from "../components/account/EditButton";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import CustomerOnly from "@/private/CustomerOnly";
+import EditButton from "@/components/custormer/account/EditButton";
 
 // const User = {
 //   id: "123",

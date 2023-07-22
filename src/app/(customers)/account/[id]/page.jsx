@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import CustomerOnly from "@/private/CustomerOnly";
-import PhotoUpdateForm from "../../components/account/PhotoUpdateForm";
+import PhotoUpdateForm from "@/components/custormer/account/PhotoUpdateForm";
+
 
 const ProfileEdit = () => {
   const router = useRouter();

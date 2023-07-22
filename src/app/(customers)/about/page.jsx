@@ -1,10 +1,10 @@
 import { MdKeyboardArrowRight } from "react-icons/md";
 import aboutBanner from "../../../../public/bg-about.jpg";
-import TrustedSection from "../components/home/TrustedSection";
-import AboutGlamorex from "../components/about/AboutGlamorex";
-import OurMission from "../components/about/OurMission";
-import OurPromise from "../components/about/OurPromise";
-import OurTeam from "../components/about/OurTeam";
+import TrustedSection from "@/components/custormer/home/TrustedSection";
+import OurTeam from "@/components/custormer/about/OurTeam";
+import OurMission from "@/components/custormer/about/OurMission";
+import OurPromise from "@/components/custormer/about/OurPromise";
+import AboutGlamorex from "@/components/custormer/about/AboutGlamorex";
 const AboutPage = () => {
   return (
     <div>

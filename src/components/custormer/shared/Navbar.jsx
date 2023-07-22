@@ -2,7 +2,7 @@
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import NavLink from "../HelpingCompo/NavLink";
-import logo from "../../../../../public/assets/img/logo.png";
+import logo from "../../../../public/assets/img/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
@@ -22,24 +22,32 @@ function Nav() {
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState(null);
   const { role, loading:userRoleLoading } = useUserRole()
-  const token = localStorage.getItem("access-token")
-  useEffect(() => {
-    if(token) {
-      axiosSecure
-      .get("/profile")
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    }
-  }, [token]);
+  
+
+    useEffect(() => {
+      if(typeof window !== 'undefined' && window.localStorage) {
+      const token = localStorage.getItem("access-token")
+      if(token) {
+        axiosSecure
+        .get("/profile")
+        .then((response) => {
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      } }
+    }, []);
+  
+
 
  
 
   const logOut = () => {
-    localStorage.removeItem("access-token");
+    if(typeof window !== 'undefined' && window.localStorage) {
+
+      localStorage.removeItem("access-token");
+    }
   };
  
      

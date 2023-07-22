@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import developerBanner from "../../../../public/developerBanner.jpg";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import MemberCard from "../components/about/MemberCard";
-import CmnSectionTitle from "../components/HelpingCompo/CmnSectionTitle";
+import CmnSectionTitle from "@/components/custormer/HelpingCompo/CmnSectionTitle";
+import MemberCard from "@/components/custormer/about/MemberCard";
+
 
 const Developers = () => {
   const [members, setDevelopers] = useState([]);

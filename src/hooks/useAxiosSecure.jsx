@@ -6,18 +6,23 @@ import { useEffect } from "react";
 // import { Route } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: "http://lacalhost:5000"
+    baseURL: "https://glamorex.vercel.app"
 })
 
+// http://lacalhost:5000
 const useAxiosSecure = () => {
   const router = useRouter()
     useEffect(() => {
         axiosSecure.interceptors.request.use((config) => {
-            const token = localStorage.getItem("access-token")
-            if(token) {
-                config.headers.authorization = `Bearer ${token}`;
+            if(typeof window !== 'undefined' && window.localStorage) {
+
+                const token = localStorage.getItem("access-token")
+                if(token) {
+                    config.headers.authorization = `Bearer ${token}`;
+                }
+                return config
             }
-            return config
+            
         })
         // axiosSecure.interceptors.response.use(
         //     (response) => response,

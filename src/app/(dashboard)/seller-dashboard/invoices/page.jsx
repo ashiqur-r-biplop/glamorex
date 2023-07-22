@@ -1,5 +1,6 @@
+import Invoices from '@/components/seller/Invoices/Invoices';
 import React from 'react';
-import Invoices from '../components/Invoices/Invoices';
+
 
 const InvoicesPage = () => {
     return (

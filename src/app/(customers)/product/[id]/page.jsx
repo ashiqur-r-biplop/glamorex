@@ -1,7 +1,5 @@
 "use client";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { data } from "autoprefixer";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";

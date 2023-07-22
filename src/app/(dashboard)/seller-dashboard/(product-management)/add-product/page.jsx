@@ -16,15 +16,15 @@ import {
 import "./add-product.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import AddProductStatusBtn from "@/app/(dashboard)/components/HelpingCompo/addProductStatusBtn";
 import addProductSuccessfulLottie from "../../../../../../public/assets/lottieAnimation/addProductSuccessfulLottie.json";
 import loadingLottie from "../../../../../../public/assets/lottieAnimation/loadingLottie.json";
-import CommonLottie from "@/app/(dashboard)/components/HelpingCompo/CommonLottie";
-import useColorQuantity from "@/app/(dashboard)/customHook/useColorQuantity";
-import useSizeQuantity from "@/app/(dashboard)/customHook/useSizeQuantity";
 import useProfile from "@/hooks/useProfile";
-import useKeyFeature from "@/app/(dashboard)/customHook/useKeyFeature";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import useColorQuantity from "@/hooks/useColorQuantity";
+import useSizeQuantity from "@/hooks/useSizeQuantity";
+import useKeyFeature from "@/hooks/useKeyFeature";
+import CommonLottie from "@/components/shared/CommonLottie";
+
 
 
 const AddProductPage = () => {

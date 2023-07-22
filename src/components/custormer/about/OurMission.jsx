@@ -1,4 +1,4 @@
-import ourMission from "../../../../../public/assets/img/our-mission.png";
+import ourMission from "../../../../public/assets/img/our-mission.png";
 
 const OurMission = () => {
   return (

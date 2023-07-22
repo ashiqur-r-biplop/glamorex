@@ -6,19 +6,20 @@ import Loading from './Loading';
 
 const AdminOnly = ({children}) => {
     const router = useRouter()
-    const {role} = useUserRole()
+    const {role, loading:roleLoading} = useUserRole()
     const {loading, user} = useAuth()
-    if(loading) {
+    if(loading || roleLoading) {
         return <Loading/>
     }
-    if(user) {
+    if(user) {        
         if(role === "admin") {
-        return children
-        }  
-        else {
-            router.push("/")
-            return null
-        }
+            return children
+            }  
+            else {
+                router.push("/")
+                return null
+            }
+        
     }
 };
 
