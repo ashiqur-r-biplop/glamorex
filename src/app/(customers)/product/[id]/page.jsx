@@ -11,6 +11,7 @@ import { FaHome } from "react-icons/fa";
 import { FaBagShopping, FaMinus, FaPlus, FaStar } from "react-icons/fa6";
 import ReactImageZoom from "react-image-zoom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import LoadingSpinner from "../../components/HelpingCompo/LoadingSpinner";
 
 const productDetailsPage = () => {
   const { handleWishList } = useWishlist();
@@ -48,9 +49,9 @@ const productDetailsPage = () => {
 
   if (loading) {
     return (
-      <h2 className="my-title h-screen flex items-center justify-center bg-emerald-300">
-        Loading...
-      </h2>
+      <div className="h-screen flex justify-center items-center">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
     );
   }
 
@@ -144,9 +145,8 @@ const productDetailsPage = () => {
                 Product available: {quantity}
               </button>
               <button
-                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${
-                  status === "in stock" ? "text-orange-500" : "text-red-500"
-                }`}
+                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${status === "in stock" ? "text-orange-500" : "text-red-500"
+                  }`}
               >
                 Status: {status}
               </button>
@@ -212,9 +212,8 @@ const productDetailsPage = () => {
                 <span className="flex">
                   <button
                     onClick={() => handleMinus()}
-                    className={`border rounded-s-md p-2 ${
-                      buy_quantity <= 1 && "bg-[#e7e7e7]"
-                    }`}
+                    className={`border rounded-s-md p-2 ${buy_quantity <= 1 && "bg-[#e7e7e7]"
+                      }`}
                     disabled={buy_quantity <= 1}
                   >
                     <FaMinus />
@@ -222,9 +221,8 @@ const productDetailsPage = () => {
                   <p className="border px-3 py-2">{buy_quantity}</p>
                   <button
                     onClick={handlePlus}
-                    className={`border rounded-e-md p-2 ${
-                      quantity == buy_quantity && "bg-[#e7e7e7]"
-                    }`}
+                    className={`border rounded-e-md p-2 ${quantity == buy_quantity && "bg-[#e7e7e7]"
+                      }`}
                   >
                     <FaPlus />
                   </button>
@@ -270,9 +268,8 @@ const productDetailsPage = () => {
                   tabs.map((tab, ind) => (
                     <Tab
                       key={ind}
-                      className={`${
-                        activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
-                      }`}
+                      className={`${activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
+                        }`}
                       onClick={() => setActiveTab(tab)}
                     >
                       {tab}

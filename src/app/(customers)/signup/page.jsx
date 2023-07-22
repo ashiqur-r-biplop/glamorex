@@ -75,7 +75,7 @@ const SignUpPage = () => {
               Swal.fire({
                 title: "Navigate to signin page!",
                 html: "I will land signin page after <b></b> milliseconds.",
-                timer: 3000,
+                timer: 1500,
                 timerProgressBar: true,
               }).then((result) => {
                 /* Read more about handling dismissals below */
