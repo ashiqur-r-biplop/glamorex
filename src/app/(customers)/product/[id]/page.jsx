@@ -1,5 +1,6 @@
 "use client";
 import { useWishlist } from "@/hooks/UseWishlist";
+import useAddToCart from "@/hooks/useAddToCart";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { data } from "autoprefixer";
 import axios from "axios";
@@ -15,6 +16,7 @@ import LoadingSpinner from "../../components/HelpingCompo/LoadingSpinner";
 
 const productDetailsPage = () => {
   const { handleWishList } = useWishlist();
+  const {handleAddToCart} = useAddToCart()
   const { id } = useParams();
   console.log(id);
   const [product, setProduct] = useState({});
@@ -240,7 +242,7 @@ const productDetailsPage = () => {
                     </span>{" "}
                     Buy Now
                   </button>
-                  <button className="my-btn-one-outline">Add To Cart</button>
+                  <button onClick={()=> handleAddToCart(product)} className="my-btn-one-outline">Add To Cart</button>
                 </>
               ) : (
                 <button

@@ -3,17 +3,6 @@ import Link from "next/link";
 import EditButton from "../components/account/EditButton";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
-import CustomerOnly from "@/private/CustomerOnly";
-
-// const User = {
-//   id: "123",
-//   displayName: "Agun",
-//   email: "test@gmail.com",
-//   photoURL: "https://i.ibb.co/37cdWvc/images.jpg",
-//   mobile: "+8801700000000",
-//   birthday: "2002-01-15",
-//   gender: "female",
-// };
 
 const AccountPage = () => {
   const { axiosSecure } = useAxiosSecure();
@@ -31,7 +20,6 @@ const AccountPage = () => {
   }, []);
 
   return (
-    <CustomerOnly >
     <div className="container mx-auto px-5 py-[100px] min-h-[70vh]">
       <div className="section-title mb-8">
         <h2 className="text-2xl font-semibold text-center">My Profile</h2>
@@ -77,7 +65,6 @@ const AccountPage = () => {
         </div>
       </div>
     </div>
-    </CustomerOnly>
   );
 };
 
