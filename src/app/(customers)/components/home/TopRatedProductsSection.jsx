@@ -23,6 +23,8 @@ const TopRatedProductsSection = () => {
         title={"Top Rated Products"}
         subtitle={"Best of the Best: Top-Rated Product Showcase"}
       ></CmnSectionTitle>
+      {
+        loading? <div className="h-[50vh] flex items-center justify-center"><LoadingSpinner></LoadingSpinner></div>:
       <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => {
           return (
@@ -34,6 +36,7 @@ const TopRatedProductsSection = () => {
           );
         })}
       </div>
+      }
     </div>
   );
 };

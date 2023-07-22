@@ -16,7 +16,6 @@ const ProductCard = ({ product }) => {
     quantity,
   } = product || [];
 
-  console.log(product)
 
   const myStyles = {
     itemShapes: ThinStar,

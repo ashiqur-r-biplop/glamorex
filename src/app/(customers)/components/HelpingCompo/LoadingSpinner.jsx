@@ -3,12 +3,12 @@ import Lottie from "lottie-react";
 import loadingLottie from "../../../../../public/assets/lottieAnimation/loadingLottie.json";
 import React from "react";
 
-const LoadingSpinner = ({ loop, height, width }) => {
+const LoadingSpinner = ({ loop, className }) => {
   return (
     <Lottie
       animationData={loadingLottie}
       loop={loop || true}
-      className={`${height || "h-60"} ${width || "w-60"} mx-auto`}
+      className={`${className || 'h-60 w-60'} mx-auto`}
     />
   );
 };

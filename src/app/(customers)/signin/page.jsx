@@ -5,28 +5,29 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa6";
 import Link from "next/link";
 import signinLottie from "/public/assets/lottieAnimation/signin-lottie.json";
+import signinLoadingLottie from "../../../../public/assets/lottieAnimation/registration_loading.json";
+
 import Lottie from "lottie-react";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
 
+
+// TODO: do something with user from useAuth()
 const SignInPage = () => {
-  const { user, loading } = useAuth();
   const router = useRouter();
   const [isShowPass, setIsShowPass] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const { axiosSecure } = useAxiosSecure();
+  // const {user, loading, setUser} = useAuth()
+  const [loading, setLoading] = useState(false)
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
+
+  const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm();
   const handleSigninFunc = (form) => {
+    setLoading(true)
     setError("");
     const { email, password } = form;
 
@@ -34,8 +35,8 @@ const SignInPage = () => {
     axiosSecure
       .post("/login", user)
       .then((res) => {
-        if (res.data) {
-          if (res.data.token) {
+          if (res.data?.token) {
+            setLoading(false)
             localStorage.setItem("access-token", res.data.token);
             Swal.fire({
               position: "center",
@@ -46,11 +47,11 @@ const SignInPage = () => {
             });
             router.push("/")
           } else {
+            setLoading(false)
             localStorage.removeItem("access-token");
           }
-        }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error); setLoading(false)});
   };
 
   return (
@@ -138,9 +139,7 @@ const SignInPage = () => {
             {error && <p className="text-red-500">*{error}</p>}
             {success && <p className="text-green-500">{success}</p>}
 
-            <button className="my-btn-one w-full" type="submit">
-              Signin
-            </button>
+            <button className={`${loading? 'my-btn-one-disable' : 'my-btn-one'} w-full`} type="submit">{loading? 'Signing In..' : 'Sign In'}</button>
             <p className="text-sm font-light text-slate-300">
               New user?{" "}
               <Link
@@ -170,7 +169,7 @@ const SignInPage = () => {
         </div>
 
         <Lottie
-          animationData={signinLottie}
+          animationData={loading? signinLoadingLottie : signinLottie}
           loop={true}
           className="h-full w-full"
         />
