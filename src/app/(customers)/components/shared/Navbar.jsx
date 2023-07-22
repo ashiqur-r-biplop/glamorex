@@ -2,12 +2,13 @@
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import NavLink from "../HelpingCompo/NavLink";
-import logo from "../../../../../public/assets/img/logo.png";
+import logo from "../../../../../public/assets/img/logoOne.png";
 import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { FiLogOut } from "react-icons/fi";
+<<<<<<< HEAD
 import { BiUserCircle } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import useUserRole from "@/hooks/useUserRole";
@@ -25,10 +26,31 @@ function Nav() {
   const token = localStorage.getItem("access-token");
   useEffect(() => {
     if (token) {
+=======
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import useUserRole from "@/hooks/useUserRole";
+import { FaUserCheck } from "react-icons/fa6";
+import { MdDashboard } from "react-icons/md";
+import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
+import useMonitorToken from "@/hooks/useMonitorToken";
+
+
+function Nav() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { user, setUser, loading: authLoading, setLoading: setAuthLoading } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
+  const { role, loading: userRoleLoading } = useUserRole()
+  const { storedToken, setStoredToken, control, setControl } = useMonitorToken()
+
+  useEffect(() => {
+    if (storedToken) {
+      setAuthLoading(true)
+>>>>>>> 36734b78bd4000ad5b7d095eadf239ad9d680eb7
       axiosSecure
         .get("/profile")
         .then((response) => {
           setUser(response.data);
+<<<<<<< HEAD
         })
         .catch((error) => {
           console.error(error);
@@ -36,23 +58,84 @@ function Nav() {
     }
   }, [token]);
 
+=======
+          setAuthLoading(false)
+        })
+        .catch((error) => {
+          console.error(error);
+          setAuthLoading(false)
+        });
+    } else {
+      setAuthLoading(false)
+    }
+  }, [control, storedToken]);
+
+
+>>>>>>> 36734b78bd4000ad5b7d095eadf239ad9d680eb7
   const logOut = () => {
     localStorage.removeItem("access-token");
+    setUser(null)
+    setStoredToken(null)
+    setControl(!control) //for rerender
   };
+<<<<<<< HEAD
+=======
+
+  const menu = <>
+    <NavLink href={"/"}>Home</NavLink>
+    <NavLink href={"/shop"}>Shop</NavLink>
+    <NavLink href={"/blog"}>Blogs</NavLink>
+    <NavLink href={"/about"}>About</NavLink>
+    <NavLink href={"/contact"}>Contact</NavLink>
+    <NavLink href={"/cart"}><AiOutlineShoppingCart /></NavLink>
+  </>
+  const profileDropdown = <>
+    {(user && (userRoleLoading || authLoading)) ? <LoadingSpinner className={'h-14 w-14'}></LoadingSpinner> : !user ? <NavLink href="/signin">Signin</NavLink> : <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img src={user?.photo_url} />
+        </div>
+      </label>
+      <ul
+        tabIndex={0}
+        className=" dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 text-white rounded-box w-52 font-semibold"
+      >
+        <li>
+          <Link href={"/account"} className="p-2 flex gap-2 items-center">
+            Profile <FaUserCheck />
+          </Link>
+        </li>
+        {
+          (role === 'seller' || role === 'admin') &&
+          <li> <Link href={`${role === 'seller' ? '/seller-dashboard' : role === 'admin' ? 'g-admin' : '#'}`} className="p-2 flex gap-2 items-center">Dashboard <MdDashboard /> </Link></li>
+        }
+        <li>
+          <button onClick={logOut} className="p-2 flex gap-2 items-center">
+            Logout <FiLogOut />
+          </button>
+        </li>
+      </ul>
+    </div>}
+  </>
+
+
+>>>>>>> 36734b78bd4000ad5b7d095eadf239ad9d680eb7
 
   return (
-    <nav className="bg-gray-800 sticky left-0 top-0 right-0 px-3 z-50">
+    <nav className="bg-slate-800 bg-opacity-50 fixed left-0 top-0 right-0 px-3 z-50">
       <div className=" mx-auto px-1 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* logo */}
           <div className="flex-shrink-0">
             <Link href={"/"}>
-              <Image height={45} width={45} src={logo} alt="glamorex" />
+              <Image height={150} width={150} src={logo} alt="glamorex" />
             </Link>
           </div>
 
-          <div className="flex items-center">
+          <div className="flex md:flex-row-reverse gap-2 md:gap-4">
+            {profileDropdown}
             {/* desktop nav */}
+<<<<<<< HEAD
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-4">
                 <NavLink href={"/"}>Home</NavLink>
@@ -126,55 +209,64 @@ function Nav() {
                         </ul>
                       </div>
                     )}
+=======
+            <div className="flex items-center">
+              <div className="hidden md:block">
+                <div className="ml-10 flex items-center space-x-4">
+                  {menu}
+                </div>
+>>>>>>> 36734b78bd4000ad5b7d095eadf239ad9d680eb7
               </div>
+            </div>
+
+
+            {/* mobile menu toggle button */}
+            <div className="-mr-2 flex md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+              >
+                <span className="sr-only">Open main menu</span>
+                {!isOpen ? (
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
 
-          {/* mobile menu toggle button */}
-          <div className="-mr-2 flex md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              {!isOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
         </div>
       </div>
 
@@ -196,9 +288,11 @@ function Nav() {
             >
               {menu}
             </div>
+            {/* {profileDropdown} */}
           </div>
         )}
       </Transition>
+
     </nav>
   );
 }

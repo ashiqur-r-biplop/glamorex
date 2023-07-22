@@ -8,9 +8,21 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { FaAngleDown, FaBasketShopping, FaProductHunt } from "react-icons/fa6";
 import Link from "next/link";
 import { useState } from "react";
+import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 const Sidebar = () => {
   const [productManagementDropdown, setProductManagementDropdown] = useState(false);
+  const { setUser } = useAuth();
+  const router = useRouter()
+
+
+  // logOutFunc
+  const logOutFunc = () => {
+    localStorage.removeItem("access-token");
+    setUser(null)
+    router.push('/')
+  };
 
   return (
     <aside className="bg-[#081229] h-full p-3 text-slate-50 relative">
@@ -67,11 +79,10 @@ const Sidebar = () => {
 
           {/* Product management dropdown */}
           <ul
-            className={`pl-3 py-3 bg-gradient-to-tr from-slate-800 to-[#081229] transition-all duration-500 ${
-              productManagementDropdown
-                ? "visible opacity-100 block"
-                : "invisible opacity-0 hidden"
-            }`}
+            className={`pl-3 py-3 bg-gradient-to-tr from-slate-800 to-[#081229] transition-all duration-500 ${productManagementDropdown
+              ? "visible opacity-100 block"
+              : "invisible opacity-0 hidden"
+              }`}
           >
             <SDNavLink href={"/seller-dashboard/add-product"}>
               {" "}
@@ -112,11 +123,10 @@ const Sidebar = () => {
       </ul>
 
       {/* signout button */}
-      <p className="absolute left-2 bottom-2 flex items-center gap-2 cursor-pointer">
-        {" "}
+      <p className="absolute left-2 bottom-2 flex items-center gap-2 cursor-pointer" onClick={logOutFunc}>
         <span className="p-3 rounded-full text-lg bg-slate-50 text-[#081229]">
           <FaSignOutAlt></FaSignOutAlt>
-        </span>{" "}
+        </span>
         Logout
       </p>
     </aside>

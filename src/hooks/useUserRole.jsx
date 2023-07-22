@@ -11,6 +11,8 @@ const useUserRole = () => {
     if (token) {
       axiosSecure.get("/get-user-role")
         .then(res => { setRole(res.data.role); setLoading(false) }).catch(e => console.log(e.message))
+    }else{
+      setLoading(false)
     }
   }, [])
   return { role, loading }

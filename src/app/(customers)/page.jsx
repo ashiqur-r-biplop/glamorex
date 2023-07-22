@@ -10,7 +10,7 @@ import NewsLatterSection from './components/home/NewsLatterSection';
 import '@smastrom/react-rating/style.css';
 import GiftWheel from './components/GiftWheel/GiftWheel';
 import Testimonials from './components/home/TestimonialSection';
-// import TestimonialSection from './components/home/TestimonialSection';
+import FbMassage from './components/customChat/CustomChat';
 
 const HomePage = () => {
     return (
@@ -25,6 +25,7 @@ const HomePage = () => {
             <Testimonials/>
             <NewsLatterSection/>
             <GiftWheel></GiftWheel>
+            <FbMassage></FbMassage>
         </>
     );
 };
