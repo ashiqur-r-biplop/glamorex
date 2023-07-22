@@ -13,10 +13,11 @@ import { FaBagShopping, FaMinus, FaPlus, FaStar } from "react-icons/fa6";
 import ReactImageZoom from "react-image-zoom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import LoadingSpinner from "../../components/HelpingCompo/LoadingSpinner";
+import useUserRole from "@/hooks/useUserRole";
 
 const productDetailsPage = () => {
   const { handleWishList } = useWishlist();
-  const {handleAddToCart} = useAddToCart()
+  const { handleAddToCart } = useAddToCart();
   const { id } = useParams();
   console.log(id);
   const [product, setProduct] = useState({});
@@ -25,7 +26,8 @@ const productDetailsPage = () => {
   const [buy_quantity, setBuyQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Description");
   const { axiosSecure } = useAxiosSecure();
-
+  const { role } = useUserRole();
+  console.log(role);
   useEffect(() => {
     axiosSecure
       .get(`/product/${id}`)
@@ -147,8 +149,9 @@ const productDetailsPage = () => {
                 Product available: {quantity}
               </button>
               <button
-                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${status === "in stock" ? "text-orange-500" : "text-red-500"
-                  }`}
+                className={`px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 ${
+                  status === "in stock" ? "text-orange-500" : "text-red-500"
+                }`}
               >
                 Status: {status}
               </button>
@@ -214,8 +217,9 @@ const productDetailsPage = () => {
                 <span className="flex">
                   <button
                     onClick={() => handleMinus()}
-                    className={`border rounded-s-md p-2 ${buy_quantity <= 1 && "bg-[#e7e7e7]"
-                      }`}
+                    className={`border rounded-s-md p-2 ${
+                      buy_quantity <= 1 && "bg-[#e7e7e7]"
+                    }`}
                     disabled={buy_quantity <= 1}
                   >
                     <FaMinus />
@@ -223,8 +227,9 @@ const productDetailsPage = () => {
                   <p className="border px-3 py-2">{buy_quantity}</p>
                   <button
                     onClick={handlePlus}
-                    className={`border rounded-e-md p-2 ${quantity == buy_quantity && "bg-[#e7e7e7]"
-                      }`}
+                    className={`border rounded-e-md p-2 ${
+                      quantity == buy_quantity && "bg-[#e7e7e7]"
+                    }`}
                   >
                     <FaPlus />
                   </button>
@@ -235,19 +240,41 @@ const productDetailsPage = () => {
             <div className="flex gap-3 items-center">
               {quantity > 0 ? (
                 <>
-                  <button className="my-btn-one">
+                  <button
+                    disabled={role == "admin" || role == "seller"}
+                    className={` ${
+                      role == "admin" || role == "seller"
+                        ? "my-btn-disable"
+                        : "my-btn-one"
+                    }`}
+                  >
                     {" "}
                     <span>
                       <FaBagShopping></FaBagShopping>
                     </span>{" "}
                     Buy Now
                   </button>
-                  <button onClick={()=> handleAddToCart(product)} className="my-btn-one-outline">Add To Cart</button>
+                  <button
+                    disabled={role == "admin" || role == "seller"}
+                    onClick={() => handleAddToCart(product)}
+                    className={` ${
+                      role == "admin" || role == "seller"
+                        ? "my-btn-disable"
+                        : "my-btn-one-outline"
+                    }`}
+                  >
+                    Add To Cart
+                  </button>
                 </>
               ) : (
                 <button
+                  disabled={role == "admin" || role == "seller"}
                   onClick={() => handleWishList(product)}
-                  className="my-btn-one-outline"
+                  className={` ${
+                    role == "admin" || role == "seller"
+                      ? "my-btn-disable"
+                      : "my-btn-one-outline"
+                  }`}
                 >
                   Add to WishList
                 </button>
@@ -270,8 +297,9 @@ const productDetailsPage = () => {
                   tabs.map((tab, ind) => (
                     <Tab
                       key={ind}
-                      className={`${activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
-                        }`}
+                      className={`${
+                        activeTab === tab ? "my-btn-one" : "my-btn-one-outline"
+                      }`}
                       onClick={() => setActiveTab(tab)}
                     >
                       {tab}
