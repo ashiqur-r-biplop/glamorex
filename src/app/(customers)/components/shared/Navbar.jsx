@@ -13,22 +13,18 @@ import useUserRole from "@/hooks/useUserRole";
 import { FaUserCheck } from "react-icons/fa6";
 import { MdDashboard } from "react-icons/md";
 import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
+import useMonitorToken from "@/hooks/useMonitorToken";
 
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, setUser, loading: authLoading, setLoading: setAuthLoading } = useAuth();
   const { axiosSecure } = useAxiosSecure();
-  // const [User, setUser] = useState(null);
-  // const [loading, setLoading] = useState(false)
   const { role, loading: userRoleLoading } = useUserRole()
-  const [control, setControl] = useState(true)
-  const [token, setToken] = useState(undefined);
+  const { storedToken, setStoredToken, control, setControl } = useMonitorToken()
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("access-token"); //TODO:after signin initially it's undefined, why?
-    setToken(storedToken);
-    if (token) {
+    if (storedToken) {
       setAuthLoading(true)
       axiosSecure
         .get("/profile")
@@ -43,15 +39,15 @@ function Nav() {
     } else {
       setAuthLoading(false)
     }
-  }, [control, token]);
+  }, [control, storedToken]);
+
 
   const logOut = () => {
     localStorage.removeItem("access-token");
-    setToken(undefined)
     setUser(null)
+    setStoredToken(null)
     setControl(!control) //for rerender
   };
-
 
   const menu = <>
     <NavLink href={"/"}>Home</NavLink>

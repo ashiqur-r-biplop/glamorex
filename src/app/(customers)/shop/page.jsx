@@ -36,7 +36,11 @@ const ShopPage = () => {
   };
 
   if (loading) {
-    return <LoadingSpinner></LoadingSpinner>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
   }
   return (
     <div className="">

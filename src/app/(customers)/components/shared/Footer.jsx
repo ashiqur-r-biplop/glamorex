@@ -20,7 +20,7 @@ const Footer = () => {
             <div className="space-y-2">
               <p>Via Rossini 10, 10136 Turin Italy</p>
               <p>Phone: (0039) 333 12 68 347</p>
-              <p>Email: Hello@gmail.com</p>
+              <p>Email: glamorex.help@gmail.com</p>
               <p>Skype: You_online</p>
               <p>Linkedin: www.linkedin.com/in/Glamorex</p>
             </div>

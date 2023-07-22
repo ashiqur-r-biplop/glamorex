@@ -12,6 +12,7 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
+import useMonitorToken from "@/hooks/useMonitorToken";
 
 
 // TODO: do something with user from useAuth()
@@ -23,6 +24,7 @@ const SignInPage = () => {
   const { axiosSecure } = useAxiosSecure();
   // const {user, loading, setUser} = useAuth()
   const [loading, setLoading] = useState(false)
+  const {control, setControl} = useMonitorToken()
 
 
   const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm();
@@ -46,6 +48,7 @@ const SignInPage = () => {
               timer: 1500,
             });
             router.push("/")
+            setControl(!control)
           } else {
             setLoading(false)
             localStorage.removeItem("access-token");

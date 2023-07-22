@@ -1,6 +1,7 @@
 import Image from "next/image";
 import offerBanner from "../../../../../public/offerBanner/offerbanner.png";
 import { inter } from "@/app/layout";
+import Link from "next/link";
 
 const OfferBannerSection = () => {
   return (
@@ -30,7 +31,7 @@ const OfferBannerSection = () => {
               <span>Discount Our Product</span>
             </div>
             <button className="border-2 border-[#ffc300] rounded-full py-2 px-6 te bg-[#ffc300] text-[#000]  transition-all hover:bg-transparent hover:text-[#ffc300] uppercase ">
-              View All
+             <Link href={'/discount'}>View All</Link>
             </button>
           </div>
           <div className="h-full">

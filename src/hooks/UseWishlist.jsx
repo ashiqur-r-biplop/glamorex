@@ -9,6 +9,7 @@ export const useWishlist = () => {
   const { axiosSecure } = useAxiosSecure();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  
   const handleWishList = (product) => {
     console.log(product);
     const {
