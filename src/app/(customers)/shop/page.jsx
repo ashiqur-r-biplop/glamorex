@@ -14,15 +14,17 @@ const ShopPage = () => {
   const [control, setControl] = useState(true);
   const [isControl, setIsControl] = useState(true);
 
-  const layout = currentLayout();
-  console.log(layout);
+  const layout = JSON.parse(currentLayout())
+  console.log(currentLayout());
   useEffect(() => {
     fetch("https://glamorex.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setTopSale(data);
+        console.log(data)
         setLoading(false);
-      });
+      })
+      .catch(error => console.log(error))
   }, [isControl]);
   const shopFilter = (gander, category, subCategory) => {
     axios(
@@ -106,7 +108,7 @@ const ShopPage = () => {
           >
             {TopSale.map((product) => (
               <TopCard
-                key={product?.product_id}
+                key={product?._id}
                 product={product}
                 layout={layout}
               ></TopCard>

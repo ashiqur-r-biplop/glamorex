@@ -3,6 +3,7 @@ import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
 
 const ProductCard = ({ product }) => {
+  console.log(product)
   const {
     _id,
     name,
@@ -14,7 +15,7 @@ const ProductCard = ({ product }) => {
     discount,
     previous_price,
     quantity,
-  } = product || [];
+  } = product || {};
 
   const myStyles = {
     itemShapes: ThinStar,

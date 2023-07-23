@@ -12,8 +12,6 @@ import TopRatedProductsSection from '@/components/custormer/home/TopRatedProduct
 import TrustedSection from '@/components/custormer/home/TrustedSection';
 import '@smastrom/react-rating/style.css';
 import FbMassage from '@/components/custormer/customChat/CustomChat';
-import { useRouter } from 'next/navigation';
-
 
 
 

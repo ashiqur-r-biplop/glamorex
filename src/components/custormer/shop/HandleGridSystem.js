@@ -24,10 +24,10 @@ useEffect(() => {
 };
 
 export const currentLayout = () => {
-  useEffect(() => {
-    // if(typeof window !== 'undefined' && window.localStorage) {
+  return localStorage.getItem("layout") || JSON.stringify("grid");
+  // useEffect(() => {
+  //   // if(typeof window !== 'undefined' && window.localStorage) {
 
-      return localStorage.getItem("layout") || "grid";
-    // }
-  },[])
+  //   // }
+  // },[])
 };
