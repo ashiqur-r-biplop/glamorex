@@ -7,8 +7,11 @@ import { useEffect } from "react";
 const DashboardLayout = ({ children }) => {
   const dispatch = useDispatch()
   useEffect(() => {
+    // if(typeof window !== 'undefined' && window.localStorage) {
+
       const token = localStorage.getItem("access-token")
       dispatch(setToken(token))  
+    // }
     },[])
     return (
         <>

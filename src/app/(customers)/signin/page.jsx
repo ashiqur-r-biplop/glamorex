@@ -37,9 +37,12 @@ const SignInPage = () => {
     axiosSecure
       .post("/login", user)
       .then((res) => {
-          if (res.data?.token) {
-            setLoading(false)
-            localStorage.setItem("access-token", res.data.token);
+        if (res.data) {
+          if (res.data.token) {
+            // if(typeof window !== 'undefined' && window.localStorage) {
+
+              localStorage.setItem("access-token", res.data.token);
+            // }
             Swal.fire({
               position: "center",
               icon: "success",
@@ -50,10 +53,12 @@ const SignInPage = () => {
             router.push("/")
             setControl(!control)
           } else {
-            setLoading(false)
-            localStorage.removeItem("access-token");
+            // if(typeof window !== 'undefined' && window.localStorage) {
+
+              localStorage.removeItem("access-token");
+            // }
           }
-      })
+      }})
       .catch((error) => {console.log(error); setLoading(false)});
   };
 

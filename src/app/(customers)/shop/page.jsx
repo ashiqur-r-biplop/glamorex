@@ -2,27 +2,29 @@
 import ShopHeader from "../../../../public/assets/lottieAnimation/shop-lotti.json";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
-import TopCard from "../components/shop/TopCard";
-import ShopSideBar from "../components/shop/ShopSidebar";
-import { currentLayout } from "../components/shop/HandleGridSystem";
-import useAddToCart from "@/hooks/useAddToCart";
-import LoadingSpinner from "../components/HelpingCompo/LoadingSpinner";
+
 import axios from "axios";
+import { currentLayout } from "@/components/custormer/shop/HandleGridSystem";
+import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
+import ShopSideBar from "@/components/custormer/shop/ShopSidebar";
+import TopCard from "@/components/custormer/shop/TopCard";
 const ShopPage = () => {
   const [TopSale, setTopSale] = useState([]);
   const [loading, setLoading] = useState(true);
   const [control, setControl] = useState(true);
   const [isControl, setIsControl] = useState(true);
 
-  const layout = JSON.parse(currentLayout());
-  console.log(layout);
+  const layout = JSON.parse(currentLayout())
+  console.log(currentLayout());
   useEffect(() => {
     fetch("https://glamorex.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setTopSale(data);
+        console.log(data)
         setLoading(false);
-      });
+      })
+      .catch(error => console.log(error))
   }, [isControl]);
   const shopFilter = (gander, category, subCategory) => {
     axios(
@@ -106,7 +108,7 @@ const ShopPage = () => {
           >
             {TopSale.map((product) => (
               <TopCard
-                key={product?.product_id}
+                key={product?._id}
                 product={product}
                 layout={layout}
               ></TopCard>

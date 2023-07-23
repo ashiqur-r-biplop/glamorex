@@ -3,7 +3,8 @@ import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import Loading from './Loading';
 import useUserRole from '@/hooks/useUserRole';
-import LoadingSpinner from '@/app/(customers)/components/HelpingCompo/LoadingSpinner';
+import LoadingSpinner from '@/components/custormer/HelpingCompo/LoadingSpinner';
+
 
 const CustomerOnly = ({ children }) => {
     const router = useRouter()

@@ -1,10 +1,11 @@
 "use client"
 import { MdKeyboardArrowRight } from "react-icons/md";
 import discountBanner from "../../../../public/discountBanner.jpg";
-import CmnSectionTitle from "../components/HelpingCompo/CmnSectionTitle";
-import ProductCard from "../components/home/cards/ProductCard";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "../components/HelpingCompo/LoadingSpinner";
+import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
+import CmnSectionTitle from "@/components/custormer/HelpingCompo/CmnSectionTitle";
+import ProductCard from "@/components/custormer/home/cards/ProductCard";
+
 
 const DiscountPage = () => {
   const [products, setProducts] = useState([]);

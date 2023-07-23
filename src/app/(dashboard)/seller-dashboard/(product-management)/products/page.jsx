@@ -1,5 +1,6 @@
 'use client'
-import LoadingSpinner from '@/app/(customers)/components/HelpingCompo/LoadingSpinner';
+
+import LoadingSpinner from '@/components/custormer/HelpingCompo/LoadingSpinner';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import React, { useEffect, useState } from 'react';
 

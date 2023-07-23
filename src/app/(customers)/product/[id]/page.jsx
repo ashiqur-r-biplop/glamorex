@@ -2,8 +2,6 @@
 import { useWishlist } from "@/hooks/UseWishlist";
 import useAddToCart from "@/hooks/useAddToCart";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { data } from "autoprefixer";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -12,8 +10,8 @@ import { FaHome } from "react-icons/fa";
 import { FaBagShopping, FaMinus, FaPlus, FaStar } from "react-icons/fa6";
 import ReactImageZoom from "react-image-zoom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import LoadingSpinner from "../../components/HelpingCompo/LoadingSpinner";
 import useUserRole from "@/hooks/useUserRole";
+import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
 
 const productDetailsPage = () => {
   const { handleWishList } = useWishlist();

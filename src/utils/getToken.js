@@ -1,6 +1,13 @@
-"use client"
+// "use client"
 
-const getToken = () => {
-    const token = localStorage.getItem("access-token")
-    return {token}
-}
+// const { useEffect } = require("react")
+
+// const getToken = () => {
+//    useEffect(() => {
+//     if(typeof window !== 'undefined' && window.localStorage) {
+
+//         const token = localStorage.getItem("access-token")
+//         return {token}
+//     }
+//    },[])
+// }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bgImg from "/public/assets/img/signinBg.jpg";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
@@ -12,12 +12,16 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
   const { user } = useAuth();
-  if (user) {
-    return (window.location.href = "/");
-  }
+  const router = useRouter()
+  useEffect(() => {
+    if (user) {
+      return router.push("/");
+    }
+  },[])
   const { axiosSecure } = useAxiosSecure();
   const [isShowPass, setIsShowPass] = useState(false);
   const [isConfirmShowPass, setIsConfirmShowPass] = useState(false);

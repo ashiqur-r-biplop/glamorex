@@ -1,5 +1,5 @@
 import Image from "next/image";
-import offerBanner from "../../../../../public/offerBanner/offerbanner.png";
+import offerBanner from "../../../../public/offerBanner/offerbanner.png";
 import { inter } from "@/app/layout";
 import Link from "next/link";
 

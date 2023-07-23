@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
-import PhotoUpdateForm from "../../components/account/PhotoUpdateForm";
+import { useRouter } from "next/navigation";
+import PhotoUpdateForm from "@/components/custormer/account/PhotoUpdateForm";
+
+
 
 const ProfileEdit = () => {
   const { axiosSecure } = useAxiosSecure();

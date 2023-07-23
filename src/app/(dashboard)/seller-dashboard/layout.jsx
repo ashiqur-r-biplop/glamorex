@@ -1,5 +1,5 @@
+import Sidebar from "@/components/seller/shared/Sidebar";
 import SellerOnly from "@/private/SellerOnly";
-import Sidebar from "./components/shared/Sidebar";
 
 
 const layout = ({children}) => {

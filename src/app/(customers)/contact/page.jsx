@@ -6,8 +6,8 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import contactBanner from "../../../../public/contact-banner.jpg";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import UpdateButton from "../components/account/UpdateButton";
-import NewsletterCard from "../components/home/cards/NewsletterCard";
+import UpdateButton from "@/components/custormer/account/UpdateButton";
+import NewsletterCard from "@/components/custormer/home/cards/NewsletterCard";
 
 const addressData = [
   {

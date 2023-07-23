@@ -3,6 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import Select from "react-select";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import TapLink from "@/components/shared/TapLink";
 
 const OrderManagementPage = () => {
   const [selectValue, setSelectValue] = useState("Pending");
@@ -90,13 +91,13 @@ const OrderManagementPage = () => {
         </div>
         <div className="relative ">
           <ul className="flex gap-5 items-stretch my-5 py-2">
-            <li className="border-b-2 border-[#0621bb] text-[#0621bb] py-2 uppercase">
+            <TapLink href="/seller-dashboard/order-management/all_orders">
               All Orders
-            </li>
-            <li className="uppercase py-2">Pending</li>
-            <li className="uppercase py-2">Completed</li>
-            <li className="uppercase py-2">Retured</li>
-            <li className="uppercase py-2">Canceled</li>
+            </TapLink>
+            <TapLink href="/seller-dashboard/order-management/pending">Pending</TapLink>
+            <TapLink href="/seller-dashboard/order-management/completed">Completed</TapLink>
+            <TapLink href="/seller-dashboard/order-management/retured">Retured</TapLink>
+            <TapLink href="/seller-dashboard/order-management/canceled">Canceled</TapLink>
           </ul>
           <hr className="-mt-[29px]" />
         </div>

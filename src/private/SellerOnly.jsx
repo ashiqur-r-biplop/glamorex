@@ -6,9 +6,9 @@ import Loading from './Loading';
 
 const SellerOnly = ({children}) => {
     const router = useRouter()
-    const {role} = useUserRole()
+    const {role, loading:roleLoading} = useUserRole()
     const {loading, user} = useAuth()
-    if(loading) {
+    if(loading || roleLoading) {
         return <Loading/>
     }
     if(user) {

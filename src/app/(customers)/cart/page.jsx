@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import CartRow from "../components/cart/CartRow";
+// import CartRow from "../components/cart/CartRow";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import LoadingSpinner from "../components/HelpingCompo/LoadingSpinner";
+import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
+import CartRow from "@/components/custormer/cart/CartRow";
+
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -20,7 +22,10 @@ const CartPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setDiscountGift(localStorage.getItem("giftPrize"));
+    
+    // if(typeof window !== 'undefined' && window.localStorage) {
+     setDiscountGift(localStorage.getItem("giftPrize"))
+    // }
     axiosSecure("/carts")
       .then((data) => {
         console.log(data?.data);

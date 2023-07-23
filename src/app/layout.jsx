@@ -2,7 +2,6 @@ import ReduxProvider from "@/provider/ReduxProvider";
 import "./globals.css";
 import { Roboto, Nunito, Inter } from "next/font/google";
 import "./Scrollbar.css"
-import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 
 export const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],

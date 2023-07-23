@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 import placeholder from "../../../../../../public/male-placeholder-image.jpeg";
 import { useGetUsersQuery } from "@/redux-toolkit/slice/adminApis/adminGetApies";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import TapLink from "@/app/(dashboard)/components/TapLink";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import TapLink from "@/components/shared/TapLink";
 
 const UserManagementPage = () => {
   const {handleSubmit, register} = useForm()

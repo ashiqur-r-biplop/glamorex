@@ -5,14 +5,15 @@ import { FaSearch } from 'react-icons/fa';
 import { MdDone } from 'react-icons/md';
 import { IoCloseOutline } from 'react-icons/io5';
 import Swal from 'sweetalert2';
-import { useGetProductsQuery } from '@/redux-toolkit/slice/adminApis/adminGetApies';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useEffect, useState } from 'react';
 import featuredImage from '../../../../../../public/featured.png';
 import MakeFeaturedImage from '../../../../../../public/make-featured.png';
 import { useParams } from 'next/navigation';
-import TapLink from '@/app/(dashboard)/components/TapLink';
+
 import { useForm } from 'react-hook-form';
+import { useGetProductsQuery } from '@/redux-toolkit/slice/adminApis/adminGetApies';
+import TapLink from '@/components/shared/TapLink';
 
 const ProductManagementPage = () => {
     const {handleSubmit, register} = useForm()

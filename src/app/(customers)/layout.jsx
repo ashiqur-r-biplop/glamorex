@@ -1,22 +1,32 @@
 "use client"
 import { useEffect } from "react";
-import Footer from "./components/shared/Footer";
-import Navbar from "./components/shared/Navbar";
+
 import { useDispatch } from "react-redux";
 import { setToken } from "@/redux-toolkit/slice/authSlice/authSlice";
+import Navbar from "@/components/custormer/shared/Navbar";
+import Footer from "@/components/custormer/shared/Footer";
+import { useRouter } from "next/navigation";
 
 export default function CustomerLayout({ children }) {
   const dispatch = useDispatch()
+  const router = useRouter();
+
+   console.log("14",router)
   useEffect(() => {
-    const token = localStorage.getItem("access-token")
-    dispatch(setToken(token))
+    // if(typeof window !== 'undefined' && window.localStorage) {
+      const token = localStorage.getItem("access-token")
+      dispatch(setToken(token))
+    // }
 
   },[])
-  return (
-    <>
-      <Navbar />
-      {children}
-      <Footer />
-    </>
-  );
+    return (
+    
+      <>
+        <Navbar />
+        {children}
+        <Footer />
+      </>
+    );
+  
+  
 }

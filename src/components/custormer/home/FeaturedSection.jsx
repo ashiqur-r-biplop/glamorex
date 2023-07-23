@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import useAddToCart from "@/hooks/useAddToCart";
+import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import ProductCard from "./cards/ProductCard";
 import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
+
 
 const FeaturedSection = () => {
   const [products, setProducts] = useState([]);
