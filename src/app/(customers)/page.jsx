@@ -11,24 +11,31 @@ import Testimonials from '@/components/custormer/home/TestimonialSection';
 import TopRatedProductsSection from '@/components/custormer/home/TopRatedProductsSection';
 import TrustedSection from '@/components/custormer/home/TrustedSection';
 import '@smastrom/react-rating/style.css';
+import FbMassage from '@/components/custormer/customChat/CustomChat';
+import { useRouter } from 'next/navigation';
+
 
 
 
 const HomePage = () => {
-    return (
-        <>
-            <HeroSection/>
-            <FeaturedSection/>
-            <TrendingProductsSection/>
-            <TopRatedProductsSection/>
-            <RecentProductsSection/>
-            <OfferBannerSection/>
-            <TrustedSection/>
-            <Testimonials/>
-            <NewsLatterSection/>
-            <GiftWheel></GiftWheel>
-        </>
-    );
+    
+        return (
+            <>
+                <HeroSection/>
+                <FeaturedSection/>
+                <TrendingProductsSection/>
+                <TopRatedProductsSection/>
+                <RecentProductsSection/>
+                <OfferBannerSection/>
+                <TrustedSection/>
+                <Testimonials/>
+                <NewsLatterSection/>
+                <GiftWheel/>
+                <FbMassage/>
+            </>
+        );
+    
+   
 };
 
 export default HomePage;

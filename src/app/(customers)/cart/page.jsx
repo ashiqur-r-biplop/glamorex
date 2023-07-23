@@ -23,9 +23,9 @@ const CartPage = () => {
 
   useEffect(() => {
     
-    if(typeof window !== 'undefined' && window.localStorage) {
+    // if(typeof window !== 'undefined' && window.localStorage) {
      setDiscountGift(localStorage.getItem("giftPrize"))
-    }
+    // }
     axiosSecure("/carts")
       .then((data) => {
         console.log(data?.data);

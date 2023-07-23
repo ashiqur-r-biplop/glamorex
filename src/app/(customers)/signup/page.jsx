@@ -12,12 +12,14 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
   const { user } = useAuth();
+  const router = useRouter()
   useEffect(() => {
     if (user) {
-      return (window.location.href = "/");
+      return router.push("/");
     }
   },[])
   const { axiosSecure } = useAxiosSecure();
@@ -77,7 +79,7 @@ const SignUpPage = () => {
               Swal.fire({
                 title: "Navigate to signin page!",
                 html: "I will land signin page after <b></b> milliseconds.",
-                timer: 3000,
+                timer: 1500,
                 timerProgressBar: true,
               }).then((result) => {
                 /* Read more about handling dismissals below */

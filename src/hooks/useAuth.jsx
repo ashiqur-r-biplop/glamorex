@@ -6,8 +6,7 @@ const useAuth = () => {
     const [loading, setLoading] = useState(true)
     const {axiosSecure} = useAxiosSecure()
     useEffect(() => {
-        if(typeof window !== 'undefined' && window.localStorage) {
-
+        // if(typeof window !== 'undefined' && window.localStorage) {
             const token = localStorage.getItem("access-token")
             
                 if(token) {
@@ -18,10 +17,11 @@ const useAuth = () => {
                  })
                 }
              
-        }
+        // }
     },[])
    
-    return {user, loading, setUser}
+    return {user, loading, setUser, setLoading}
 };
+
 
 export default useAuth;

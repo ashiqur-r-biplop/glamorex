@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export const GridSystem = (display) => {
 useEffect(() => {
-  if(typeof window !== 'undefined' && window.localStorage) {
+  // if(typeof window !== 'undefined' && window.localStorage) {
     let currentLayoutGrid = JSON.parse(localStorage.getItem("layout"));
   if (currentLayoutGrid) {
     currentLayoutGrid = display;
@@ -18,16 +18,16 @@ useEffect(() => {
     const grid = display;
     localStorage.setItem("layout", JSON.stringify(grid));
   }
-  }
+  // }
 },[])
   
 };
 
 export const currentLayout = () => {
   useEffect(() => {
-    if(typeof window !== 'undefined' && window.localStorage) {
+    // if(typeof window !== 'undefined' && window.localStorage) {
 
-      return localStorage.getItem("layout") || JSON.stringify("grid");
-    }
+      return localStorage.getItem("layout") || "grid";
+    // }
   },[])
 };

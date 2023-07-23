@@ -56,10 +56,10 @@ const GiftWheel = () => {
                             radiusLineColor={'orange'}
                             onStopSpinning={() => {
                                 setOfferPrize(data[prizeNumber]?.option)
-                                if(typeof window !== 'undefined' && window.localStorage) {
+                                // if(typeof window !== 'undefined' && window.localStorage) {
 
                                     localStorage.setItem('giftPrize', data[prizeNumber]?.option)
-                                }
+                                // }
                                 setMustSpin(false);
                             }}
                         />

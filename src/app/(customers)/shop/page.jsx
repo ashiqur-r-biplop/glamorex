@@ -14,7 +14,7 @@ const ShopPage = () => {
   const [control, setControl] = useState(true);
   const [isControl, setIsControl] = useState(true);
 
-  const layout = JSON.parse(currentLayout());
+  const layout = currentLayout();
   console.log(layout);
   useEffect(() => {
     fetch("https://glamorex.vercel.app/products")
@@ -36,7 +36,11 @@ const ShopPage = () => {
   };
 
   if (loading) {
-    return <LoadingSpinner></LoadingSpinner>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
   }
   return (
     <div className="">

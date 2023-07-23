@@ -9,9 +9,10 @@ export const useWishlist = () => {
   const { axiosSecure } = useAxiosSecure();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
   const handleWishList = (product) => {
-    console.log(product);
     const {
+      _id,
       category,
       image,
       name,
@@ -19,9 +20,9 @@ export const useWishlist = () => {
       seller_email,
       seller_name,
       status,
-      _id,
     } = product || [];
-    console.log(product?._id);
+
+
     if (user) {
       const cartItem = {
         category,
@@ -34,7 +35,7 @@ export const useWishlist = () => {
         product_id: _id,
         customer_email: user,
       };
-      console.log(cartItem);
+
       axiosSecure
         .post("/add-to-wishlist", cartItem)
         .then((res) => {
@@ -62,7 +63,7 @@ export const useWishlist = () => {
         .catch((error) => console.log(error));
     } else {
       Swal.fire({
-        title: "Please login to order Product",
+        title: "Please login to add wishlist",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

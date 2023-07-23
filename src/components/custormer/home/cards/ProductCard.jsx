@@ -16,8 +16,6 @@ const ProductCard = ({ product }) => {
     quantity,
   } = product || [];
 
-  console.log(product)
-
   const myStyles = {
     itemShapes: ThinStar,
     activeFillColor: "#09AC00",
@@ -25,7 +23,7 @@ const ProductCard = ({ product }) => {
   };
   return (
     <Link href={`/product/${_id}`}>
-      <div className="flex flex-col rounded-md md:max-w-xs w-full h-full border-2 border-gray-100 relative">
+      <div className="flex flex-col rounded-md md:max-w-xs w-full h-full border-2 border-gray-100 relative hover:shadow-lg transition-all duration-300 ease-in-out">
         <div className="w-full p-5">
           <Image
             className="mx-auto rounded-md hover:scale-110 transition-all duration-500 ease-in-out"

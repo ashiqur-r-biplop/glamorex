@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { TbListDetails } from "react-icons/tb";
 
 const ColumnLayout = ({ product }) => {
   const {
@@ -13,7 +12,7 @@ const ColumnLayout = ({ product }) => {
     rating,
     price,
     overall_sell,
-  } = product;
+  } = product || []
 
   return (
     <div className="p-5 my-4 n border w-full">
@@ -32,18 +31,16 @@ const ColumnLayout = ({ product }) => {
           <p className="font-semibold text-lg leading-none flex">
             <span className="text-xs">$</span>
             <span>{price}</span>
-            {/* TODO: modify here  */}
-            <span className="text-xs">.00</span>
           </p>
         </div>
         <div>
-          <p className="text-gray-500">{description.slice(0, 20)}...</p>
+          <p className="text-gray-500">{description?.slice(0, 20)}...</p>
         </div>
         <div>
           <div className="space-x-3">
             <button className="my-btn-one-outline">
               <Link href={`/product/${_id}`}>
-                <TbListDetails></TbListDetails>
+                View Details
               </Link>
             </button>
           </div>
