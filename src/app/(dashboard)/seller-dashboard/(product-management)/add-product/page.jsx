@@ -6,10 +6,6 @@ import { FaAd, FaFileUpload, FaInfoCircle } from "react-icons/fa";
 import {
     FaArrowRight,
     FaCheck,
-    FaCircle,
-    FaCircleCheck,
-    FaCircleDot,
-    FaFileArrowUp,
     FaPlus,
     FaXmark,
 } from "react-icons/fa6";
@@ -54,8 +50,8 @@ const AddProductPage = () => {
     const onSubmit = (data) => {
         setLoading(true)
 
-        const { name, quantity, category, sub_category, productGender, productStatus, sizes, price, discount, description } = data
-        const product = { name, image: imageLink, quantity: totalQuantity || quantity, seller_name: user?.name, seller_email: user?.email, category, sub_category, productGender, sizes: selectedSizes, productStatus, colors: selectedColors, price, discount, description };
+        const { name, quantity, category, sub_category, gender, productStatus, sizes, price, discount, description } = data
+        const product = { name, image: imageLink, quantity: totalQuantity || quantity, seller_name: user?.name, seller_email: user?.email, category, sub_category, gender, sizes: selectedSizes, productStatus, colors: selectedColors, price, discount, description };
         console.log(product);
         axiosSecure.post('/seller/add-new-product', { product }).then(res => {
             console.log(res.data);
@@ -327,7 +323,7 @@ const AddProductPage = () => {
     const isColorsPass = (categories[watch('category')]?.[watch('sub_category')]?.colors?.length > 0)
     const isSizePass = (categories[watch('category')]?.[watch('sub_category')]?.sizes?.length > 0)
 
-    const isGeneralInfoDone = watch('name') && watch('category') && watch('sub_category') && watch('productCoupon') && watch('productGender') && watch('productStatus') && ((!isColorsPass && !isSizePass) ? watch('quantity') : true) && (isColorsPass ? selectedColors?.length : true) && (isSizePass ? selectedSizes?.length : true)
+    const isGeneralInfoDone = watch('name') && watch('category') && watch('sub_category') && watch('productCoupon') && watch('gender') && watch('productStatus') && ((!isColorsPass && !isSizePass) ? watch('quantity') : true) && (isColorsPass ? selectedColors?.length : true) && (isSizePass ? selectedSizes?.length : true)
     const isPricingDone = watch('price') && watch('discount')
     const productDetailsDone = watch('description') && keyFeatures.every(keyFeature => keyFeature?.length)
     const productAllDone = imageLink && isGeneralInfoDone && isPricingDone && productDetailsDone
@@ -616,13 +612,13 @@ const AddProductPage = () => {
                                             {["Woman", "Men", "Unisex"].map((gender, ind) => {
                                                 return (
                                                     <span className="flex gap-4 items-center" key={ind}>
-                                                        <input type="radio" name="gender" id={gender} className="radio radio-success" value={gender} {...register("productGender", { required: true })} />
+                                                        <input type="radio" name="gender" id={gender} className="radio radio-success" value={gender} {...register("gender", { required: true })} />
                                                         <label htmlFor={gender}>{gender}</label>
                                                     </span>
                                                 );
                                             })}
                                         </div>
-                                        {errors.productGender && (
+                                        {errors.gender && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
                                     </div>
@@ -641,7 +637,7 @@ const AddProductPage = () => {
                                                 );
                                             })}
                                         </div>
-                                        {errors.productGender && (
+                                        {errors.productStatus && (
                                             <span className="text-red-500">This field is required</span>
                                         )}
                                     </div>
