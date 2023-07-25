@@ -55,13 +55,13 @@ const AccountPage = () => {
             </div>
             <div>
               <p className="font-semibold text-lg mb-1">Mobile</p>
-              <h4>
-                {User?.birthday ? User?.birthday : "mobile not available"}
-              </h4>
+              <h4>{User?.mobile ? User?.mobile : "mobile not available"}</h4>
             </div>
             <div>
               <p className="font-semibold text-lg mb-1">Birthday</p>
-              <h4>{User?.mobile ? User?.mobile : "birthday not available"}</h4>
+              <h4>
+                {User?.birthday ? User?.birthday : "birthday not available"}
+              </h4>
             </div>
             <div>
               <p className="font-semibold text-lg mb-1">Gender</p>
@@ -79,4 +79,4 @@ const AccountPage = () => {
   );
 };
 
-export default AccountPage
+export default AccountPage;

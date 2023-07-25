@@ -35,7 +35,7 @@ const TopRatedCard = ({ product }) => {
             alt={`${name} image`}
           />
         </div>
-        {discount !== null && (
+        {discount !== null && discount > 0 && (
           <p className="bg-green-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
             - {discount}%
           </p>

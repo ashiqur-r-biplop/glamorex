@@ -3,7 +3,6 @@ import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
 
 const ProductCard = ({ product }) => {
-  console.log(product)
   const {
     _id,
     name,
@@ -34,7 +33,7 @@ const ProductCard = ({ product }) => {
             alt={`${name} image`}
           />
         </div>
-        {discount !== null && (
+        {discount !== null && discount > 0 && (
           <p className="bg-green-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
             - {discount}%
           </p>

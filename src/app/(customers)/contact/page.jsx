@@ -6,7 +6,6 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import contactBanner from "../../../../public/contact-banner.jpg";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import UpdateButton from "@/components/custormer/account/UpdateButton";
 import NewsletterCard from "@/components/custormer/home/cards/NewsletterCard";
 
 const addressData = [
@@ -131,8 +130,7 @@ const ContactPage = () => {
               />
             </div>
             <div className="mt-5">
-              {/* TODO: use common button here  */}
-              <UpdateButton type="submit">Submit</UpdateButton>
+              <button className="my-btn-one" type="submit">Submit</button>
             </div>
           </form>
         </div>
