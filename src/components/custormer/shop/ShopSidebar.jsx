@@ -246,13 +246,9 @@ const ShopSideBar = ({ setControl, control, shopFilter, ClearShopFilter }) => {
     GridSystem(display);
     setControl(!control);
   };
-  const handleColorProduct = () => {
-    setControlProductColor(!controlProductColor);
-  };
+  
 
-  const handleSizeProduct = () => {
-    setControlProductSize(!controlProductSize);
-  };
+ 
   const handleGander = (e) => {
     setGander(e.target.value);
   };
@@ -298,7 +294,7 @@ const ShopSideBar = ({ setControl, control, shopFilter, ClearShopFilter }) => {
     return null;
   };
   console.log(selectedColors);
-  // const renderSizes = () => {
+  
   //   if (selectedSubCategory) {
   //     const { sizes } = categories[selectedCategory.value][selectedSubCategory];
   //     return sizes.map((size) => (
