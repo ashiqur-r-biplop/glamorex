@@ -1,10 +1,14 @@
 "use client";
+import useAuth from "@/hooks/useAuth";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 const NewsletterCard = () => {
   const { register, handleSubmit, reset } = useForm();
+  const { user } = useAuth();
+  const router = useRouter()
 
   const onSubmit = (data) => {
     const { email } = data;
@@ -13,21 +17,36 @@ const NewsletterCard = () => {
       subscriber_email: email,
     };
 
-    axios
-      .post("https://glamorex.vercel.app/subscribe", subscriber)
-      .then((res) => {
-        if (res.data) {
-          reset();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Subscribe Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+    if (user) {
+      axios
+        .post("https://glamorex.vercel.app/subscribe", subscriber)
+        .then((res) => {
+          if (res.data) {
+            reset();
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Subscribe Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        })
+        .catch((e) => console.log(e.message));
+    } else {
+      Swal.fire({
+        title: "Please login to Subscribe",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/signin");
         }
-      })
-      .catch((e) => console.log(e.message));
+      });
+    }
   };
 
   return (
