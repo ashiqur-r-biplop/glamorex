@@ -5,12 +5,18 @@ import { BsGrid } from "react-icons/bs";
 import { RxColumns } from "react-icons/rx";
 import { GridSystem } from "./HandleGridSystem.js";
 
-const ShopSideBar = ({ setControl, control, shopFilter, ClearShopFilter }) => {
+const ShopSideBar = ({
+  setControl,
+  control,
+  shopFilter,
+  ClearShopFilter,
+  setControlLayout,
+  controlLayout,
+}) => {
   const [gander, setGander] = useState("");
   const [controlProductColor, setControlProductColor] = useState(false);
   const [controlProductSize, setControlProductSize] = useState(false);
   const [filterIngData, setFilteringData] = useState(null);
-
 
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
@@ -244,11 +250,9 @@ const ShopSideBar = ({ setControl, control, shopFilter, ClearShopFilter }) => {
   console.log(selectedSizes);
   const handleLayout = (display) => {
     GridSystem(display);
-    setControl(!control);
+    setControlLayout(!controlLayout);
   };
-  
 
- 
   const handleGander = (e) => {
     setGander(e.target.value);
   };
@@ -294,7 +298,7 @@ const ShopSideBar = ({ setControl, control, shopFilter, ClearShopFilter }) => {
     return null;
   };
   console.log(selectedColors);
-  
+
   //   if (selectedSubCategory) {
   //     const { sizes } = categories[selectedCategory.value][selectedSubCategory];
   //     return sizes.map((size) => (
