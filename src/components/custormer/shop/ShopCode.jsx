@@ -33,7 +33,7 @@ const ShopPage = () => {
   }, [isControl]);
   const shopFilter = (gander, category, subCategory) => {
     axios(
-      `https://glamorex.vercel.app/products?category=${category}}&gander=${gander}&subCategory=${subCategory}`
+      `https://glamorex.vercel.app/products?category=${category}&gander=${gander}&subCategory=${subCategory}`
     ).then((data) => {
       setTopSale(data?.data);
     });

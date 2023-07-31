@@ -1,4 +1,3 @@
-"use client";
 import ShopPage from "@/components/custormer/shop/ShopCode";
 const page = () => {
   return <ShopPage></ShopPage>;
