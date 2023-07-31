@@ -22,7 +22,7 @@ const HomePage = () => {
       <TrustedSection />
       <Testimonials />
       <NewsLatterSection />
-      <GiftWheel />
+      {/* <GiftWheel /> */}
       <FbMassage />
     </>
   );
