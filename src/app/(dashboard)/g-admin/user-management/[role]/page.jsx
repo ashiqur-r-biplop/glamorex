@@ -19,7 +19,7 @@ const UserManagementPage = () => {
 
   useEffect(() => {
     setUsers(all_users)
-    console.log(users)
+    //// console.log(users)
   },[all_users])
 
   const options = [
@@ -60,7 +60,7 @@ const UserManagementPage = () => {
   const search = (data) => {
     axiosSecure(`/admin/search-products?query=${data.search_text}`).then(
       (res) => {
-        console.log(res)
+        //// console.log(res)
         setUsers(res.data);
       }
     );

@@ -247,7 +247,7 @@ const ShopSideBar = ({
       },
     },
   };
-  console.log(selectedSizes);
+  //// console.log(selectedSizes);
   const handleLayout = (display) => {
     GridSystem(display);
     setControlLayout(!controlLayout);
@@ -297,7 +297,7 @@ const ShopSideBar = ({
     }
     return null;
   };
-  console.log(selectedColors);
+  //// console.log(selectedColors);
 
   //   if (selectedSubCategory) {
   //     const { sizes } = categories[selectedCategory.value][selectedSubCategory];
@@ -340,7 +340,7 @@ const ShopSideBar = ({
   const handleShopFilter = () => {
     shopFilter(gander, category, subCategory);
   };
-  console.log(filterIngData);
+  //// console.log(filterIngData);
   return (
     <div className="md:sticky top-24 py-3">
       <div className="font-semibold text-2xl flex items-center justify-between mb-5">

@@ -17,7 +17,7 @@ const ColorProduct = () => {
       xxl: xxlRef.current?.checked,
       xxxl: xxxlRef.current?.checked,
     };
-    console.log(selectedColors);
+    //// console.log(selectedColors);
   };
 
   return (

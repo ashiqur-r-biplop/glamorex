@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import bgImg from "/public/assets/img/signinBg.jpg";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa6";
@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 import useMonitorToken from "@/hooks/useMonitorToken";
-
+import { AuthContext } from "@/provider/AuthProvider";
 
 // TODO: do something with user from useAuth()
 const SignInPage = () => {
@@ -23,43 +23,46 @@ const SignInPage = () => {
   const [error, setError] = useState("");
   const { axiosSecure } = useAxiosSecure();
   // const {user, loading, setUser} = useAuth()
-  const [loading, setLoading] = useState(false)
-  const {control, setControl} = useMonitorToken()
-
-
-  const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm();
+  // const [loading, setLoading] = useState(false);
+  const { control, setControl } = useMonitorToken();
+  const { user, login, setUser, loading, setLoading } = useAuth();
+  useEffect(() => {
+    if (user) {
+      return router.push("/");
+    }
+  }, [user]);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
   const handleSigninFunc = (form) => {
-    setLoading(true)
+    setLoading(true);
     setError("");
     const { email, password } = form;
 
     const user = { email, password };
-    axiosSecure
-      .post("/login", user)
+    login(email, password)
       .then((res) => {
-        if (res.data) {
-          if (res.data.token) {
-            // if(typeof window !== 'undefined' && window.localStorage) {
-
-              localStorage.setItem("access-token", res.data.token);
-            // }
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Login Successful",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            router.push("/")
-            setControl(!control)
-          } else {
-            // if(typeof window !== 'undefined' && window.localStorage) {
-
-              localStorage.removeItem("access-token");
-            // }
-          }
-      }})
-      .catch((error) => {console.log(error); setLoading(false)});
+        if (res) {
+          const loggedUser = res.user;
+          setLoading(false);
+          setUser(loggedUser);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Login Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          router.push("/");
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -147,7 +150,14 @@ const SignInPage = () => {
             {error && <p className="text-red-500">*{error}</p>}
             {success && <p className="text-green-500">{success}</p>}
 
-            <button className={`${loading? 'my-btn-one-disable' : 'my-btn-one'} w-full`} type="submit">{loading? 'Signing In..' : 'Sign In'}</button>
+            <button
+              className={`${
+                loading ? "my-btn-one-disable" : "my-btn-one"
+              } w-full`}
+              type="submit"
+            >
+              {loading ? "Signing In.." : "Sign In"}
+            </button>
             <p className="text-sm font-light text-slate-300">
               New user?{" "}
               <Link
@@ -177,7 +187,7 @@ const SignInPage = () => {
         </div>
 
         <Lottie
-          animationData={loading? signinLoadingLottie : signinLottie}
+          animationData={loading ? signinLoadingLottie : signinLottie}
           loop={true}
           className="h-full w-full"
         />

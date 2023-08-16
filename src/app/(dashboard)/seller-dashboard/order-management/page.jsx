@@ -81,7 +81,7 @@ const OrderManagementPage = () => {
         Swal.fire("Updated!", "Delivery Status has Changed", "success");
       }
     });
-    console.log(status, id);
+    //// console.log(status, id);
   };
   return (
     <div className="p-3">

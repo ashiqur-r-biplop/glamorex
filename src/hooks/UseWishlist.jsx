@@ -22,7 +22,6 @@ export const useWishlist = () => {
       status,
     } = product || [];
 
-
     if (user) {
       const cartItem = {
         category,
@@ -39,7 +38,7 @@ export const useWishlist = () => {
       axiosSecure
         .post("/add-to-wishlist", cartItem)
         .then((res) => {
-          console.log(res);
+          //// console.log(res);
           if (res.data.insertedId) {
             //TODO: refetch here
             Swal.fire({

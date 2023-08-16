@@ -25,7 +25,7 @@ const WishListPage = () => {
       });
   }, []);
 
-  console.log(products);
+  //// console.log(products);
 
   if (loading) {
     return (

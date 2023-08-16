@@ -8,7 +8,7 @@ const useAddToCart = () => {
   const { axiosSecure } = useAxiosSecure();
   const router = useRouter();
   const handleAddToCart = (product) => {
-    console.log(product);
+    //// console.log(product);
     const {
       category,
       quantity,
@@ -32,12 +32,12 @@ const useAddToCart = () => {
         product_id: _id,
         customer_email: user,
       };
-      console.log(cartItem);
+      //// console.log(cartItem);
 
       axiosSecure
         .post("/add-to-cart", cartItem)
         .then((res) => {
-          console.log(res);
+          //// console.log(res);
           if (res.data) {
             //TODO: refetch here
             Swal.fire({
@@ -47,10 +47,12 @@ const useAddToCart = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            console.log(res.data, "41");
+            //// console.log(res.data, "41");
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) =>  {
+          // console.log(error)
+        });
     } else {
       Swal.fire({
         title: "Please login to order Product",

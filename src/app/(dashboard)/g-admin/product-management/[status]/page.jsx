@@ -155,7 +155,7 @@ const ProductManagementPage = () => {
             setProducts(res.data);
           }
         )
-        .catch(error => console.log(error))
+        .catch(error => //// console.log(error))
       };
 
     const options = [

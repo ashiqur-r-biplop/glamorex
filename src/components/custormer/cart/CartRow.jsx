@@ -13,7 +13,7 @@ const CartRow = ({ item, handlePlus, handleMinus, handleDeleteProduct }) => {
     sub_total,
     _id,
   } = item;
-  // console.log(item, "cartRow");
+  // //// console.log(item, "cartRow");
   return (
     <tr className="">
       <td className="flex flex-col md:flex-row md:items-center md:gap-4">

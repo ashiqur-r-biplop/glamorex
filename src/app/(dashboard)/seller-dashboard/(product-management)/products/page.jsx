@@ -10,7 +10,7 @@ const products = () => {
     const [products, setProducts] = useState({name:"test", price: 23, quantity:20, category: 'hey', sub_category: 'hello'})
     const isProductsLoading = false
     useEffect(()=>{
-        axiosSecure('/get-my-products').then(res=> {console.log(res.data); console.log('test')}).catch(e=> console.log(e.message))
+        axiosSecure('/get-my-products').then(res=> {//// console.log(res.data); //// console.log('test')}).catch(e=> //// console.log(e.message))
     },[])
 
     return (

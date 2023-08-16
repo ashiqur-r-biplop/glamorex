@@ -21,6 +21,7 @@
         "daisyui": "^3.1.9",
         "eslint": "8.44.0",
         "eslint-config-next": "13.4.7",
+        "firebase": "^10.1.0",
         "framer-motion": "^10.12.18",
         "keen-slider": "^6.8.5",
         "lottie-react": "^2.4.0",

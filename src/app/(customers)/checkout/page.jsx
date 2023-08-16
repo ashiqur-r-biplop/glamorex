@@ -14,11 +14,11 @@ const CheckoutPage = () => {
 
     useEffect(() => {
         axiosSecure.post("/create-payment-intent", {price: 150})
-            .then((data) => {setClientSecret(data.data.clientSecret); console.log(data.data.clientSecret);})
-            .catch(e=> console.log(e.message))
+            .then((data) => {setClientSecret(data.data.clientSecret); //// console.log(data.data.clientSecret);})
+            .catch(e=> //// console.log(e.message))
     }, []);
 
-    console.log(clientSecret);
+    //// console.log(clientSecret);
 
 
     const appearance = {
