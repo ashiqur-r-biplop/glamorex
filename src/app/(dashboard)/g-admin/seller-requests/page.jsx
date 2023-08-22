@@ -74,7 +74,7 @@ const SellerRequestPage = () => {
             if(accepted)
                 axiosSecure.patch(`/admin/accept-seller-request`, id)
                 .then(res => {
-                    console.log(res)
+                    //// console.log(res)
                     if(res.data) {
                         
                         Swal.fire(
@@ -88,7 +88,7 @@ const SellerRequestPage = () => {
             } else {
                 axiosSecure.patch(`/admin/rejected-seller-request`, id)
                 .then(res => {
-                    console.log(res)
+                    //// console.log(res)
                     if(res.data) {
                         Swal.fire(
                             'Rejected!',

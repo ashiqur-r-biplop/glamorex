@@ -17,7 +17,7 @@ const productDetailsPage = () => {
   const { handleWishList } = useWishlist();
   const { handleAddToCart } = useAddToCart();
   const { id } = useParams();
-  console.log(id);
+  //// console.log(id);
   const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ const productDetailsPage = () => {
   const [activeTab, setActiveTab] = useState("Description");
   const { axiosSecure } = useAxiosSecure();
   const { role } = useUserRole();
-  console.log(role);
+  //// console.log(role);
   useEffect(() => {
     axiosSecure
       .get(`/product/${id}`)
@@ -33,12 +33,14 @@ const productDetailsPage = () => {
         setProduct(res.data);
         setLoading(false);
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        console.log(e.message);
+      });
   }, [id]);
 
   useEffect(() => {
     if (product) {
-      console.log("34", product?._id);
+      // console.log("34", product?._id);
       axiosSecure
         .get(
           `/related-products?category=${product?.category}&id=${product?._id}`
@@ -81,9 +83,9 @@ const productDetailsPage = () => {
   } = product || {};
   const tabs = ["Description", "Question", "Reviews"];
 
-  console.log(product);
-  console.log(tabs);
-  console.log(similarProducts);
+  //// console.log(product);
+  //// console.log(tabs);
+  //// console.log(similarProducts);
   const handleMinus = () => {
     setBuyQuantity(buy_quantity - 1);
   };
@@ -196,7 +198,7 @@ const productDetailsPage = () => {
                     [{ red: 10 }, { black: 20 }, { blue: 20 }].map(
                       (item, i) => {
                         const color = Object.keys(item)[0];
-                        console.log(color);
+                        //// console.log(color);
                         return (
                           <button
                             key={i}

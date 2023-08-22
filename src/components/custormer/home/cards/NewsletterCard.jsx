@@ -32,7 +32,9 @@ const NewsletterCard = () => {
             });
           }
         })
-        .catch((e) => console.log(e.message));
+        .catch((e) =>{
+          // console.log(e.message)
+        });
     } else {
       Swal.fire({
         title: "Please login to Subscribe",

@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { FaCheck } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-const PhotoUpdateForm = ({control,setControl}) => {
+const PhotoUpdateForm = ({ control, setControl }) => {
   const { axiosSecure } = useAxiosSecure();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -34,9 +34,9 @@ const PhotoUpdateForm = ({control,setControl}) => {
         };
         axiosSecure
           .patch("/update-photo", updatePhoto)
-          .then((res) => {           
+          .then((res) => {
             if (res.data) {
-              console.log(res.data);
+              //// console.log(res.data);
               setLoading(false);
               Swal.fire({
                 position: "center",
@@ -45,7 +45,7 @@ const PhotoUpdateForm = ({control,setControl}) => {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              setControl(!control)
+              setControl(!control);
             }
           })
           .catch((error) => console.log(error));

@@ -57,7 +57,7 @@ const AddProductPage = () => {
             console.log(res.data);
             setLoading(false);
             setProductAddedSuccess(true);
-        }).catch(e => { console.log(e.message); setLoading(false) })
+        }).catch(e => {  console.log(e.message); setLoading(false) })
     }
 
     // save product event
@@ -89,7 +89,7 @@ const AddProductPage = () => {
         axios.post(url, formData).then((res) => {
             const photo_url = res.data.data.url;
             setImageLink(photo_url)
-        }).catch(e => console.log(e.message))
+        }).catch(e =>  console.log(e.message))
     }, [setProductImg]);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

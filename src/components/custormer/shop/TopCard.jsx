@@ -6,7 +6,7 @@ import { GridSystem } from "./HandleGridSystem";
 import ProductCard from "../home/cards/ProductCard";
 
 const TopCard = ({ product, layout }) => {
-  console.log(layout);
+  //// console.log(layout);
   const isMobileScreen = () => {
     return window.innerWidth <= 768;
   };

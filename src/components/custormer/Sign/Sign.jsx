@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import bgImg from "/public/assets/img/signinBg.jpg";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
@@ -13,21 +13,22 @@ import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/provider/AuthProvider";
 
 const SignUpPage = () => {
-  const { user } = useAuth();
   const router = useRouter();
+  const { user, signUp, setLoading, loading, logout, ProfileUpdate } =
+    useAuth();
   useEffect(() => {
     if (user) {
       return router.push("/");
     }
-  }, []);
+  }, [user]);
   const { axiosSecure } = useAxiosSecure();
   const [isShowPass, setIsShowPass] = useState(false);
   const [isConfirmShowPass, setIsConfirmShowPass] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -37,7 +38,8 @@ const SignUpPage = () => {
   } = useForm();
   const handleSignupFunc = (form) => {
     setLoading(true);
-    const { name, photo, email, password, confirmPassword, terms } = form;
+    const { name, photo, email, password, confirmPassword, terms, phone } =
+      form;
     const formData = new FormData();
     formData.append("image", photo[0]);
 
@@ -65,29 +67,61 @@ const SignUpPage = () => {
       .post(url, formData)
       .then((res) => {
         const photo_url = res.data.data.url;
-        const user = { name, photo_url, email, password };
-
-        axiosSecure
-          .post("/register", user)
+        const user = {
+          name,
+          photo_url,
+          email,
+          phone,
+          userRole: "customer",
+        };
+        signUp(email, password)
           .then((res) => {
-            if (res.data) {
-              setSuccess("Registration successful");
-              setLoading(false);
-
-              // navigate to signin page after 3 seconds
-              Swal.fire({
-                title: "Navigate to signin page!",
-                html: "I will land signin page after <b></b> milliseconds.",
-                timer: 1500,
-                timerProgressBar: true,
-              }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer) {
-                  location.href = "/signin";
-                  console.log("I was closed by the timer");
-                }
+            setSuccess("Registration successful");
+            setLoading(false);
+            // console.log("succefully register, 75");
+            // TODO: Store user in database
+            // navigate to signin page after 3 seconds
+            ProfileUpdate(user?.name, user?.photo_url)
+              .then((res) => {
+                setLoading(false);
+                fetch("https://glamorex-server.vercel.app/users", {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(user),
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    console.log(data, "88");
+                    if (data.insertedId) {
+                      console.log("post user in data successfully 91");
+                      setLoading(false);
+                      Swal.fire({
+                        title: "Navigate to signin page!",
+                        html: "I will land signin page after <b></b> milliseconds.",
+                        timer: 1000,
+                        timerProgressBar: true,
+                      })
+                        .then((result) => {
+                          /* Read more about handling dismissals below */
+                          if (result.dismiss === Swal.DismissReason.timer) {
+                            router.push("/signin");
+                            // console.log("I was closed by the timer 112"a);
+                          }
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
+                    }
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
               });
-            }
           })
           .catch((error) => console.log(error));
       })

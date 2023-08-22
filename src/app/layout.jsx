@@ -1,7 +1,8 @@
 import ReduxProvider from "@/provider/ReduxProvider";
 import "./globals.css";
 import { Roboto, Nunito, Inter } from "next/font/google";
-import "./Scrollbar.css"
+import "./Scrollbar.css";
+import AuthProvider from "@/provider/AuthProvider";
 
 export const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -23,9 +24,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={nunito.className} data-theme="light">
-        <ReduxProvider>     
-          {children}
-        </ReduxProvider>
+        <AuthProvider>
+          <ReduxProvider>{children}</ReduxProvider>
+        </AuthProvider>
       </body>
     </html>
   );

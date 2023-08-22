@@ -26,10 +26,12 @@ const ShopPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setTopSale(data);
-        console.log(data);
+        //// console.log(data);
         setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error)
+      });
   }, [isControl]);
   const shopFilter = (gander, category, subCategory) => {
     axios(

@@ -11,7 +11,7 @@ export default function CustomerLayout({ children }) {
   const dispatch = useDispatch()
   const router = useRouter();
 
-   console.log("14",router)
+  //// console.log("14",router)
   useEffect(() => {
     // if(typeof window !== 'undefined' && window.localStorage) {
       const token = localStorage.getItem("access-token")
