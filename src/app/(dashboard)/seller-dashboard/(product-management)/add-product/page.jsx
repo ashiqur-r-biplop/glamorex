@@ -52,12 +52,12 @@ const AddProductPage = () => {
 
         const { name, quantity, category, sub_category, gender, productStatus, sizes, price, discount, description } = data
         const product = { name, image: imageLink, quantity: totalQuantity || quantity, seller_name: user?.name, seller_email: user?.email, category, sub_category, gender, sizes: selectedSizes, productStatus, colors: selectedColors, price, discount, description };
-        //// console.log(product);
+        console.log(product);
         axiosSecure.post('/seller/add-new-product', { product }).then(res => {
-            //// console.log(res.data);
+            console.log(res.data);
             setLoading(false);
             setProductAddedSuccess(true);
-        }).catch(e => { //// console.log(e.message); setLoading(false) })
+        }).catch(e => {  console.log(e.message); setLoading(false) })
     }
 
     // save product event
@@ -89,7 +89,7 @@ const AddProductPage = () => {
         axios.post(url, formData).then((res) => {
             const photo_url = res.data.data.url;
             setImageLink(photo_url)
-        }).catch(e => //// console.log(e.message))
+        }).catch(e =>  console.log(e.message))
     }, [setProductImg]);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

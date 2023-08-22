@@ -9,13 +9,13 @@ const useUserRole = () => {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
+
   useEffect(() => {
     // if(typeof window !== 'undefined' && window.localStorage) {
-
     const token = localStorage.getItem("access-token");
-    if (token && user) {
+    if (user) {
       axios
-        .get(`http://localhost:5000/get-user-role?email=${user?.email}`)
+        .get(`https://glamorex-server.vercel.app/get-user-role?email=${user?.email}`)
         .then((res) => {
           setRole(res.data.role);
           console.log(res.data.role, "21");
