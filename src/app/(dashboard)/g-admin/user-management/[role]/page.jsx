@@ -8,26 +8,39 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import TapLink from "@/components/shared/TapLink";
+import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
+import Link from "next/link";
+import useUserManagement from "@/hooks/useUserManagement";
 
 const UserManagementPage = () => {
-  const {handleSubmit, register} = useForm()
+  const { handleSubmit, register } = useForm();
   const { role } = useParams();
   const { axiosSecure } = useAxiosSecure();
-  const [users, setUsers] = useState()
-  const { data: all_users, isLoading } = useGetUsersQuery(role);
-
+  const [users, setUsers] = useState();
+  const { userCategory, setUserCategory } = useUserManagement();
+  // TODO
+  // const { data: all_users, isLoading } = useGetUsersQuery(role);
+  // TODO
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setUsers(all_users)
-    //// console.log(users)
-  },[all_users])
+    fetch(`http://localhost:5000/all-user`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
+  }, []);
 
   const options = [
     { value: "customer", label: "Customer" },
     { value: "seller", label: "Seller" },
     { value: "admin", label: "Admin" },
   ];
-  
+
   const updateOrderStatus = (role, userId) => {
     Swal.fire({
       title: "Are you sure?",
@@ -60,13 +73,23 @@ const UserManagementPage = () => {
   const search = (data) => {
     axiosSecure(`/admin/search-products?query=${data.search_text}`).then(
       (res) => {
-        //// console.log(res)
+        console.log(res);
         setUsers(res.data);
       }
     );
   };
+  const handleCategory = (e) => {
+    console.log(e.target);
+  };
+  console.log(userCategory);
 
-  if (isLoading) return "loading";
+  if (isLoading) {
+    return (
+      <div className="h-screen border flex justify-between items-center">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
   return (
     <div className="p-3">
       <div className="my-8 bg-slate-50 shadow rounded p-5">
@@ -74,14 +97,57 @@ const UserManagementPage = () => {
           <h2 className="my-subtitle text-slate-600">All Users</h2>
         </div>
 
-        <div className="relative ">
-          <ul className="flex gap-5 items-stretch my-5 py-2">
-            <TapLink href="/g-admin/user-management/all_users">
+        <div className="relative">
+          <ul
+            onChange={() => handleCategory()}
+            className="flex gap-5 items-stretch my-5 py-2"
+          >
+            <Link
+              href={`/g-admin/user-management/${
+                userCategory === "All Users" ? "all_users" : userCategory
+              }`}
+              onClick={() => setUserCategory("All Users")}
+              className={`py-2 uppercase cursor-pointer ${
+                userCategory === "All Users"
+                  ? "border-b-2 border-[#0621bb] text-[#0621bb]"
+                  : ""
+              }`}
+            >
               All Users
-            </TapLink>
-            <TapLink href="/g-admin/user-management/customer">Customer</TapLink>
-            <TapLink href="/g-admin/user-management/seller">Seller</TapLink>
-            <TapLink href="/g-admin/user-management/admin">Admin</TapLink>
+            </Link>
+            <Link
+              href={`/g-admin/user-management/customer`}
+              onClick={() => setUserCategory("Customer")}
+              className={`py-2 uppercase cursor-pointer ${
+                userCategory === "Customer"
+                  ? "border-b-2 border-[#0621bb] text-[#0621bb]"
+                  : ""
+              }`}
+            >
+              Customer
+            </Link>
+            <Link
+              href="/g-admin/user-management/seller"
+              onClick={() => setUserCategory("Seller")}
+              className={`py-2 uppercase cursor-pointer ${
+                userCategory === "Seller"
+                  ? "border-b-2 border-[#0621bb] text-[#0621bb]"
+                  : ""
+              }`}
+            >
+              Seller
+            </Link>
+            <Link
+              href="/g-admin/user-management/admin"
+              onClick={() => setUserCategory("Admin")}
+              className={`py-2 uppercase cursor-pointer ${
+                userCategory === "Admin"
+                  ? "border-b-2 border-[#0621bb] text-[#0621bb]"
+                  : ""
+              }`}
+            >
+              Admin
+            </Link>
           </ul>
           <hr className="-mt-[29px]" />
         </div>
@@ -119,45 +185,65 @@ const UserManagementPage = () => {
               </tr>
             </thead>
             <tbody>
-              {users &&
-                users.map((user, i) => {
-                  const { _id, name, role, photo_url, email } = user || {};
-                  return (
-                    <tr key={_id}>
-                      <th>{i + 1}</th>
-                      <td>
-                        <span className="border block  w-[60px] h-[60px] relative rounded overflow-hidden">
-                          <Image
-                            style={{ objectFit: "cover" }}
-                            src={photo_url || placeholder}
-                            fill={true}
-                            alt="user Phone"
-                          />
-                        </span>
-                      </td>
-                      <td>{name}</td>
-                      <td>{email}</td>
-                      <td>{role}</td>
-                      <td>
-                        <select
-                          defaultValue={role}
-                          onChange={(e) =>
-                            updateOrderStatus(e.target.value, _id)
-                          }
-                          className="px-4 py-2 border bg-none"
-                          name=""
-                          id=""
-                        >
-                          {options.map((option, i) => (
-                            <option key={i} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                    </tr>
-                  );
-                })}
+              {!isLoading &&
+                users
+                  .filter((user) => {
+                    if (userCategory == "All Users") {
+                      return true;
+                    } else if (userCategory == "Seller") {
+                      return user.userRole == "seller";
+                    } else if (userCategory == "Admin") {
+                      return user.userRole == "admin";
+                    } else if (userCategory == "Customer") {
+                      return user.userRole == "customer";
+                    }
+                    console.log(userCategory);
+                    return false;
+                  })
+                  .map((user, i) => {
+                    const {
+                      _id,
+                      name,
+                      userRole: role,
+                      photo_url,
+                      email,
+                    } = user || {};
+                    return (
+                      <tr key={_id}>
+                        <th>{i + 1}</th>
+                        <td>
+                          <span className="border block  w-[60px] h-[60px] relative rounded overflow-hidden">
+                            <Image
+                              style={{ objectFit: "cover" }}
+                              src={photo_url || placeholder}
+                              fill={true}
+                              alt="user Phone"
+                            />
+                          </span>
+                        </td>
+                        <td>{name}</td>
+                        <td>{email}</td>
+                        <td>{role}</td>
+                        <td>
+                          <select
+                            defaultValue={role}
+                            onChange={(e) =>
+                              updateOrderStatus(e.target.value, _id)
+                            }
+                            className="px-4 py-2 border bg-none"
+                            name=""
+                            id=""
+                          >
+                            {options.map((option, i) => (
+                              <option key={i} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                      </tr>
+                    );
+                  })}
             </tbody>
           </table>
         </div>
