@@ -1,0 +1,146 @@
+[
+    {
+      "id": "1",
+      "name": "Alex Hales",
+      "img": "https://i.ibb.co/cNnxZh3/member-4.png",
+      "title": "Founder",
+      "social_links": [
+        {
+          "link": "https://www.facebook.com/BBTT.biplop22/",
+          "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+        },
+        {
+          "link": "https://twitter.com/a_r_biplop",
+          "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
+        },
+        {
+          "link": "https://www.linkedin.com/in/ashiqur-r-biplop/",
+          "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+        },
+        {
+          "link": "https://www.instagram.com/mohammad_ashiqur_rahman_biplop/",
+          "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Brenden williams",
+      "img": "https://i.ibb.co/JKGhWyH/member-3.png",
+      "title": "CEO",
+      "social_links": [
+        {
+          "link": "https://facebook.com/aothymoon59",
+          "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+        },
+        {
+          "link": "https://twitter.com/aothymoon59",
+          "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
+        },
+        {
+          "link": "https://www.linkedin.com/in/aothymoon59/",
+          "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+        },
+        {
+          "link": "https://instagram.com/aothymoon59",
+          "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Alexina Brownie",
+      "img": "https://i.ibb.co/ncXvNJX/member-1.png",
+      "title": "CTO",
+      "social_links": [
+        {
+          "link": "https://www.facebook.com/alexjohnson",
+          "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+        },
+        {
+          "link": "https://www.twitter.com/alexjohnson",
+          "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
+        },
+        {
+          "link": "https://www.linkedin.com/in/alexjohnson",
+          "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+        },
+        {
+          "link": "https://www.instagram.com/alexjohnson",
+          "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Emily Era",
+      "img": "https://i.ibb.co/YtqWph0/member-5.png",
+      "title": "Marketing Manager",
+      "social_links": [
+        {
+          "link": "https://www.facebook.com/emilydavis",
+          "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+        },
+        {
+          "link": "https://www.twitter.com/emilydavis",
+          "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
+        },
+        {
+          "link": "https://www.linkedin.com/in/emilydavis",
+          "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+        },
+        {
+          "link": "https://www.instagram.com/emilydavis",
+          "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Michael Brown",
+      "img": "https://i.ibb.co/yySpFJh/member-6.png",
+      "title": "Sales Manager",
+      "social_links": [
+        {
+          "link": "https://www.facebook.com/michaelbrown",
+          "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+        },
+        {
+          "link": "https://www.twitter.com/michaelbrown",
+          "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
+        },
+        {
+          "link": "https://www.linkedin.com/in/michaelbrown",
+          "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+        },
+        {
+          "link": "https://www.instagram.com/michaelbrown",
+          "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Sarah Wilson",
+      "img": "https://i.ibb.co/KNRGS3d/member-2.png",
+      "title": "Customer Support Specialist",
+      "social_links": [
+        {
+          "link": "https://www.facebook.com/sarahwilson",
+          "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+        },
+        {
+          "link": "https://www.twitter.com/sarahwilson",
+          "icon": "https://i.ibb.co/X3GqHCn/twitter.png"
+        },
+        {
+          "link": "https://www.linkedin.com/in/sarahwilson",
+          "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+        },
+        {
+          "link": "https://www.instagram.com/sarahwilson",
+          "icon": "https://i.ibb.co/QnsR3dH/instagram.png"
+        }
+      ]
+    }
+  ] 

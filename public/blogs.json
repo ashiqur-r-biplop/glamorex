@@ -1,0 +1,46 @@
+[
+    {
+        "_id": "1",
+        "title": "Summer Fashion Trends",
+        "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Discover the latest summer fashion trends for 2023.",
+        "blog_details": "In this blog post, we will explore the hottest fashion trends for the summer season. From vibrant colors to lightweight fabrics, get ready to update your wardrobe with the latest styles.",
+        "views": 550,
+        "publish_date": "Sat Jul 01 2023 21:04:21 GMT+0600",
+        "labels": ["fashion", "summer trends"],
+        "tags": ["summer", "fashion", "trends"]
+      },
+      {
+        "_id": "2",
+        "title": "10 Must-Have Accessories for Fall",
+        "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Complete your fall look with these essential accessories.",
+        "blog_details": "As the leaves start to change color, it's time to update your accessories collection. From cozy scarves to stylish hats, we've compiled a list of the must-have accessories for the upcoming fall season.",
+        "views": 720,
+        "publish_date": "Sun Jul 02 2023 10:15:47 GMT+0600",
+        "labels": ["fashion", "accessories"],
+        "tags": ["fall", "accessories", "style"]
+      },
+      {
+        "_id": "3",
+        "title": "How to Dress for a Formal Event",
+        "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Learn the dos and don'ts of dressing up for formal occasions.",
+        "blog_details": "Attending a formal event can be daunting, especially when it comes to choosing the right outfit. In this blog post, we will guide you through the essential tips and tricks to ensure you look elegant and stylish for any formal occasion.",
+        "views": 920,
+        "publish_date": "Mon Jul 03 2023 15:30:12 GMT+0600",
+        "labels": ["fashion", "formal wear"],
+        "tags": ["formal", "style", "dress up"]
+      },
+      {
+        "_id": "4",
+        "title": "The Art of Layering: Winter Fashion",
+        "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Stay warm and fashionable with these layering techniques.",
+        "blog_details": "Winter fashion is all about staying cozy without compromising on style. In this blog post, we will teach you the art of layering, from choosing the right fabrics to creating stylish combinations. Say goodbye to bulky winter outfits and hello to chic layered looks.",
+        "views": 690,
+        "publish_date": "Tue Jul 04 2023 09:55:56 GMT+0600",
+        "labels": ["fashion", "winter"],
+        "tags": ["winter", "layering", "style"]
+      }
+]
