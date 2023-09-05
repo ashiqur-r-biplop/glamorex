@@ -33,7 +33,7 @@ const CheckoutPage = () => {
 
   return (
     // <CustomerOnly>
-    <div className="h-screen flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center bg-slate-200">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />

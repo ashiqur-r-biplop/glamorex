@@ -6,7 +6,8 @@ import { useEffect } from "react";
 // import { Route } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: "https://glamorex.vercel.app"
+    // baseURL: "https://glamorex.vercel.app"
+    baseURL: "https://glamorex-server.vercel.app/"
 })
 
 // http://lacalhost:5000

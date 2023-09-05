@@ -1,5 +1,6 @@
 "use client"
-import SignUpPage from "@/components/custormer/Sign/Sign";
+
+import SignUpPage from "@/components/custormer/Signup/Signup";
 
 const page = () => {
   return <SignUpPage></SignUpPage>;

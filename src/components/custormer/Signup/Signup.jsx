@@ -36,6 +36,8 @@ const SignUpPage = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+  // signup func
   const handleSignupFunc = (form) => {
     setLoading(true);
     const { name, photo, email, password, confirmPassword, terms, phone } =
@@ -45,19 +47,22 @@ const SignUpPage = () => {
 
     if (!terms) {
       setError("*Please check terms and condition!");
+      setLoading(false)
       return;
     }
     if (password !== confirmPassword) {
       setError("*Your password is not match!");
+      setLoading(false)
       return;
     }
-
+    
     // password regexp
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(password)) {
       setError(
         "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit."
-      );
+        );
+        setLoading(false)
       return;
     }
 
@@ -322,8 +327,8 @@ const SignUpPage = () => {
             success
               ? successRegistrationLottie
               : loading
-              ? registrationLoadingLottie
-              : signupLottie
+                ? registrationLoadingLottie
+                : signupLottie
           }
           loop={true}
           className="h-full w-full"

@@ -57,7 +57,7 @@ function Nav() {
   );
   const profileDropdown = (
     <>
-      {user && authLoading ? (
+      {authLoading ? (
         <LoadingSpinner className={"h-14 w-14"}></LoadingSpinner>
       ) : !user ? (
         <NavLink href="/signin">Signin</NavLink>
