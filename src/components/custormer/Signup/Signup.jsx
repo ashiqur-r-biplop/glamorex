@@ -55,14 +55,14 @@ const SignUpPage = () => {
       setLoading(false)
       return;
     }
-    
+
     // password regexp
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(password)) {
       setError(
         "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit."
-        );
-        setLoading(false)
+      );
+      setLoading(false)
       return;
     }
 
