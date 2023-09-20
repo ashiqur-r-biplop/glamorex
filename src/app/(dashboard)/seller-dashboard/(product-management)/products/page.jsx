@@ -1,36 +1,41 @@
 "use client";
 
 import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
+import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import React, { useEffect, useState } from "react";
 
 const products = () => {
   const { axiosSecure } = useAxiosSecure();
-  // const [products, setProducts] = useState([])
-  const [products, setProducts] = useState({
-    name: "test",
-    price: 23,
-    quantity: 20,
-    category: "hey",
-    sub_category: "hello",
-  });
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
+  // const [products, setProducts] = useState({
+  //   name: "test",
+  //   price: 23,
+  //   quantity: 20,
+  //   category: "hey",
+  //   sub_category: "hello",
+  // });
   const isProductsLoading = false;
   useEffect(() => {
-    axiosSecure("/get-my-products")
+    axiosSecure(`/get-my-products?email=${user?.email}`)
       .then((res) => {
-        console.log(res.data);
-        console.log("test");
+        setProducts(res.data);
+        setLoading(false);
       })
       .catch((e) => console.log(e.message));
   }, []);
-
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-cover bg-center bg-slate-800 bg-blend-overlay">
-      {isProductsLoading ? (
-        <div className="h-screen flex items-center justify-center">
-          <LoadingSpinner></LoadingSpinner>
-        </div>
-      ) : !products.length ? (
+      {!products.length ? (
         <div className="h-screen flex items-center justify-center">
           <h2 className="text-4xl text-white font-bold bg-red-500 p-3">
             No products have been added yet!!
@@ -49,6 +54,7 @@ const products = () => {
                   <th className="text-center">Quantity</th>
                   <th className="text-end">Categories</th>
                   <th className="text-end">Sub Categories</th>
+                  <th className="text-end">product Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -63,6 +69,7 @@ const products = () => {
                     category,
                     sub_category,
                     status,
+                    product_status
                   } = product;
                   return (
                     <tr key={ind}>
@@ -82,7 +89,21 @@ const products = () => {
                       </td>
                       <td className="text-center"> {quantity} </td>
                       <td className="text-center">{status}</td>
-                      {/* <th className='text-end'>  <button className="cmn-btn-one" onClick={() => { window.my_modal_1.showModal(); setForUpdateClass(product) }}><FaPen></FaPen></button>  </th> */}
+                      <td className="text-center">{category}</td>
+                      <td className="text-center">{sub_category}</td>
+                      <td className="text-center">{product_status}</td>
+                      {/* <th className="text-end">
+                        {" "}
+                        <button
+                          className="cmn-btn-one"
+                          onClick={() => {
+                            window.my_modal_1.showModal();
+                            setForUpdateClass(product);
+                          }}
+                        >
+                          <FaPen></FaPen>
+                        </button>{" "}
+                      </th> */}
                     </tr>
                   );
                 })}
