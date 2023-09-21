@@ -13,6 +13,7 @@ import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useGetProductsQuery } from "@/redux-toolkit/slice/adminApis/adminGetApies";
 import TapLink from "@/components/shared/TapLink";
+import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
 
 const ProductManagementPage = () => {
   const { handleSubmit, register } = useForm();
@@ -20,10 +21,16 @@ const ProductManagementPage = () => {
   const { axiosSecure } = useAxiosSecure();
 
   const [products, setProducts] = useState();
-  const { data: allProducts, isLoading } = useGetProductsQuery(status);
+  const [isLoading, setIsLoading] = useState(true);
+  // const { data: allProducts, isLoading } = useGetProductsQuery(status);
 
   useEffect(() => {
-    setProducts(allProducts);
+    axiosSecure.get("/all-products").then((data) => {
+      setProducts(data.data);
+      console.log(data);
+      setIsLoading(false);
+    });
+    console.log("admin all data");
   }, []);
   const updateOrderStatus = (status, productId) => {
     Swal.fire({
@@ -153,7 +160,12 @@ const ProductManagementPage = () => {
     { value: "rejected", label: "Rejected" },
   ];
 
-  if (isLoading) return "loading";
+  if (isLoading)
+    return (
+      <div className="h-screen w-full flex justify-center items-center">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
   return (
     <div className="p-3">
       <div className="my-8 bg-slate-50 shadow rounded p-5">

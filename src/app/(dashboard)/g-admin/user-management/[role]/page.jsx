@@ -17,16 +17,17 @@ const UserManagementPage = () => {
   const { role } = useParams();
   const { axiosSecure } = useAxiosSecure();
   const [users, setUsers] = useState();
-  const { userCategory, setUserCategory } = useUserManagement();
+  // const { userCategory, setUserCategory } = useUserManagement();
+  const [userCategory, setUserCategory] = useState("All Users");
   // TODO
   // const { data: all_users, isLoading } = useGetUsersQuery(role);
   // TODO
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/all-user`)
-      .then((res) => res.json())
+    axiosSecure
+      .get("/all-user")
       .then((data) => {
-        setUsers(data);
+        setUsers(data.data);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -103,9 +104,7 @@ const UserManagementPage = () => {
             className="flex gap-5 items-stretch my-5 py-2"
           >
             <Link
-              href={`/g-admin/user-management/${
-                userCategory === "All Users" ? "all_users" : userCategory
-              }`}
+              href={`/g-admin/user-management/all_users`}
               onClick={() => setUserCategory("All Users")}
               className={`py-2 uppercase cursor-pointer ${
                 userCategory === "All Users"
@@ -127,7 +126,7 @@ const UserManagementPage = () => {
               Customer
             </Link>
             <Link
-              href="/g-admin/user-management/seller"
+              href={`/g-admin/user-management/seller`}
               onClick={() => setUserCategory("Seller")}
               className={`py-2 uppercase cursor-pointer ${
                 userCategory === "Seller"
@@ -138,7 +137,7 @@ const UserManagementPage = () => {
               Seller
             </Link>
             <Link
-              href="/g-admin/user-management/admin"
+              href={`/g-admin/user-management/admin`}
               onClick={() => setUserCategory("Admin")}
               className={`py-2 uppercase cursor-pointer ${
                 userCategory === "Admin"

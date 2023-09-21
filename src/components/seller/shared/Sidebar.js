@@ -12,16 +12,18 @@ import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 const Sidebar = () => {
-  const [productManagementDropdown, setProductManagementDropdown] = useState(false);
-  const { setUser } = useAuth();
-  const router = useRouter()
-
+  const [productManagementDropdown, setProductManagementDropdown] =
+    useState(false);
+  const { setUser, logout } = useAuth();
+  const router = useRouter();
 
   // logOutFunc
   const logOutFunc = () => {
-    localStorage.removeItem("access-token");
-    setUser(null)
-    router.push('/')
+    logout((res) => {
+      localStorage.removeItem("access-token");
+      setUser(null);
+      router.push("/");
+    }).catch(err =>{console.log(err)})
   };
 
   return (
@@ -79,10 +81,11 @@ const Sidebar = () => {
 
           {/* Product management dropdown */}
           <ul
-            className={`pl-3 py-3 bg-gradient-to-tr from-slate-800 to-[#081229] transition-all duration-500 ${productManagementDropdown
-              ? "visible opacity-100 block"
-              : "invisible opacity-0 hidden"
-              }`}
+            className={`pl-3 py-3 bg-gradient-to-tr from-slate-800 to-[#081229] transition-all duration-500 ${
+              productManagementDropdown
+                ? "visible opacity-100 block"
+                : "invisible opacity-0 hidden"
+            }`}
           >
             <SDNavLink href={"/seller-dashboard/add-product"}>
               {" "}
@@ -123,7 +126,10 @@ const Sidebar = () => {
       </ul>
 
       {/* signout button */}
-      <p className="absolute left-2 bottom-2 flex items-center gap-2 cursor-pointer" onClick={logOutFunc}>
+      <p
+        className="absolute left-2 bottom-2 flex items-center gap-2 cursor-pointer"
+        onClick={logOutFunc}
+      >
         <span className="p-3 rounded-full text-lg bg-slate-50 text-[#081229]">
           <FaSignOutAlt></FaSignOutAlt>
         </span>
