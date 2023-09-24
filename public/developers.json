@@ -1,6 +1,5 @@
 [
   {
-    "id": "1",
     "name": "Ashiqur Rahman Biplop",
     "img": "https://i.ibb.co/tDT76sj/42883-removebg-preview.png",
     "title": "Frontend Developer",
@@ -24,7 +23,6 @@
     ]
   },
   {
-    "id": "2",
     "name": "Abtahi Hasan",
     "img": "https://i.ibb.co/rGcv0M6/abtahi-hasan.png",
     "title": "Full Stack Developer",
@@ -48,7 +46,6 @@
     ]
   },
   {
-    "id": "3",
     "name": "Aothy Mahamud Moon",
     "img": "https://i.ibb.co/5M178K2/Aothy-Mahamud-Moon.png",
     "title": "Frontend Developer",
@@ -72,7 +69,6 @@
     ]
   },
   {
-    "id": "4",
     "name": "Ahashan Habib Utsho",
     "img": "https://i.ibb.co/z5WD4jG/Utsho.png",
     "title": "Frontend Developer",
@@ -96,7 +92,6 @@
     ]
   },
   {
-    "id": "5",
     "name": "Tanvir Ahmad Jesan",
     "img": "https://i.ibb.co/k19pw1V/Tanvir-Ahmad.png",
     "title": "Frontend Developer",
@@ -120,7 +115,6 @@
     ]
   },
   {
-    "id": "6",
     "name": "S M Arman Hossain",
     "img": "https://i.ibb.co/d7TVcKJ/Armaan.png",
     "title": "Frontend Developer",

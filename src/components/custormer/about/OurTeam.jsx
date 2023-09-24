@@ -2,15 +2,16 @@
 import React, { useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
 import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
+import axios from "axios";
 
 const OurTeam = () => {
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/ourteam.json")
-      .then((res) => res.json())
-      .then((data) => setMembers(data), setLoading(false));
+    axios
+      .get("https://glamorex-server.vercel.app/our_team")
+      .then((data) => setMembers(data.data), setLoading(false));
   }, []);
   if (loading) {
     return <LoadingSpinner></LoadingSpinner>;

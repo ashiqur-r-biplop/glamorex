@@ -15,7 +15,7 @@ const BlogPage = () => {
   const { blogs } = useSelector((state) => state.blogs) || [];
   const showDetails = async (id) => {
     setIsOpen(true);
-    const res = await axios.get("/blogs.json");
+    const res = await axios.get("https://glamorex-server.vercel.app/blogs");
     const blog = res.data.find((blog) => blog._id === id);
     setBlog(blog);
   };
@@ -28,12 +28,14 @@ const BlogPage = () => {
   return (
     <main className="container mx-auto">
       <div
-        className={`${isOpen ? "" : "hidden"
-          } w-[100vw] z-10 bg-black blur-xl bg-opacity-50 h-screen left-0 right-0 top-0 bottom-0 fixed`}
+        className={`${
+          isOpen ? "" : "hidden"
+        } w-[100vw] z-10 bg-black blur-xl bg-opacity-50 h-screen left-0 right-0 top-0 bottom-0 fixed`}
       ></div>
       <div
-        className={`${isOpen ? "" : "hidden"
-          } z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[70%] h-[90%] md:h-auto p-10 shadow-md border rounded bg-white`}
+        className={`${
+          isOpen ? "" : "hidden"
+        } z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[70%] h-[90%] md:h-auto p-10 shadow-md border rounded bg-white`}
       >
         <button
           onClick={hideDetails}

@@ -78,6 +78,7 @@ const SignUpPage = () => {
           email,
           phone,
           userRole: "customer",
+          register_date : new Date()
         };
         signUp(email, password)
           .then((res) => {
@@ -89,17 +90,9 @@ const SignUpPage = () => {
             ProfileUpdate(user?.name, user?.photo_url)
               .then((res) => {
                 setLoading(false);
-                fetch("https://glamorex-server.vercel.app/users", {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(user),
-                })
-                  .then((res) => res.json())
+                axiosSecure.post("https://glamorex-server.vercel.app/users",user)
                   .then((data) => {
-                    console.log(data, "88");
-                    if (data.insertedId) {
+                    if (data.data.insertedId) {
                       console.log("post user in data successfully 91");
                       setLoading(false);
                       Swal.fire({
