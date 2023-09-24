@@ -1,6 +1,5 @@
 [
     {
-        "_id": "1",
         "title": "Summer Fashion Trends",
         "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "description": "Discover the latest summer fashion trends for 2023.",
@@ -11,7 +10,6 @@
         "tags": ["summer", "fashion", "trends"]
       },
       {
-        "_id": "2",
         "title": "10 Must-Have Accessories for Fall",
         "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "description": "Complete your fall look with these essential accessories.",
@@ -22,7 +20,6 @@
         "tags": ["fall", "accessories", "style"]
       },
       {
-        "_id": "3",
         "title": "How to Dress for a Formal Event",
         "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "description": "Learn the dos and don'ts of dressing up for formal occasions.",
@@ -33,7 +30,6 @@
         "tags": ["formal", "style", "dress up"]
       },
       {
-        "_id": "4",
         "title": "The Art of Layering: Winter Fashion",
         "thumbnail": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "description": "Stay warm and fashionable with these layering techniques.",

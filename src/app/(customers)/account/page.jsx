@@ -5,14 +5,15 @@ import CustomerOnly from "@/private/CustomerOnly";
 import EditButton from "@/components/custormer/account/EditButton";
 import useAuth from "@/hooks/useAuth";
 import axios from "axios";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const AccountPage = () => {
   const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
-
+  const { axiosSecure } = useAxiosSecure();
   useEffect(() => {
-    axios
-      .get(`https://glamorex-server.vercel.app/account/${user?.email}`)
+    axiosSecure
+      .get(`/account/${user?.email}`)
       .then((response) => {
         setCurrentUser(response.data);
       })

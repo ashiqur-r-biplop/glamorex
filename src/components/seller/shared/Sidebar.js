@@ -19,11 +19,14 @@ const Sidebar = () => {
 
   // logOutFunc
   const logOutFunc = () => {
-    logout((res) => {
-      localStorage.removeItem("access-token");
-      setUser(null);
-      router.push("/");
-    }).catch(err =>{console.log(err)})
+    logout()
+      .then((res) => {
+        router.push("/")
+        setUser(null);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

@@ -19,7 +19,7 @@ const Footer = () => {
             <h1 className="text-2xl">Contact</h1>
             <div className="space-y-2">
               <p>Via Rossini 10, 10136 Turin Italy</p>
-              <p>Phone: (0039) 333 12 68 347</p>
+              <p>Phone: +39-3331-2683-47</p>
               <p>Email: glamorex.help@gmail.com</p>
               <p>Skype: You_online</p>
               <p>Linkedin: www.linkedin.com/in/Glamorex</p>

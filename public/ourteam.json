@@ -1,6 +1,5 @@
 [
     {
-      "id": "1",
       "name": "Alex Hales",
       "img": "https://i.ibb.co/cNnxZh3/member-4.png",
       "title": "Founder",
@@ -24,7 +23,6 @@
       ]
     },
     {
-      "id": "2",
       "name": "Brenden williams",
       "img": "https://i.ibb.co/JKGhWyH/member-3.png",
       "title": "CEO",
@@ -48,7 +46,6 @@
       ]
     },
     {
-      "id": "3",
       "name": "Alexina Brownie",
       "img": "https://i.ibb.co/ncXvNJX/member-1.png",
       "title": "CTO",
@@ -72,7 +69,6 @@
       ]
     },
     {
-      "id": "4",
       "name": "Emily Era",
       "img": "https://i.ibb.co/YtqWph0/member-5.png",
       "title": "Marketing Manager",
@@ -96,7 +92,6 @@
       ]
     },
     {
-      "id": "5",
       "name": "Michael Brown",
       "img": "https://i.ibb.co/yySpFJh/member-6.png",
       "title": "Sales Manager",
@@ -120,7 +115,6 @@
       ]
     },
     {
-      "id": "6",
       "name": "Sarah Wilson",
       "img": "https://i.ibb.co/KNRGS3d/member-2.png",
       "title": "Customer Support Specialist",
