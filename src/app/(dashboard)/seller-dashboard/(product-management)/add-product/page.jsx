@@ -43,7 +43,7 @@ const AddProductPage = () => {
 
   // total quantity
   const totalQuantity = variants.reduce((acc, curr) => acc + curr.quantity, 0);
-
+  console.log;
   //  Hold form field via react hook form
   const {
     register,
@@ -55,16 +55,8 @@ const AddProductPage = () => {
   } = useForm();
   const onSubmit = (data) => {
     setLoading(true);
-
     // variants for remove size with 0 value
-    const updatedVariants = variants.map((variant) => ({
-      ...variant,
-      sizes: Object.fromEntries(
-        Object.entries(variant.sizes).filter(
-          ([size, quantity]) => quantity !== 0
-        )
-      ),
-    }));
+    const updatedVariants = variants.map((variant) => ({}));
 
     const {
       name,
@@ -76,13 +68,13 @@ const AddProductPage = () => {
       price,
       discount,
       description,
-      publishDate,
-      keyFeatures
+      productCoupon,
     } = data;
     const product = {
       name,
       image: imageLink,
       discount,
+      productCoupon,
       keyFeatures,
       seller_name: user?.displayName,
       seller_email: user?.email,
@@ -93,9 +85,10 @@ const AddProductPage = () => {
       variants: updatedVariants,
       price,
       description,
-      publishDate
+      publishDate: new Date().toLocaleDateString(),
     };
-    console.log(product);
+
+    console.log(product?.quantity);
     axiosSecure
       .post("/add-product", { product })
       .then((res) => {
@@ -616,13 +609,7 @@ const AddProductPage = () => {
                       className="my-inp-disable"
                       id="date"
                       value={new Date().toLocaleDateString()}
-                      {...register("publishDate", { required: true })}
                     />
-                    {errors.publishDate && (
-                      <span className="text-red-500">
-                        This field is required
-                      </span>
-                    )}
                   </div>
                   <div className="flex-1">
                     <label
