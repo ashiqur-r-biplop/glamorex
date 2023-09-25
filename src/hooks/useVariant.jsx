@@ -48,7 +48,10 @@ const useVariant = () => {
     const handleQuantityChange = (color, size, value) => {
         const existVariant = variants.find(variant => (variant?.color === color && Object.keys(variant.sizes).includes(size)))
         const restVariants = variants.filter(variant => variant?.color !== color || !Object.keys(variant?.sizes).includes(size))
+        console.log(existVariant,52);
+            console.log(restVariants,53);
         if (existVariant) {
+            
             existVariant.sizes[size] = value
             existVariant.quantity = Object.values(existVariant.sizes).reduce((acc, curr) => acc + curr, 0)
             setVariants([...restVariants, existVariant])

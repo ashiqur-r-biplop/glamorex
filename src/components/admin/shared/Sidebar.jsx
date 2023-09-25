@@ -63,7 +63,7 @@ const Sidebar = () => {
         </li>
 
         <li>
-          <Navlink href={"/g-admin/product-management/all_products"}>
+          <Navlink href={"/g-admin/product-management"}>
             {" "}
             <span className="flex items-center gap-2">
               <FaProductHunt />

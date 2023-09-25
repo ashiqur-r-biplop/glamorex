@@ -16,9 +16,9 @@ const DashboardLayout = ({ children }) => {
     dispatch(setToken(token));
     // }
   }, []);
-  if(!user){
-    return router.push("/")
-  }
+  // if(!user){
+  //   return router.push("/")
+  // }
   return <>{children}</>;
 };
 

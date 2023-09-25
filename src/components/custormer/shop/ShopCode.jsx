@@ -22,11 +22,13 @@ const ShopPage = () => {
   }, [controlLayout]);
 
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/products")
+    // const url = "https://glamorex.vercel.app/products"
+    const url = "https://glamorex-server.vercel.app/products"
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setTopSale(data);
-        //// console.log(data);
+        console.log(data);
         setLoading(false);
       })
       .catch((error) => {
