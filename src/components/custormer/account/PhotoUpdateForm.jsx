@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaCheck } from "react-icons/fa";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
 
 const PhotoUpdateForm = ({ control, setControl }) => {
   const { axiosSecure } = useAxiosSecure();
@@ -30,7 +31,7 @@ const PhotoUpdateForm = ({ control, setControl }) => {
         const photo_url = res.data.data.url;
         const updatePhoto = {
           photo_url,
-          email: user,
+          email: user.email,
         };
         axiosSecure
           .patch("/update-photo", updatePhoto)
@@ -54,10 +55,10 @@ const PhotoUpdateForm = ({ control, setControl }) => {
   };
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2 className="text-center pt-5">Loading...</h2>;
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="" onSubmit={handleSubmit(onSubmit)}>
       <label
         htmlFor="photoInput"
         className="file-input file-input-bordered focus:outline-0 !p-0 cursor-pointer"

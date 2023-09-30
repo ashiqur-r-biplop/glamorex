@@ -12,17 +12,17 @@ const addressData = [
   {
     icon: <HiOutlineMailOpen />,
     title: "Mail address",
-    content: ["info@example.com", "glamorex@example.com"],
+    content: ["info@example.com", "glamorex.help@gmail.com"],
   },
   {
     icon: <FaMapMarkerAlt />,
     title: "Office Location",
-    content: ["Digital Agency Network 2021", "Eastbourne Terrace"],
+    content: ["Via Rossini 10, 10136 Turin Italy", "Eastbourne Terrace"],
   },
   {
     icon: <HiOutlineMailOpen />,
     title: "Phone Number",
-    content: ["+205-555-0100-34", "+405-555-0128-45"],
+    content: ["+205-555-0100-34", "+39-3331-2683-47"],
   },
 ];
 

@@ -7,11 +7,13 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import PhotoUpdateForm from "@/components/custormer/account/PhotoUpdateForm";
 import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
+import useAuth from "@/hooks/useAuth";
 
 const ProfileEdit = () => {
   const { axiosSecure } = useAxiosSecure();
   const [User, setUser] = useState({});
   const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
   const { register, handleSubmit } = useForm({
     defaultValues: {
       gender: User?.gender,
@@ -22,7 +24,7 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     axiosSecure
-      .get("/profile")
+      .get(`/account/${user?.email}`)
       .then((response) => {
         setUser(response.data);
       })
@@ -62,7 +64,7 @@ const ProfileEdit = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex justify-center items-center">
+      <div className="py-[100px] min-h-[70vh]">
         <LoadingSpinner></LoadingSpinner>
       </div>
     );
@@ -76,7 +78,7 @@ const ProfileEdit = () => {
       <div className="border-2 border-gray-100 px-5 py-10 flex flex-col xl:flex-row gap-12 xl:gap-20 md:w-fit mx-auto">
         <div>
           <img
-            className="w-[200px] h-[200px] rounded-full mx-auto border"
+            className={`w-[200px] h-[200px] rounded-full mx-auto border`}
             src={User?.photo_url}
             alt={User?.name}
           />

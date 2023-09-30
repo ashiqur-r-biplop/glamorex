@@ -27,7 +27,7 @@ const ColumnLayout = ({ product }) => {
           />
         </div>
         <div className="flex justify-between items-center md:block">
-          <h2 className="font-semibold text-xl">{name}</h2>
+          <h2 className="font-semibold text-xl">{name.slice(0,20)}...</h2>
           <p className="font-semibold text-lg leading-none flex">
             <span className="text-xs">$</span>
             <span>{price}</span>

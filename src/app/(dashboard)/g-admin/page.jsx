@@ -1,6 +1,8 @@
 "use client";
+import useAuth from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useGetHomeCountsQuery } from "@/redux-toolkit/slice/adminApis/adminGetApies";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaDollarSign, FaSearch } from "react-icons/fa";
 import {
   FaArrowDown,
@@ -30,12 +32,35 @@ import {
 } from "recharts";
 
 const AdminHomePage = () => {
-  const { data: counts } = useGetHomeCountsQuery();
+
+  const [customer, setCustomer] = useState([]);
+  const [seller, setSeller] = useState([]);
+  const [allProduct, setAllProduct] = useState([]);
+  const { axiosSecure } = useAxiosSecure();
+  const { user } = useAuth();
+  useEffect(() => {
+    axiosSecure
+      .get("/only-customer")
+      .then((res) => setCustomer(res.data))
+      .catch((err) => console.log(err));
+    axiosSecure
+      .get("/only-seller")
+      .then((res) => setSeller(res.data))
+      .catch((err) => console.log(err));
+    axiosSecure
+      .get(`/all-products`)
+      .then((res) => {
+        setAllProduct(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [user]);
+
   const sellerStats = [
     {
       name: "Customers",
       icon: <FaPeopleGroup></FaPeopleGroup>,
-      total: counts?.customers || 1,
+      total: customer?.length || 1,
       lastWeek: 1,
       get growthPercentage() {
         return (((this.total - this.lastWeek) / this.lastWeek) * 100).toFixed(
@@ -46,7 +71,7 @@ const AdminHomePage = () => {
     {
       name: "Seller",
       icon: <FaPeopleCarryBox />,
-      total: counts?.sellers || 1,
+      total: seller?.length || 1,
       lastWeek: 1,
       get growthPercentage() {
         return (
@@ -59,7 +84,7 @@ const AdminHomePage = () => {
     {
       name: "Products",
       icon: <FaProductHunt></FaProductHunt>,
-      total: counts?.products || 1,
+      total: allProduct?.length || 1,
       lastWeek: 1,
       get growthPercentage() {
         return (((this.total - this.lastWeek) / this.lastWeek) * 100).toFixed(

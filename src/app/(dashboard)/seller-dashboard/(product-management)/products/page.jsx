@@ -4,22 +4,17 @@ import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
 import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import React, { useEffect, useState } from "react";
+import { FaPen } from "react-icons/fa6";
 
 const products = () => {
   const { axiosSecure } = useAxiosSecure();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
-  // const [products, setProducts] = useState({
-  //   name: "test",
-  //   price: 23,
-  //   quantity: 20,
-  //   category: "hey",
-  //   sub_category: "hello",
-  // });
+  
   const isProductsLoading = false;
   useEffect(() => {
-    axiosSecure(`/get-my-products?email=${user?.email}`)
+    axiosSecure.get(`/get-my-products?email=${user?.email}`)
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -69,7 +64,7 @@ const products = () => {
                     category,
                     sub_category,
                     status,
-                    product_status
+                    product_status,
                   } = product;
                   return (
                     <tr key={ind}>
@@ -92,18 +87,17 @@ const products = () => {
                       <td className="text-center">{category}</td>
                       <td className="text-center">{sub_category}</td>
                       <td className="text-center">{product_status}</td>
-                      {/* <th className="text-end">
-                        {" "}
+                      <th className="text-end">
                         <button
                           className="cmn-btn-one"
                           onClick={() => {
                             window.my_modal_1.showModal();
-                            setForUpdateClass(product);
+                            setForUpdateClass(_id);
                           }}
                         >
                           <FaPen></FaPen>
                         </button>{" "}
-                      </th> */}
+                      </th>
                     </tr>
                   );
                 })}

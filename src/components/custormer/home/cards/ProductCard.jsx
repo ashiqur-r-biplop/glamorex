@@ -3,19 +3,20 @@ import { Rating, ThinStar } from "@smastrom/react-rating";
 import Link from "next/link";
 
 const ProductCard = ({ product }) => {
+  console.log(product);
   const {
     _id,
     name,
     image,
     description,
-    ratings,
+    ratings: rating,
     reviews,
     price,
     discount,
-    previous_price,
     quantity,
   } = product || {};
-
+  const Old_price = (parseInt(price) / 100) * parseInt(discount.split("%")[0]);
+  const previous_price = Old_price + parseInt(price);
   const myStyles = {
     itemShapes: ThinStar,
     activeFillColor: "#09AC00",
@@ -24,21 +25,20 @@ const ProductCard = ({ product }) => {
   return (
     <Link href={`/product/${_id}`}>
       <div className="flex flex-col rounded-md md:max-w-xs w-full h-full border-2 border-gray-100 relative hover:shadow-lg transition-all duration-300 ease-in-out">
-        <div className="w-full p-5">
+        <div className="w-5 mx-auto h-5 p-5">
           <Image
             className="mx-auto rounded-md hover:scale-110 transition-all duration-500 ease-in-out"
             src={image}
-            width={200}
-            height={200}
+            fill={true}
             alt={`${name} image`}
           />
         </div>
-        {discount !== null && discount > 0 && (
+        {discount !== null && parseInt(discount.split("%")[0]) > 0 && (
           <p className="bg-green-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
-            - {discount}%
+            - {discount}
           </p>
         )}
-        {quantity == 0 && (
+        {parseInt(quantity) == 0 && (
           <p className="bg-red-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
             Stock Out
           </p>
@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
         <div className="flex flex-col justify-between space-y-3 h-full p-2">
           <div className="flex justify-between items-center mt-4">
             <p className="font-semibold text-xl">{name}</p>
-            <div className="flex gap-2">
+            <div className="flex justify-start items-start gap-2">
               {previous_price && (
                 <p className="line-through text-red-500">${previous_price}</p>
               )}
@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
           <div className="flex items-center gap-1">
             <Rating
               style={{ maxWidth: 90 }}
-              value={ratings}
+              value={rating}
               readOnly
               itemStyles={myStyles}
             />

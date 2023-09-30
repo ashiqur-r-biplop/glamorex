@@ -4,15 +4,15 @@ import developerBanner from "../../../../public/developerBanner.jpg";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import CmnSectionTitle from "@/components/custormer/HelpingCompo/CmnSectionTitle";
 import MemberCard from "@/components/custormer/about/MemberCard";
+import axios from "axios";
 
 
 const Developers = () => {
   const [members, setDevelopers] = useState([]);
 
   useEffect(() => {
-    fetch("/developers.json")
-      .then((res) => res.json())
-      .then((data) => setDevelopers(data));
+    axios.get("https://glamorex-server.vercel.app/developer")
+      .then((data) => setDevelopers(data.data));
   }, []);
   return (
     <div>

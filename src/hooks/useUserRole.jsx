@@ -14,8 +14,8 @@ const useUserRole = () => {
     // if(typeof window !== 'undefined' && window.localStorage) {
     const token = localStorage.getItem("access-token");
     if (user) {
-      axios
-        .get(`https://glamorex-server.vercel.app/get-user-role?email=${user?.email}`)
+      axiosSecure
+        .get(`/get-user-role?email=${user?.email}`)
         .then((res) => {
           setRole(res.data.role);
           console.log(res.data.role, "21");
