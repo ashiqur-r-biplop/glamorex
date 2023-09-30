@@ -9,15 +9,17 @@ const RecentProductCard = ({ product }) => {
     name,
     image,
     description,
-    ratings,
     reviews,
     price,
     discount,
-    previous_price,
-    publish_date,
+    publishDate: publish_date,
+    rating: ratings,
     quantity,
   } = product || [];
-
+  const Old_price =
+  (parseInt(price) / 100) *
+  parseInt(typeof discount === "string" ? discount?.split("%")[0] : discount);
+const previous_price = Old_price + parseInt(price);
   const myStyles = {
     itemShapes: ThinStar,
     activeFillColor: "#09AC00",
@@ -26,42 +28,48 @@ const RecentProductCard = ({ product }) => {
 
   return (
     <Link href={`/product/${_id}`}>
-      <div className="flex flex-col rounded-md md:max-w-xs w-full h-full border-2 border-gray-100 relative hover:shadow-lg transition-all duration-300 ease-in-out">
-        <div className="w-full p-5">
+      <div className="rounded-md pb-3 md:max-w-xs w-full h-full border-2 border-gray-100  hover:shadow-lg transition-all duration-300 ease-in-out relative">
+        <div className="mx-auto p-5 max-h-[350px] w-full relative overflow-hidden">
           <Image
             className="mx-auto rounded-md hover:scale-110 transition-all duration-500 ease-in-out"
             src={image}
-            width={200}
-            height={200}
+            width={300}
+            height={350}
+            style={{ height: "350px", objectFit: "contain", width: "auto" }}
             alt={`${name} image`}
           />
         </div>
-        {discount !== null && discount > 0 && (
-          <p className="bg-green-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
-            - {discount}%
-          </p>
-        )}
-        {quantity == 0 && (
+        {discount !== null &&
+          (typeof discount === "string" ? discount?.split("%")[0] : discount) >
+            0 && (
+            <p className="bg-green-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
+              - {discount}
+            </p>
+          )}
+        {parseInt(quantity) == 0 && (
           <p className="bg-red-500 rounded-2xl text-white font-semibold absolute left-0 top-0 ml-4 mt-4 px-2 text-sm">
             Stock Out
           </p>
         )}
 
-        <div className="flex flex-col justify-between space-y-3 h-full p-2">
+        <div className="flex flex-col justify-between space-y-3 p-2">
           <div className="flex justify-between items-center mt-4">
-            <p className="font-semibold text-xl">{name}</p>
-            <div className="flex gap-2">
-              {previous_price && (
-                <p className="line-through">${previous_price}</p>
+            <p className="font-semibold text-xl" name={name}>
+              {name.length > 25 ? `${name.slice(0, 30)}...` : name}
+            </p>
+            <div className="flex justify-start items-start gap-2">
+              {!(parseInt(price) === previous_price) && (
+                <p className="line-through text-red-500">${previous_price}</p>
               )}
-              <p className="font-bold text-red-500">${price}</p>
+
+              <p className="font-bold text-green-500">${parseInt(price)}</p>
             </div>
           </div>
           <div className="font-semibold text-sm">
             Release Date: {moment(publish_date).format("DD MMMM YYYY")}
           </div>
-          <p className="text-gray-500">{description}</p>
-          <div className="flex items-center gap-1">
+          <p className="text-gray-500 pb-4">{description.slice(0, 180)}...</p>
+          <div className="flex items-center gap-1  absolute -bottom-0 ">
             <Rating
               style={{ maxWidth: 90 }}
               value={ratings}

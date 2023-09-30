@@ -32,7 +32,7 @@ export const useWishlist = () => {
         seller_name,
         status,
         product_id: _id,
-        customer_email: user,
+        customer_email: user?.email,
       };
 
       axiosSecure

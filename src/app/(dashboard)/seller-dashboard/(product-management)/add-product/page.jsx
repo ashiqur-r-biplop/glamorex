@@ -60,7 +60,6 @@ const AddProductPage = () => {
 
     const {
       name,
-      quantity,
       category,
       sub_category,
       gender,
@@ -78,7 +77,7 @@ const AddProductPage = () => {
       keyFeatures,
       seller_name: user?.displayName,
       seller_email: user?.email,
-      quantity: totalQuantity || quantity,
+      quantity: totalQuantity || 0,
       category,
       sub_category,
       gender,

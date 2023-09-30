@@ -1,30 +1,48 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import styles from "../../../app/MemberCard.module.css";
+import { FaPlus } from "react-icons/fa";
 
 const MemberCard = ({ member }) => {
-  const { id, name, img, title, social_links } = member || [];
+  const { id, name, img, title, social_links } = member || {};
+  const [isShow, setIsShow] = useState(false);
+
   return (
-    <div className="shadow rounded-md bg-green-50 pt-5">
-      <figure>
-        <img
-          className="w-[200px] h-[200px] rounded-full mx-auto object-cover object-center border-2 border-green-500 p-1 bg-green-200"
-          src={img}
-          alt={name}
-        />
-      </figure>
-      <div className="text-center space-y-5 pt-10">
-        <div className="space-y-3">
-          <h2 className="text-2xl font-semibold">{name}</h2>
-          <p className="uppercase font-semibold text-xs">{title}</p>
-        </div>
-        <ul className="flex justify-center gap-2 mx-auto p-2 rounded bg-green-200">
-          {social_links?.map((social, i) => (
-            <li key={i}>
-              <a href={social?.link} target="_blank">
-                <img className="w-8" src={social?.icon} alt="social-link" />
+    <div className={`${styles.card} bg-green-50`}>
+      <div className={`${styles.card__border}`}>
+        <img src={img} alt="card image" className={`${styles.card__img}`} />
+      </div>
+
+      <h3 className={styles.card__name}>{name}</h3>
+      <span className={styles.card__profession}>{title}</span>
+
+      <div
+        className={`${styles.card__social} ${isShow ? styles.animation : ""}`}
+      >
+        <div className={styles.card__social_control}>
+          <div
+            onClick={() => setIsShow(!isShow)}
+            className={styles.card__social_toggle}
+            id="card-toggle"
+          >
+            <FaPlus />
+          </div>
+
+          <span className={styles.card__social_text}>My social networks</span>
+
+          <ul className={`flex gap-5 ${styles.card__social_list}`}>
+            {social_links.map((item, i) => (
+              <a
+                key={i}
+                href={item.link}
+                target="_blank"
+                className={styles.card__social_link}
+              >
+                <img className="w-8" src={item?.icon} alt="social-link" />
               </a>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

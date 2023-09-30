@@ -5,6 +5,7 @@ import useAddToCart from "@/hooks/useAddToCart";
 import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import ProductCard from "./cards/ProductCard";
 import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
+import axios from "axios";
 
 const TopRatedProducts = () => {
   const [products, setProducts] = useState([]);
@@ -12,9 +13,8 @@ const TopRatedProducts = () => {
   const { handleAddToCart } = useAddToCart();
 
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/trending-products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data), setLoading(false));
+    axios.get("https://glamorex-server.vercel.app/trending-products")
+      .then((data) => setProducts(data.data), setLoading(false));
   }, []);
   if (loading) {
     return <LoadingSpinner></LoadingSpinner>;
@@ -28,7 +28,6 @@ const TopRatedProducts = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {products.slice(0, 8).map((product, i) => (
           <ProductCard
-            handleAddToCart={handleAddToCart}
             key={i + 1}
             product={product}
           />
