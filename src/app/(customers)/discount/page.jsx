@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
 import CmnSectionTitle from "@/components/custormer/HelpingCompo/CmnSectionTitle";
 import ProductCard from "@/components/custormer/home/cards/ProductCard";
+import axios from "axios";
 
 
 const DiscountPage = () => {
@@ -12,10 +13,9 @@ const DiscountPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/discount-products")
-      .then((res) => res.json())
+    axios.get("https://glamorex-server.vercel.app/discount-products")
       .then((data) => {
-        setProducts(data);
+        setProducts(data?.data);
         setLoading(false);
       });
   }, []);

@@ -9,15 +9,16 @@ import useAddToCart from "@/hooks/useAddToCart";
 import CmnSectionTitle from "../HelpingCompo/CmnSectionTitle";
 import { retry } from "@reduxjs/toolkit/dist/query";
 import LoadingSpinner from "../HelpingCompo/LoadingSpinner";
+import axios from "axios";
 
 const RecentProductsSection = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { handleAddToCart } = useAddToCart();
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/latest-products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data), setLoading(false));
+    axios
+      .get("https://glamorex-server.vercel.app/latest-products")
+      .then((data) => setProducts(data.data), setLoading(false));
   }, []);
   if (loading) {
     return <LoadingSpinner></LoadingSpinner>;

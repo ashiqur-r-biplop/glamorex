@@ -12,6 +12,7 @@ import ReactImageZoom from "react-image-zoom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import useUserRole from "@/hooks/useUserRole";
 import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
+import axios from "axios";
 
 const productDetailsPage = () => {
   const { handleWishList } = useWishlist();
@@ -23,12 +24,11 @@ const productDetailsPage = () => {
   const [loading, setLoading] = useState(true);
   const [buy_quantity, setBuyQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Description");
-  const { axiosSecure } = useAxiosSecure();
   const { role } = useUserRole();
   //// console.log(role);
   useEffect(() => {
-    axiosSecure
-      .get(`/product/${id}`)
+    axios
+      .get(`https://glamorex-server.vercel.app/product/${id}`)
       .then((res) => {
         setProduct(res.data);
         setLoading(false);
@@ -41,9 +41,9 @@ const productDetailsPage = () => {
   useEffect(() => {
     if (product) {
       // console.log("34", product?._id);
-      axiosSecure
+      axios
         .get(
-          `/related-products?category=${product?.category}&id=${product?._id}`
+          `https://glamorex-server.vercel.app/related-products?category=${product?.category}&id=${product?._id}`
         )
         .then((res) => {
           setSimilarProducts(res.data);
@@ -63,14 +63,13 @@ const productDetailsPage = () => {
     name,
     image,
     description,
-    color,
-    key_features,
+    variants,
+    keyFeatures: key_features,
     product_id,
     seller_name,
     seller_email,
-    ratings,
+    rating: ratings,
     reviews,
-    previous_price,
     discount,
     price,
     quantity,
@@ -81,9 +80,16 @@ const productDetailsPage = () => {
     status,
     gender,
   } = product || {};
-  const tabs = ["Description", "Question", "Reviews"];
+  console.log(product);
+  const Old_price =
+    (parseInt(price) / 100) *
+    parseInt(typeof discount === "string" ? discount?.split("%")[0] : discount);
+  const previous_price = Old_price + parseInt(price);
 
-  //// console.log(product);
+  const tabs = ["Description", "Question", "Reviews"];
+  console.log(variants[0]);
+
+  // console.log(product)1;
   //// console.log(tabs);
   //// console.log(similarProducts);
   const handleMinus = () => {
@@ -134,17 +140,19 @@ const productDetailsPage = () => {
                 ({ratings})
               </span>{" "}
               | <span>{reviews} reviews</span> |{" "}
-              <span>{overall_sell} sold</span> | <span>{gender} Product</span> |{" "}
+              <span>{overall_sell} sold</span> | <span>{gender} Product</span>
             </h2>
 
             <div className="flex flex-wrap gap-2">
               <button className="px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500">
                 Price: ${price}
               </button>
-              <button className="px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500">
-                Regular Price: $
-                <span className="line-through">{previous_price}</span>
-              </button>
+              {!(price == previous_price) && (
+                <button className="px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500">
+                  Regular Price: $
+                  <span className="line-through">{previous_price}</span>
+                </button>
+              )}
               <button className="px-4 py-2 rounded font-semibold bg-orange-500 bg-opacity-10 text-orange-500">
                 Product available: {quantity}
               </button>
@@ -186,7 +194,7 @@ const productDetailsPage = () => {
               </div>
 
               {/* color button */}
-              <div className="col-span-6">
+              {/* <div className="col-span-6">
                 <h2 className="my-subtitle text-slate-900 mb-2">
                   Colors{" "}
                   <span className="text-slate-500">
@@ -209,7 +217,7 @@ const productDetailsPage = () => {
                       }
                     )}
                 </div>
-              </div>
+              </div> */}
             </div>
             <div>
               <h2 className="my-subtitle text-slate-900 mb-2">Quantity</h2>
@@ -227,6 +235,7 @@ const productDetailsPage = () => {
                   <p className="border px-3 py-2">{buy_quantity}</p>
                   <button
                     onClick={handlePlus}
+                    disabled={quantity == buy_quantity}
                     className={`border rounded-e-md p-2 ${
                       quantity == buy_quantity && "bg-[#e7e7e7]"
                     }`}

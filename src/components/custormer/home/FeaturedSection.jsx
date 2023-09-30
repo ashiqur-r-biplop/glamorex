@@ -14,7 +14,7 @@ const FeaturedSection = () => {
 
   // TODO: api no data
   useEffect(() => {
-    fetch("https://glamorex.vercel.app/featured-products")
+    fetch("https://glamorex-server.vercel.app/featured-products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
