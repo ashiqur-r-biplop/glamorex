@@ -1,0 +1,140 @@
+[
+  {
+    "name": "Ashiqur Rahman Biplop",
+    "img": "https://i.ibb.co/tDT76sj/42883-removebg-preview.png",
+    "title": "Frontend Developer",
+    "social_links": [
+      {
+        "link": "https://www.facebook.com/BBTT.biplop22/",
+        "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+      },
+      {
+        "link": "https://github.com/ashiqur-r-biplop",
+        "icon": "https://i.ibb.co/Sftbtkz/github.png"
+      },
+      {
+        "link": "https://www.linkedin.com/in/ashiqur-r-biplop/",
+        "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+      },
+      {
+        "link": "https://portfolio-ashiqur-rahman-biplop.netlify.app/",
+        "icon": "https://i.ibb.co/dKsw9M9/global.png"
+      }
+    ]
+  },
+  {
+    "name": "Abtahi Hasan",
+    "img": "https://i.ibb.co/rGcv0M6/abtahi-hasan.png",
+    "title": "Full Stack Developer",
+    "social_links": [
+      {
+        "link": "https://www.facebook.com/mdabtahihasan",
+        "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+      },
+      {
+        "link": "https://github.com/abtahihasan",
+        "icon": "https://i.ibb.co/Sftbtkz/github.png"
+      },
+      {
+        "link": "https://www.linkedin.com/in/abtahihasan",
+        "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+      },
+      {
+        "link": "https://abtahi-hasan.web.app/",
+        "icon": "https://i.ibb.co/dKsw9M9/global.png"
+      }
+    ]
+  },
+  {
+    "name": "Aothy Mahamud Moon",
+    "img": "https://i.ibb.co/5M178K2/Aothy-Mahamud-Moon.png",
+    "title": "Frontend Developer",
+    "social_links": [
+      {
+        "link": "https://facebook.com/aothymoon59",
+        "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+      },
+      {
+        "link": "https://github.com/aothymoon59",
+        "icon": "https://i.ibb.co/Sftbtkz/github.png"
+      },
+      {
+        "link": "https://www.linkedin.com/in/aothymoon59/",
+        "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+      },
+      {
+        "link": "https://aothymoon.web.app/",
+        "icon": "https://i.ibb.co/dKsw9M9/global.png"
+      }
+    ]
+  },
+  {
+    "name": "Ahashan Habib Utsho",
+    "img": "https://i.ibb.co/z5WD4jG/Utsho.png",
+    "title": "Frontend Developer",
+    "social_links": [
+      {
+        "link": "https://web.facebook.com/UtshoBhai007",
+        "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+      },
+      {
+        "link": "https://github.com/Source-Code-007",
+        "icon": "https://i.ibb.co/Sftbtkz/github.png"
+      },
+      {
+        "link": "https://www.linkedin.com/in/ahashan-habib-utsho-722745107/",
+        "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+      },
+      {
+        "link": "https://utshofolio.netlify.app/",
+        "icon": "https://i.ibb.co/dKsw9M9/global.png"
+      }
+    ]
+  },
+  {
+    "name": "Tanvir Ahmad Jesan",
+    "img": "https://i.ibb.co/k19pw1V/Tanvir-Ahmad.png",
+    "title": "Frontend Developer",
+    "social_links": [
+      {
+        "link": "http://facebook.com/jesandante007",
+        "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+      },
+      {
+        "link": "http://github.com/jesandante007",
+        "icon": "https://i.ibb.co/Sftbtkz/github.png"
+      },
+      {
+        "link": "https://www.linkedin.com/in/tanvir-jesan-45b444279/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_jobs%3BD5vjqVfASVykkev6e2rSwQ%3D%3D",
+        "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+      },
+      {
+        "link": "https://portfolio-jesan.netlify.app/",
+        "icon": "https://i.ibb.co/dKsw9M9/global.png"
+      }
+    ]
+  },
+  {
+    "name": "S M Arman Hossain",
+    "img": "https://i.ibb.co/d7TVcKJ/Armaan.png",
+    "title": "Frontend Developer",
+    "social_links": [
+      {
+        "link": "https://www.facebook.com/Muntasir.maan.13",
+        "icon": "https://i.ibb.co/Jv9v99m/facebook.png"
+      },
+      {
+        "link": "https://github.com/smarmaan",
+        "icon": "https://i.ibb.co/Sftbtkz/github.png"
+      },
+      {
+        "link": "https://www.linkedin.com/in/armaan-hossain-irtaza",
+        "icon": "https://i.ibb.co/RY8RvGx/linkedin.png"
+      },
+      {
+        "link": "https://armaan-hossain-portfolio.netlify.app/",
+        "icon": "https://i.ibb.co/dKsw9M9/global.png"
+      }
+    ]
+  }
+]
