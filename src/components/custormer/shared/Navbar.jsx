@@ -55,9 +55,12 @@ function Nav() {
       </NavLink>
     </>
   );
+
+  console.log('url',userRoleLoading, 'al',authLoading);
+
   const profileDropdown = (
     <>
-      {authLoading ? (
+      {(authLoading || (user && userRoleLoading)) ? (
         <LoadingSpinner className={"h-14 w-14"}></LoadingSpinner>
       ) : !user ? (
         <NavLink href="/signin">Signin</NavLink>
@@ -91,13 +94,12 @@ function Nav() {
               <li>
                 {" "}
                 <Link
-                  href={`${
-                    role === "seller"
+                  href={`${role === "seller"
                       ? "/seller-dashboard"
                       : role === "admin"
-                      ? "g-admin"
-                      : "#"
-                  }`}
+                        ? "g-admin"
+                        : "#"
+                    }`}
                   className="p-2 flex gap-2 items-center"
                 >
                   Dashboard <MdDashboard />{" "}

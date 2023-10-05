@@ -34,20 +34,27 @@ const SDhomepage = () => {
   const [customer, setCustomer] = useState([]);
   const [myProduct, setMyProduct] = useState([]);
   const { axiosSecure } = useAxiosSecure();
+  const [loading, setLoading] = useState(false)
   const { user } = useAuth();
+
   useEffect(() => {
-    axiosSecure
-      .get("/only-customer")
-      .then((res) => setCustomer(res.data))
-      .catch((err) => console.log(err));
-    axiosSecure
-      .get(`/get-my-products?email=${user?.email}`)
+    setLoading(true)
+    axiosSecure.get("/only-customer")
+      .then((res) => {setCustomer(res.data); setLoading(false)})
+      .catch((err) => {console.log(err); setLoading(false)});
+  }, [user]);
+  
+  useEffect(() => {
+    setLoading(true)
+    axiosSecure.get(`/get-my-products?email=${user?.email}`)
       .then((res) => {
         setMyProduct(res.data);
+        setLoading(false)
         console.log(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {console.log(err); setLoading(false)});
   }, [user]);
+
   const sellerStats = [
     {
       name: "Customers",
@@ -233,16 +240,14 @@ const SDhomepage = () => {
           return (
             <div
               div
-              className={`p-5 space-y-4 rounded-t bg-slate-50 shadow border-b-4  ${
-                growthPercentage > 0 ? "border-green-500" : "border-red-500"
-              }`}
+              className={`p-5 space-y-4 rounded-t bg-slate-50 shadow border-b-4  ${growthPercentage > 0 ? "border-green-500" : "border-red-500"
+                }`}
               key={ind}
             >
               <div className="flex justify-between items-center gap-2">
                 <div
-                  className={`border-l-2 ${
-                    growthPercentage > 0 ? "border-green-500" : "border-red-500"
-                  } pl-3 space-y-3`}
+                  className={`border-l-2 ${growthPercentage > 0 ? "border-green-500" : "border-red-500"
+                    } pl-3 space-y-3`}
                 >
                   <h2 className="my-subtitle text-slate-400">{name}</h2>
                   <p className="my-subtitle">
@@ -257,9 +262,8 @@ const SDhomepage = () => {
 
               <p className="text-slate-400 flex items-center gap-2">
                 <span
-                  className={`${
-                    growthPercentage > 0 ? "text-green-500" : "text-red-500"
-                  } flex gap-1 items-center`}
+                  className={`${growthPercentage > 0 ? "text-green-500" : "text-red-500"
+                    } flex gap-1 items-center`}
                 >
                   {" "}
                   {growthPercentage}%{" "}
