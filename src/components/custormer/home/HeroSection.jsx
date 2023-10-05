@@ -6,8 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-// import bannerBg from '../../../../../public/assets/img/heroBg.jpg'
-import bannerBg from '../../../../public/assets/img/signinBg.jpg'
+// import bannerBg from '/public/assets/img/heroBg.jpg'
+import bannerBg from '/public/assets/img/signinBg.jpg'
 import bannerMen from '../../../../public/assets/img/banner-men-3.jpg'
 import bannerWoman from '../../../../public/assets/img/banner-woman-1.jpg'
 import bannerTrending from '../../../../public/assets/img/banner-trending-2.jpg'

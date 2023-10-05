@@ -40,6 +40,15 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
+  const ProfileUpdate = (name, PhotoUrl) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: PhotoUrl,
+    });
+  };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // get and set token
@@ -72,13 +81,7 @@ const AuthProvider = ({ children }) => {
       unSubscribe();
     };
   }, []);
-  const ProfileUpdate = (name, PhotoUrl) => {
-    setLoading(true);
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: PhotoUrl,
-    });
-  };
+
   const authInfo = {
     user,
     signUp,
