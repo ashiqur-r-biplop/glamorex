@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
   // console.log(price, previous_price);
   return (
     <Link href={`/product/${_id}`}>
-      <div className="rounded-md pb-3 md:max-w-xs w-full h-full border-2 border-gray-100  hover:shadow-lg transition-all duration-300 ease-in-out relative">
+      <div className="rounded-md w-full h-full border-2 border-gray-100 p-5 hover:shadow-lg transition-all duration-300 ease-in-out relative">
         <div className="mx-auto p-5 max-h-[350px] w-full relative overflow-hidden">
           <Image
             className="mx-auto rounded-md hover:scale-110 transition-all duration-500 ease-in-out"

@@ -115,7 +115,7 @@ const productDetailsPage = () => {
         <div className="grid grid-cols-12 gap-8 p-5 py-14">
           {/* product image */}
           <div className="col-span-12 lg:col-span-5 bg-[#ffffff] flex items-center">
-            <figure className="rounded-lg w-full h-[450px] relative z-10 cursor-zoom-in flex justify-center items-center">
+          <figure className="rounded-lg w-full h-full relative z-10 cursor-zoom-in flex justify-center items-center">
               <ReactImageMagnify
                 {...{
                   smallImage: {

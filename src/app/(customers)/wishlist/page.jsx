@@ -15,10 +15,10 @@ const WishListPage = () => {
   const [control, setControl] = useState(true);
   const { axiosSecure } = useAxiosSecure();
   const { user } = useAuth();
-
+  console.log(user?.email);
   useEffect(() => {
     axiosSecure
-      .get(`/wishlists?email=${user?.email}`)
+      .get(`/wishlists/${user?.email}`)
       .then((response) => {
         setProducts(response.data);
         setLoading(false);
