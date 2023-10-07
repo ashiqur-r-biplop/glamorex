@@ -3,16 +3,17 @@ import logo from "/public/assets/img/logo.png";
 import SDNavLink from "../HelpingCompo/SDNavLink";
 import Image from "next/image";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
-import { LuEdit } from "react-icons/lu";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { FaAngleDown, FaBasketShopping, FaProductHunt } from "react-icons/fa6";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
+import { MdEditNote } from "react-icons/md";
 
 const Sidebar = () => {
-  const [productManagementDropdown, setProductManagementDropdown] = useState(false);
+  const [productManagementDropdown, setProductManagementDropdown] =
+    useState(false);
   const { setUser, logout } = useAuth();
   const router = useRouter();
 
@@ -20,7 +21,7 @@ const Sidebar = () => {
   const logOutFunc = () => {
     logout()
       .then((res) => {
-        router.push("/")
+        router.push("/");
         setUser(null);
       })
       .catch((err) => {
@@ -56,7 +57,7 @@ const Sidebar = () => {
           <SDNavLink href={"/seller-dashboard/order-management"}>
             {" "}
             <span className="flex gap-2 items-center">
-              <FaBasketShopping></FaBasketShopping>{" "}
+              <FaBasketShopping/>
               <span className="hidden lg:inline-block whitespace-nowrap">
                 Order management
               </span>
@@ -82,29 +83,33 @@ const Sidebar = () => {
           </SDNavLink>
 
           {/* Product management dropdown */}
-          {productManagementDropdown && <ul
-            className={`pl-3 py-3 bg-gradient-to-tr from-slate-800 to-[#081229] transition-all duration-500 ${productManagementDropdown
-                ? "visible opacity-100 block"
-                : "invisible opacity-0 hidden"
+          {productManagementDropdown && (
+            <ul
+              className={`pl-3 py-3 bg-gradient-to-tr from-slate-800 to-[#081229] transition-all duration-500 ${
+                productManagementDropdown
+                  ? "visible opacity-100 block"
+                  : "invisible opacity-0 hidden"
               }`}
-          >
-            <SDNavLink href={"/seller-dashboard/add-product"}>
-              <span className="flex items-center gap-2">
-                <AiOutlineAppstoreAdd></AiOutlineAppstoreAdd>{" "}
-                <span className="hidden lg:inline-block whitespace-nowrap">
-                  Add product
+            >
+              <SDNavLink href={"/seller-dashboard/add-product"}>
+                <span className="flex items-center gap-2">
+                  <AiOutlineAppstoreAdd></AiOutlineAppstoreAdd>{" "}
+                  <span className="hidden lg:inline-block whitespace-nowrap">
+                    Add product
+                  </span>
                 </span>
-              </span>
-            </SDNavLink>
-            <SDNavLink href={"/seller-dashboard/products"}>
-              <span className="flex items-center gap-2">
-                <LuEdit></LuEdit>{" "}
-                <span className="hidden lg:inline-block whitespace-nowrap">
-                  Products
+              </SDNavLink>
+            
+              <SDNavLink href={"/seller-dashboard/products"}>
+                <span className="flex items-center gap-2">
+                  <MdEditNote></MdEditNote>
+                  <span className="hidden lg:inline-block whitespace-nowrap">
+                    Products
+                  </span>
                 </span>
-              </span>
-            </SDNavLink>
-          </ul>}
+              </SDNavLink>
+            </ul>
+          )}
         </li>
 
         {/* Invoices */}
