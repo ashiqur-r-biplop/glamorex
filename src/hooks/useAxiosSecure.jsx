@@ -7,8 +7,8 @@ import { useEffect } from "react";
 
 const axiosSecure = axios.create({
   // baseURL: "https://glamorex.vercel.app"
-  baseURL: "http://localhost:5000",
-  // baseURL: "https://glamorex-server.vercel.app"
+  // baseURL: "http://localhost:5000",
+  baseURL: "https://glamorex-server.vercel.app"
 });
 
 // http://lacalhost:5000

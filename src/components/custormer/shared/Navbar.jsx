@@ -2,7 +2,7 @@
 import { Transition } from "@headlessui/react";
 import { useContext, useEffect, useState } from "react";
 import NavLink from "../HelpingCompo/NavLink";
-import logo from "../../../../public/assets/img/logoOne.png";
+import logo from "../../../../public/assets/img/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
@@ -55,9 +55,12 @@ function Nav() {
       </NavLink>
     </>
   );
+
+  console.log('url',userRoleLoading, 'al',authLoading);
+
   const profileDropdown = (
     <>
-      {authLoading ? (
+      {(authLoading || (user && userRoleLoading)) ? (
         <LoadingSpinner className={"h-14 w-14"}></LoadingSpinner>
       ) : !user ? (
         <NavLink href="/signin">Signin</NavLink>
@@ -91,13 +94,12 @@ function Nav() {
               <li>
                 {" "}
                 <Link
-                  href={`${
-                    role === "seller"
+                  href={`${role === "seller"
                       ? "/seller-dashboard"
                       : role === "admin"
-                      ? "g-admin"
-                      : "#"
-                  }`}
+                        ? "g-admin"
+                        : "#"
+                    }`}
                   className="p-2 flex gap-2 items-center"
                 >
                   Dashboard <MdDashboard />{" "}
@@ -119,13 +121,14 @@ function Nav() {
   );
 
   return (
-    <nav className="bg-slate-800 bg-opacity-50 fixed left-0 top-0 right-0 px-3 z-50">
-      <div className=" mx-auto px-1 sm:px-6 lg:px-8">
+    <nav className="bg-slate-800 sticky left-0 top-0 right-0 px-3 z-50">
+    <div className=" mx-auto px-1 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* logo */}
           <div className="flex-shrink-0">
-            <Link href={"/"}>
-              <Image height={150} width={150} src={logo} alt="glamorex" />
+            <Link className="flex items-center gap-2" href={"/"}>
+              <Image style={{}} height={65} width={65} src={logo} alt="glamorex" />
+              <h2 className="text-2xl font-semibold text-white">Glamorex</h2>
             </Link>
           </div>
 

@@ -13,6 +13,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import useUserRole from "@/hooks/useUserRole";
 import LoadingSpinner from "@/components/custormer/HelpingCompo/LoadingSpinner";
 import axios from "axios";
+import ReactImageMagnify from "react-image-magnify";
 
 const productDetailsPage = () => {
   const { handleWishList } = useWishlist();
@@ -114,16 +115,20 @@ const productDetailsPage = () => {
         <div className="grid grid-cols-12 gap-8 p-5 py-14">
           {/* product image */}
           <div className="col-span-12 lg:col-span-5 bg-[#ffffff] flex items-center">
-            <figure className="rounded-lg w-full h-[450px] relative z-10 cursor-zoom-in">
-              {/* <Image
-                                src={image}
-                                fill
-                            /> */}
-              <ReactImageZoom
-                width={500}
-                height={500}
-                zoomWidth={300}
-                img={image}
+          <figure className="rounded-lg w-full h-full relative z-10 cursor-zoom-in flex justify-center items-center">
+              <ReactImageMagnify
+                {...{
+                  smallImage: {
+                    alt: "Wristwatch by Ted Baker London",
+                    isFluidWidth: true,
+                    src: image,
+                  },
+                  largeImage: {
+                    src: image,
+                    width: 1200,
+                    height: 1000,
+                  },
+                }}
               />
             </figure>
           </div>

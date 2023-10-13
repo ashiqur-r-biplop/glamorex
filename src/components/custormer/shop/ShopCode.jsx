@@ -23,7 +23,7 @@ const ShopPage = () => {
 
   useEffect(() => {
     // const url = "https://glamorex.vercel.app/products"
-    const url = "https://glamorex-server.vercel.app/products"
+    const url = "https://glamorex-server.vercel.app/products";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -32,7 +32,7 @@ const ShopPage = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
   }, [isControl]);
   const shopFilter = (gander, category, subCategory) => {
